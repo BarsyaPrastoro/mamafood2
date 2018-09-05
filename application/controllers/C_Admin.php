@@ -11,5 +11,11 @@ class C_Admin extends CI_Controller {
 			'username' => $this->session->userdata('username'),
 		], true);
 	}
+
+	public function dataPegawai(){
+		$this->load->model('Pedagang');
+		$semuaPedagang = $this->Pedagang->all();
+		$this->load->view('pedagang',['semuaPedagang' => $semuaPedagang]);
+	}
 	
 }
