@@ -12,8 +12,8 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><!-- <a href="../../login.php"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Log Out</a> -->
-                    <form class="form" method="post" action="logout">
-                        <button href="/login" name="logout" type="submit" class="btn btn-primary">Logout</button>
+                    <form class="form" method="post" action="../logout" >
+                        <button  name="logout" type="submit" class="btn btn-primary">Logout</button>
                     </form>
                 </li>
             </ul>                    

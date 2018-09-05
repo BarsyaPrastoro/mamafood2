@@ -32,6 +32,7 @@ class C_Admin extends CI_Controller {
 		$this->load->view('divisi/admin/adm-user.php',[
 			'semuaUser' => $semuaUser,
 			'acc_indicator' => $this->acc_indicator,
+			'topbar' => $this->load->view('topbar',[],true),
 			'sidebarAdmin' => $this->load->view('sidebarAdmin',[
 				'nama_hal' => 'adm-user'
 			], true)

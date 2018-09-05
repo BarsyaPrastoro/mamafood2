@@ -55,7 +55,6 @@ $route['reviewer/pelanggan'] = 'C_Pedagang/reviewerPelanggan';
 $route['reviewer/pengajuan'] = 'C_Pedagang/reviewerPengajuan';
 $route['reviewer/pengajuan-menu'] = 'C_Pedagang/reviewerMenu';
 $route['admin/pegawai'] = 'C_Admin/dataPegawai';
-
 $route['admin/user'] = 'C_Admin/dataUser';
 $route['login'] = 'C_Login/index';
 $route['logout'] = 'C_Login/logout';

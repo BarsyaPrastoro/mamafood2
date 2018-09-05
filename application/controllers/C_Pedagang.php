@@ -24,6 +24,7 @@ class C_Pedagang extends CI_Controller {
 		$this->load->view('divisi/applicantreviewer/apr-datapdg.php',[
 			'dataPdg' => $dataPdg,
 			'acc_indicator' => $this->acc_indicator,
+			'topbar' => $this->load->view('topbar',[],true),
 			'sidebar' => $this->load->view('sidebar',[
 				'nama_hal' => 'reviewer-pedagang'
 			], true)
@@ -35,6 +36,7 @@ class C_Pedagang extends CI_Controller {
 		$this->load->view('divisi/applicantreviewer/apr-dataplg.php',[
 			'dataPlg' => $dataPlg,
 			'acc_indicator' => $this->acc_indicator,
+			'topbar' => $this->load->view('topbar',[],true),
 			'sidebar' => $this->load->view('sidebar',[
 				'nama_hal' => 'reviewer-pelanggan'
 			], true)
@@ -46,6 +48,7 @@ class C_Pedagang extends CI_Controller {
 		$this->load->view('divisi/applicantreviewer/apr-pengajuanpdg.php',[
 			'dataPengajuan' => $dataPengajuan,
 			'acc_indicator' => $this->acc_indicator,
+			'topbar' => $this->load->view('topbar',[],true),
 			'sidebar' => $this->load->view('sidebar',[
 				'nama_hal' => 'pengajuan-pedagang'
 			], true)
@@ -57,6 +60,7 @@ class C_Pedagang extends CI_Controller {
 		$this->load->view('divisi/applicantreviewer/apr-konfirm.php',[
 			'dataMenu' => $dataMenu,
 			'acc_indicator' => $this->acc_indicator,
+			'topbar' => $this->load->view('topbar',[],true),
 			'sidebar' => $this->load->view('sidebar',[
 				'nama_hal' => 'konfirmasi-menu'
 			], true)

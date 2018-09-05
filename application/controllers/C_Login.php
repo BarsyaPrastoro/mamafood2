@@ -43,15 +43,14 @@ class C_Login extends CI_Controller {
 	}
 
 	public function logout(){
-		$method = $this->input->method();
-		if ($method == 'post') {
-
-			$this->load->library('session');
-			$this->session->unset_userdata('username');
-			$this->session->unset_userdata('password');
-			$this->session->sess_destroy();
-			header('location: ../login');
-		}
+		$this->load->library('session');
+		$this->session->unset_userdata('username');
+		$this->session->unset_userdata('password');
+		$this->session->sess_destroy();
+		//redirect('/login');
+		//$this->load->view('logout');
+		header('location: /login');
+		//$this->load->view('login');
 
 	}
 }
