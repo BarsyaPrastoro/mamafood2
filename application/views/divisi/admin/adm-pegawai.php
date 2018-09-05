@@ -29,7 +29,8 @@ if(isset($_POST['submit'])){
         
     </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <?= $topbar ?>
+<!--         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">                    
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -51,7 +52,7 @@ if(isset($_POST['submit'])){
                     </form>
                 </div>
             </div>
-        </nav>
+        </nav> -->
 
         <div id="wrapper" class="">
             <div class="container-fluid">

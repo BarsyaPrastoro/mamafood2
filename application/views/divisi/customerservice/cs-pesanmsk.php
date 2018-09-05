@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <?php
 session_start();
 include '../../Connect.php'; 
@@ -19,7 +19,7 @@ if(isset($_POST['submit'])){
 }
 
 
-?>
+?> -->
 <html>
     <head>
         <link rel="stylesheet" href="../../asset/css/style.css">
@@ -57,7 +57,7 @@ if(isset($_POST['submit'])){
         <div id="wrapper" class="">
             <div class="container-fluid">
                 <!-- Sidebar -->
-                <div id="sidebar-wrapper">
+                <!-- <div id="sidebar-wrapper">
                     <ul class="sidebar-nav">
                         <li class="sidebar-brand">
                             <br>
@@ -72,7 +72,7 @@ if(isset($_POST['submit'])){
                             <a href="cs-pesantkm.php">Pesan Terkirim</a>
                         </li>
                     </ul>
-                </div>
+                </div> -->
                 <div id="page-content-wrapper">
                     <div class="container-fluid">
                         <div class="row">

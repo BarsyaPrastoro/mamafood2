@@ -13,10 +13,10 @@ class C_Login extends CI_Controller {
 			$data = $this->UserPerusahaan->isExist($username,$password);
 			if($data){
 				$this->session->set_userdata([
-							'username' => $username
-						]);
-			
-			
+					'username' => $username
+				]);
+
+
 				echo 'ini username '.$username.'<br>';
 				//print_r($data);
 				
@@ -43,11 +43,15 @@ class C_Login extends CI_Controller {
 	}
 
 	public function logout(){
-		$this->load->library('session');
-		$this->session->unset_userdata('username');
-		$this->session->unset_userdata('password');
-		$this->session->sess_destroy();
-		header('location: /login');
+		$method = $this->input->method();
+		if ($method == 'post') {
+
+			$this->load->library('session');
+			$this->session->unset_userdata('username');
+			$this->session->unset_userdata('password');
+			$this->session->sess_destroy();
+			header('location: ../login');
+		}
 
 	}
 }

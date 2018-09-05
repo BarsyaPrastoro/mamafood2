@@ -12,16 +12,14 @@ class C_Admin extends CI_Controller {
 		], true);
 	}
 
-	public function dataPegawai(){
-		$this->load->model('UserPerusahaan');
-		$semuaPegawai = $this->UserPerusahaan->getPegawai();
-		$this->load->view('divisi/admin/adm-pegawai.php',[
-			'semuaPegawai' => $semuaPegawai,
+	public function pesanMasuk(){
+		//$this->load->model('UserPerusahaan');
+		//$semuaPegawai = $this->UserPerusahaan->getPegawai();
+		$this->load->view('divisi/customerservice/cs-pesanmsk.php',[
+			//'semuaPegawai' => $semuaPegawai,
 			'acc_indicator' => $this->acc_indicator,
-			'topbar' => $this->load->view('topbar',[],true),
 			'sidebarAdmin' => $this->load->view('sidebarAdmin',[
 				'nama_hal' => 'adm-pegawai'
-
 			], true)
 		]);
 	}
