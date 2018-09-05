@@ -190,26 +190,7 @@ if(isset($_POST['submit'])){
                                   </tr>
                                 </thead>
                                 <tbody>
-                                    <?php              
-                                      while ($rowpegawai = mysqli_fetch_array($query4)){
-                                          if($rowpegawai['status'] == 1) {
-                                            $status = "Applicant Reviewer";
-                                        }else if($rowpegawai['status'] == 2) {
-                                            $status= "Profitable Measurer";
-                                        }else if($rowpegawai['status'] == 3){
-                                            $status= "Customer Service";
-                                        }else if($rowpegawai['status'] == 4){
-                                            $status= "Admin";
-                                        }
-                                        $id = $rowpegawai['idUser'];
-                                        echo'<tr>                                        
-                                        <td>'.$rowpegawai['idUser'].'</td>
-                                        <td>'.$status.'</td>
-                                        <td>'.$rowpegawai['namaPegawai'].'</td>
-                                        <td><a href="./detail/detail-pegawai.php?id=' . $id . '">Details</a></td>
-                                        </tr>';
-                                      }
-                                    ?>
+                                    
                                 </tbody>
                               </table>
                             </div>
