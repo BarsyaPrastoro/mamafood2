@@ -190,7 +190,33 @@ if(isset($_POST['submit'])){
                                   </tr>
                                 </thead>
                                 <tbody>
-                                    
+                                    <?php foreach($semuaPegawai as $row): ?>
+                                        <tr>
+                                            <td><?= $row->idUser ?></td>
+                                            <td><?php if ($row->status == 1) :  ?>
+                                                <?php echo "Applicant Reviewer"?>
+                                            <?php endif; ?>
+
+                                            <?php if ($row->status == 2) :  ?>
+                                                <?php echo "Profitable Measurer"?>
+                                            <?php endif; ?>
+
+                                            <?php if ($row->status == 3) :  ?>
+                                                <?php echo "Customer Service"?>
+                                            <?php endif; ?>
+
+                                            <?php if ($row->status == 4) :  ?>
+                                                <?php echo "Admin"?>
+                                            <?php endif; ?>
+                                            </td>
+                                            <td><?= $row->namaPegawai ?></td>
+                                            <td>
+                                                <a href="">
+                                                    Details
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                               </table>
                             </div>
