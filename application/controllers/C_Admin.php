@@ -13,8 +13,8 @@ class C_Admin extends CI_Controller {
 	}
 
 	public function dataPegawai(){
-		$this->load->model('Pedagang');
-		$semuaPedagang = $this->Pedagang->all();
+		$this->load->model('UserPerusahaan');
+		$pegawai = $this->UserPerusahaan->getPegawai();
 		$this->load->view('pedagang',['semuaPedagang' => $semuaPedagang]);
 	}
 	
