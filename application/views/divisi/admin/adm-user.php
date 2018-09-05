@@ -1,10 +1,6 @@
-<?php
-session_start();
-include '../../Connect.php';
-?>
 <html>
     <head>
-        <link rel="stylesheet" href="../../asset/css/style.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>public/css/style.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -38,8 +34,9 @@ include '../../Connect.php';
 
         <div id="wrapper" class="">
             <div class="container-fluid">
+                <?= $sidebarAdmin ?>
                 <!-- Sidebar -->
-                <div id="sidebar-wrapper">
+                <!-- <div id="sidebar-wrapper">
                     <ul class="sidebar-nav">
                         <li class="sidebar-brand">
                             <br>
@@ -54,14 +51,14 @@ include '../../Connect.php';
                             <a href="adm-user.php">Akun User</a>
                         </li>
                     </ul>
-                </div>
+                </div> -->
                 <div id="page-content-wrapper">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <h4><span class="glyphicon glyphicon-map-marker">&nbsp;</span>Admin</h4>
-                                    <h4><span class="glyphicon glyphicon-user">&nbsp;</span><i><?php echo ''.$_SESSION['username'];?></i></h4>
+                                    <h4><span class="glyphicon glyphicon-user">&nbsp;</span><i><!-- <?php echo ''.$_SESSION['username'];?> --></i></h4>
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -92,25 +89,23 @@ include '../../Connect.php';
                                   </tr>
                                 </thead>
                                 <tbody>
-                                    <?php              
-                                      while ($row = mysqli_fetch_array($query5)){              
-                                        $id = $row['idUser'];
-                                        if ($row['role'] == 1) {
-                                            $role = "Pedagang";
-                                        }else{
-                                            $role = "Pemesan";
-                                        }
-                                        echo'<tr>
-                                        <td>'.$id.'</td>
-                                        <td>'.$role.'</td>
-                                        <td>'.$row['namaUser'].'</td>
-                                        <td>'.$row['emailUser'].'</td>
-                                        <td>'.$row['noTelpon'].'</td>
-                                        <td>'.$row['Alamat'].'</td>
-                                        
-                                        </tr>';
-                                      }
-                                    ?>
+                                    <?php foreach($semuaUser as $row): ?>
+                                        <tr>
+                                            <td><?= $row->idUser ?></td>
+                                            <td>
+                                                <?= ($row->role == 0)?"Pemesan":"Pedagang"?>
+                                            </td>
+                                            <td><?= $row->namaUser ?></td>
+                                            <td><?= $row->emailUser ?></td>
+                                            <td><?= $row->noTelpon ?></td>
+                                            <td><?= $row->Alamat ?></td>
+                                            <td>
+                                                <a href="">
+                                                    Details
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                               </table>
                             </div>

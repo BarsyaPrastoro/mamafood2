@@ -23,5 +23,17 @@ class C_Admin extends CI_Controller {
 			], true)
 		]);
 	}
+
+	public function dataUser(){
+		$this->load->model('UserPerusahaan');
+		$semuaUser = $this->UserPerusahaan->getUser();
+		$this->load->view('divisi/admin/adm-user.php',[
+			'semuaUser' => $semuaUser,
+			'acc_indicator' => $this->acc_indicator,
+			'sidebarAdmin' => $this->load->view('sidebarAdmin',[
+				'nama_hal' => 'adm-user'
+			], true)
+		]);
+	}
 	
 }

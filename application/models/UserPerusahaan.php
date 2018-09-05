@@ -18,6 +18,13 @@ class UserPerusahaan extends CI_Model {
 		$query = $this->db->query("select * from userperusahaan");
 		return $query->result();
 	}
+
+	public function getUser(){
+		$this->load->database();
+		$query = $this->db->query("select * from user");
+		return $query->result();
+	}
+
 	// public function getStatus($username, $password,$status){
 	// 	$this->load->database();
 	// 	$query = $this->db->query("select * from userperusahaan where namaPegawai=? and password = ? and status = ?",[
