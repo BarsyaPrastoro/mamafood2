@@ -7,12 +7,21 @@ class UserPerusahaan extends CI_Model {
 		$this->load->database();
 		$query = $this->db->query("select * from userperusahaan where namaPegawai=? and password = ? ",[
 			$username,
-			$password,
+			$password
 		]);
 
 		return $query->result();
 	}
 
+	public function getPegawai($username, $status){
+		$this->load->database();
+		$query = $this->db->query("select * from userperusahaan where namaPegawai=? and status = ? ",[
+			$username,
+			$status
+		]);
+
+		return $query->result();
+	}
 	// public function getStatus($username, $password,$status){
 	// 	$this->load->database();
 	// 	$query = $this->db->query("select * from userperusahaan where namaPegawai=? and password = ? and status = ?",[
