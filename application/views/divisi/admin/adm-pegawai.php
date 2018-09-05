@@ -56,7 +56,8 @@ if(isset($_POST['submit'])){
         <div id="wrapper" class="">
             <div class="container-fluid">
                 <!-- Sidebar -->
-                <div id="sidebar-wrapper">
+                <?= $sidebarAdmin ?>
+                <!-- <div id="sidebar-wrapper">
                     <ul class="sidebar-nav">
                         <li class="sidebar-brand">
                             <br>
@@ -74,8 +75,8 @@ if(isset($_POST['submit'])){
                             <button type="button" class="btn btn-secondary" data-toggle="modal" data-target=".bd-example-modal-lg">Create Account</button>
                         </li>
                     </ul>
-                </div>
-                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                </div> -->
+                <!-- <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-lg">
                     <div class="modal-content" style="padding:10px;">
                         <div class="row">
@@ -154,7 +155,7 @@ if(isset($_POST['submit'])){
                         </form>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <div id="page-content-wrapper">
                     <div class="container-fluid">
                         <div class="row">

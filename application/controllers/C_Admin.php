@@ -18,8 +18,8 @@ class C_Admin extends CI_Controller {
 		$this->load->view('divisi/admin/adm-pegawai.php',[
 			'semuaPegawai' => $semuaPegawai,
 			'acc_indicator' => $this->acc_indicator,
-			'sidebar' => $this->load->view('sidebar',[
-				'nama_hal' => 'reviewer-pedagang'
+			'sidebarAdmin' => $this->load->view('sidebarAdmin',[
+				'nama_hal' => 'adm-pegawai'
 			], true)
 		]);
 	}
