@@ -14,8 +14,14 @@ class C_Admin extends CI_Controller {
 
 	public function dataPegawai(){
 		$this->load->model('UserPerusahaan');
-		$pegawai = $this->UserPerusahaan->getPegawai();
-		$this->load->view('pedagang',['semuaPedagang' => $semuaPedagang]);
+		$semuaPegawai = $this->UserPerusahaan->getPegawai();
+		$this->load->view('divisi/admin/adm-pegawai.php',[
+			'semuaPegawai' => $semuaPegawai,
+			'acc_indicator' => $this->acc_indicator,
+			'sidebar' => $this->load->view('sidebar',[
+				'nama_hal' => 'reviewer-pedagang'
+			], true)
+		]);
 	}
 	
 }
