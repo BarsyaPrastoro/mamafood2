@@ -23,8 +23,8 @@ class C_Login extends CI_Controller {
 				if ($data[0]->status == 1) {	
 					header('location: /reviewer/pedagang');
 					
-				}else {
-					echo "ora ono";					
+				}else if($data[0]->status == 4) {
+					header('location: /admin/pegawai');					
 				}
 				/**$this->session->set_userdata([
 					'username' => $username
