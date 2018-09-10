@@ -1,0 +1,19 @@
+ <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            <br>
+        </li>
+        <li class="sidebar-brand">
+            <img width="175px" src="<?php echo base_url() . 'public/images/LOGONAMA.png'; ?>" /> 
+        </li>
+        <li class="<?= ($nama_hal == 'pesan-msk')?'active':'' ?> cs">
+            <a href="/admin/pegawai">Akun Pegawai</a>
+        </li>
+        <li class="active cs">
+            <a href="cs-pesanmsk.php">Pesan Masuk</a>
+        </li>
+        <li class="cs">
+            <a href="cs-pesantkm.php">Pesan Terkirim</a>
+        </li>
+    </ul>
+</div> 
