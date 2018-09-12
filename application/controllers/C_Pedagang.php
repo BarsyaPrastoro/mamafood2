@@ -5,7 +5,6 @@ class C_Pedagang extends CI_Controller {
 	public $acc_indicator;
 	public function __construct(){
 		parent::__construct();
-		$this->load->library('session');
 		$this->acc_indicator = $this->load->view('acc-indicator',[
 			'username' => $this->session->userdata('username'),
 		], true);
@@ -19,6 +18,7 @@ class C_Pedagang extends CI_Controller {
 	}
 
 	public function reviewerPedagang(){
+		$this->auth->doAuth();
 		$this->load->model('Pedagang');
 		$dataPdg = $this->Pedagang->getStatusAkun(1);
 		$this->load->view('divisi/applicantreviewer/apr-datapdg.php',[
@@ -31,6 +31,7 @@ class C_Pedagang extends CI_Controller {
 		]);
 	}
 	public function reviewerPelanggan(){
+		$this->auth->doAuth();
 		$this->load->model('Pedagang');
 		$dataPlg = $this->Pedagang->getPelanggan();
 		$this->load->view('divisi/applicantreviewer/apr-dataplg.php',[

@@ -54,7 +54,6 @@ $route['default_controller'] = 'C_login/index';
 /*
 ROUTE LOGIN/LOGOUT
 */
-$route['login'] = 'C_Login/index';
 $route['logout'] = 'C_Login/logout';
 
 /*
@@ -72,7 +71,7 @@ $route['admin/pegawai'] = 'C_Admin/dataPegawai';
 $route['admin/user'] = 'C_Admin/dataUser';
 
 /*
-ROUTE PROFITABLEMEASURER
+ROUTE PROFITABLEMEASURER bn
 */
 $route['pm/laporankeuangan'] = 'C_keuangan/laporanKeuangan';
 $route['pm/laporanbelisaldo'] = 'C_keuangan/laporanBeliSaldo';
@@ -82,6 +81,11 @@ $route['pm/transaksipedagang'] = 'C_keuangan/transaksiPedagang';
 
 
 $route['cs/pesanmasuk'] = 'C_customerservice/pesanMasuk';
+
+
+// API
+$route['api/login'] = 'C_Login/loginUser';
+$route['api/test'] = 'C_Login/test';
 
 
 

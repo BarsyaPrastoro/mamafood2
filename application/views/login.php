@@ -15,7 +15,7 @@
                     <img width="500px" src="<?php echo base_url() . 'public/images/LOGO.png'; ?>" /> 
                 </div>
                 <div class="col-md-5" style="margin-top: 200px">
-                    <form class="form" method="post" action="login">
+                    <form class="form" method="post" action="/">
                          <div class="form-group">
                             <label for="exampleInputEmail1">Username</label>
                             <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">

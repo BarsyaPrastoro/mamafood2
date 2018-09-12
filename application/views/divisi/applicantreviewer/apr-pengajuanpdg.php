@@ -52,7 +52,7 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                              <table class="table table-bordered table-striped" id="myTable">
+                              <table class="table table-bordered table-striped">
                                 <thead>
                                   <tr>
                                     <th>Nomor Pendaftaran</th>
