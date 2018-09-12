@@ -1,8 +1,3 @@
-<!DOCTYPE html>
-<?php
-session_start();
-include '../../Connect.php';
-?>
 <html>
     <head>
         <link rel="stylesheet" href="../../asset/css/style.css">
@@ -23,7 +18,8 @@ include '../../Connect.php';
         
     </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <?= $topbar ?>
+        <!-- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">                    
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -46,42 +42,27 @@ include '../../Connect.php';
                 </div>
             </div>
         </nav>
-
+ -->
         <div id="wrapper" class="">
             <div class="container-fluid">
+
                 <!-- Sidebar -->
-                <div id="sidebar-wrapper">
-                    <ul class="sidebar-nav">
-                        <li class="sidebar-brand">
-                            <br>
-                        </li>
-                        <li class="sidebar-brand">
-                            <img src="../../asset/gambar/LOGONAMA.png" id="logo" width="175px"> 
-                        </li>
-                        <li class="cs">
-                            <a href="pm-transaksipdgpbl.php">Transaksi Pedagang & Pembeli</a>
-                        </li>
-                         <li class="active cs">
-                            <a href="pm-laporankeuangan.php">Laporan Keuangan</a>
-                        </li>                
-                        <li class="cs">
-                            <a href="pm-laporanbelisaldo.php">Laporan Pembelian Saldo</a>
-                        </li>
-                        <li class="cs">
-                            <a href="pm-laporanbelipromo.php">Laporan Pembelian Promo</a>
-                        </li>
-                        <li class="cs">
-                            <a href="pm-laporanwithdraw.php">Laporan Withdraw</a>
-                        </li>
-                    </ul>
-                </div>
+                <?= $sidebarPM ?>
+                <!-- Sidebar -->
+                
                 <div id="page-content-wrapper">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <h4><span class="glyphicon glyphicon-map-marker">&nbsp;</span>Profitable Measurer</h4>
-                                    <h4><span class="glyphicon glyphicon-user">&nbsp;</span><i><?php echo ''.$_SESSION['username'];?></i></h4>
+                                    <h4><span class="glyphicon glyphicon-user">&nbsp;</span>
+                                        <i>
+
+                                        <!-- <?php echo ''.$_SESSION['username'];?> -->
+                                            
+                                        </i>
+                                    </h4>
                                 </div>
                             </div>
                             <div class="col-lg-2">

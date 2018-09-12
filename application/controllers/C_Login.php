@@ -25,6 +25,10 @@ class C_Login extends CI_Controller {
 					
 				}else if($data[0]->status == 4) {
 					header('location: /admin/pegawai');					
+				}else if ($data[0]->status == 2) {
+					header('location: /profitable_measurer');
+				}else if ($data[0]->status == 3) {
+					header('locatiom: /costumer_service');
 				}
 				/**$this->session->set_userdata([
 					'username' => $username
@@ -32,7 +36,7 @@ class C_Login extends CI_Controller {
 				header('location: /reviewer/pedagang');*/
 				//echo $this->session->userdata('username');
 			}else{
-				header('Location: /login');
+				// header('Location: /login');
 				//redirect('login');
 			}
 		}else if($method == 'get'){
