@@ -58,9 +58,13 @@ $route['reviewer/pengajuan-menu'] = 'C_Pedagang/reviewerMenu';
 
 $route['admin/pegawai'] = 'C_Admin/dataPegawai';
 $route['admin/user'] = 'C_Admin/dataUser';
+<<<<<<< HEAD
 
 $route['pm/laporan-keuangan'] = 'C_keuangan/transaksi';
 
+=======
+$route['cs/pesanmasuk'] = 'C_customerservice/pesanMasuk';
+>>>>>>> aa83237fb32bc34a333e33c76c1381ceb70dd4f2
 $route['login'] = 'C_Login/index';
 $route['logout'] = 'C_Login/logout';
 
