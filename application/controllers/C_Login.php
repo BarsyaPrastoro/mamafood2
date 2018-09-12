@@ -43,7 +43,7 @@ class C_Login extends CI_Controller {
 
 				}else if ($data[0]->status == 3) {
 
-					redirect('/costumer_service');
+					redirect('/cs/pesanmasuk');
 
 				}else if($data[0]->status == 4) {
 

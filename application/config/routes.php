@@ -79,8 +79,11 @@ $route['pm/laporanbelipromo'] = 'C_keuangan/laporanBeliPromo';
 $route['pm/laporanwithdraw'] = 'C_keuangan/laporanWithdraw';
 $route['pm/transaksipedagang'] = 'C_keuangan/transaksiPedagang';
 
-
+/*
+ROUTE CS
+*/
 $route['cs/pesanmasuk'] = 'C_customerservice/pesanMasuk';
+$route['cs/pesanterkirim'] = 'C_customerservice/pesanTerkirim';
 
 
 // API

@@ -1,28 +1,6 @@
-<!DOCTYPE html>
-<?php
-session_start();
-include '../../Connect.php'; 
-if(isset($_POST['submit'])){            
-    $status = $_POST['status'];
-    $nama = $_POST['name'];
-    $telepon = $_POST['telepon'];
-    $alamat = $_POST['alamat'];
-    $password = $_POST['password'];
-    $sqlinsert = "INSERT INTO userperusahaan(`status`,`namaPegawai`,`noTelepon`,`alamat`,`password`)                                               VALUES('$status','$nama','$telepon','$alamat','$password')";
-    if(mysqli_query($conn, $sqlinsert)){
-        header('Refresh: 0');
-    }else{
-        echo "data entry failed";
-        
-        
-    }
-}
-
-
-?>
 <html>
     <head>
-        <link rel="stylesheet" href="../../asset/css/style.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>public/css/style.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -30,7 +8,8 @@ if(isset($_POST['submit'])){
         
     </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <?= $topbar ?>
+        <!-- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">                    
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -52,12 +31,14 @@ if(isset($_POST['submit'])){
                     </form>
                 </div>
             </div>
-        </nav>
+        </nav> -->
 
         <div id="wrapper" class="">
             <div class="container-fluid">
                 <!-- Sidebar -->
-                <div id="sidebar-wrapper">
+                
+                <?= $sidebarCS ?>
+                <!-- <div id="sidebar-wrapper">
                     <ul class="sidebar-nav">
                         <li class="sidebar-brand">
                             <br>
@@ -72,14 +53,14 @@ if(isset($_POST['submit'])){
                             <a href="cs-pesantkm.php">Pesan Terkirim</a>
                         </li>
                     </ul>
-                </div>
+                </div> -->
                 <div id="page-content-wrapper">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <h4><span class="glyphicon glyphicon-map-marker">&nbsp;</span>Customer Service</h4>
-                                    <h4><span class="glyphicon glyphicon-user">&nbsp;</span><i><?php echo ''.$_SESSION['username'];?></i></h4>
+                                    <?= $acc_indicator ?>
                                 </div>
                             </div>
                             <div class="col-lg-6">

@@ -78,7 +78,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <h4><span class="glyphicon glyphicon-map-marker">&nbsp;</span>Profitable Measurer</h4>
-                                    <h4><span class="glyphicon glyphicon-user">&nbsp;</span><i><?php echo ''.$_SESSION['username'];?></i></h4>
+                                    <?= $acc_indicator ?>
                                 </div>
                             </div>
                             <div class="col-lg-2">
