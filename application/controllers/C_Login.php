@@ -21,28 +21,35 @@ class C_Login extends CI_Controller {
 				//print_r($data);
 				
 				if ($data[0]->status == 1) {	
-					header('location: /reviewer/pedagang');
+					redirect('/reviewer/pedagang');
 					
-				}else if($data[0]->status == 4) {
-					header('location: /admin/pegawai');					
 				}else if ($data[0]->status == 2) {
-					header('location: /profitable_measurer');
+
+					redirect('/pm/laporankeuangan');
+
 				}else if ($data[0]->status == 3) {
-					header('locatiom: /costumer_service');
+
+					redirect('/costumer_service');
+
+				}else if($data[0]->status == 4) {
+					
+					redirect('/admin/pegawai');					
 				}
 				/**$this->session->set_userdata([
 					'username' => $username
 				]);
-				header('location: /reviewer/pedagang');*/
+				redirect('/reviewer/pedagang');*/
 				//echo $this->session->userdata('username');
 			}else{
-				// header('Location: /login');
-				//redirect('login');
+				// redirect('/login');
+				echo "Akun Tidak Ditemukan";
+				redirect('/login');
+				
 			}
-		}else if($method == 'get'){
-			$this->load->view('login');
+		// }else if($method == 'get'){
+		// 	$this->load->view('login');
 		}else{
-			echo "404";
+			$this->load->view('/login');
 		}
 	}
 
@@ -51,9 +58,10 @@ class C_Login extends CI_Controller {
 		$this->session->unset_userdata('username');
 		$this->session->unset_userdata('password');
 		$this->session->sess_destroy();
+		redirect('http://mamafood.com', 'refresh');
 		//redirect('/login');
 		//$this->load->view('logout');
-		header('location: /login');
+		// redirect('/login');
 		//$this->load->view('login');
 
 	}

@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<?php
-session_start();
-include '../../Connect.php';
-?>
 <html>
     <head>
-        <link rel="stylesheet" href="../../asset/css/style.css">
+        <!-- <link rel="stylesheet" href="../../asset/css/style.css"> -->
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>public/css/style.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -49,7 +45,8 @@ include '../../Connect.php';
         <div id="wrapper" class="">
             <div class="container-fluid">
                 <!-- Sidebar -->
-                <div id="sidebar-wrapper">
+                <?= $sidebarPM ?>
+                <!-- <div id="sidebar-wrapper">
                     <ul class="sidebar-nav">
                         <li class="sidebar-brand">
                             <br>
@@ -73,7 +70,7 @@ include '../../Connect.php';
                             <a href="pm-laporanwithdraw.php">Laporan Withdraw</a>
                         </li>
                     </ul>
-                </div>
+                </div> -->
                 <div id="page-content-wrapper">
                     <div class="container-fluid">
                         <div class="row">

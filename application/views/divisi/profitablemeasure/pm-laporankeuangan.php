@@ -1,6 +1,7 @@
 <html>
     <head>
-        <link rel="stylesheet" href="../../asset/css/style.css">
+        /<link rel="stylesheet" href="../../asset/css/style.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>public/css/style.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -56,13 +57,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <h4><span class="glyphicon glyphicon-map-marker">&nbsp;</span>Profitable Measurer</h4>
-                                    <h4><span class="glyphicon glyphicon-user">&nbsp;</span>
-                                        <i>
-
-                                        <!-- <?php echo ''.$_SESSION['username'];?> -->
-                                            
-                                        </i>
-                                    </h4>
+                                    <?= $acc_indicator ?>
                                 </div>
                             </div>
                             <div class="col-lg-2">

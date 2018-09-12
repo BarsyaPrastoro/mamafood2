@@ -51,22 +51,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'C_login/index';
 
+/*
+ROUTE LOGIN/LOGOUT
+*/
+$route['login'] = 'C_Login/index';
+$route['logout'] = 'C_Login/logout';
+
+/*
+ROUTE APPLICANT REVIEWER
+*/
 $route['reviewer/pedagang'] = 'C_Pedagang/reviewerPedagang';
 $route['reviewer/pelanggan'] = 'C_Pedagang/reviewerPelanggan';
 $route['reviewer/pengajuan'] = 'C_Pedagang/reviewerPengajuan';
 $route['reviewer/pengajuan-menu'] = 'C_Pedagang/reviewerMenu';
 
+/*
+ROUTE ADMIN
+*/
 $route['admin/pegawai'] = 'C_Admin/dataPegawai';
 $route['admin/user'] = 'C_Admin/dataUser';
-<<<<<<< HEAD
 
-$route['pm/laporan-keuangan'] = 'C_keuangan/transaksi';
+/*
+ROUTE PROFITABLEMEASURER
+*/
+$route['pm/laporankeuangan'] = 'C_keuangan/laporanKeuangan';
+$route['pm/laporanbelisaldo'] = 'C_keuangan/laporanBeliSaldo';
+$route['pm/laporanbelipromo'] = 'C_keuangan/laporanBeliPromo';
+$route['pm/laporanwithdraw'] = 'C_keuangan/laporanWithdraw';
+$route['pm/transaksipedagang'] = 'C_keuangan/transaksiPedagang';
 
-=======
+
 $route['cs/pesanmasuk'] = 'C_customerservice/pesanMasuk';
->>>>>>> aa83237fb32bc34a333e33c76c1381ceb70dd4f2
-$route['login'] = 'C_Login/index';
-$route['logout'] = 'C_Login/logout';
+
+
 
 
 $route['404_override'] = '';
