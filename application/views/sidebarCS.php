@@ -7,13 +7,16 @@
             <img width="175px" src="<?php echo base_url() . 'public/images/LOGONAMA.png'; ?>" /> 
         </li>
         <li class="<?= ($nama_hal == 'pesan-msk')?'active':'' ?> cs">
-            <a href="/admin/pegawai">Akun Pegawai</a>
+            <a href="/cs/pesanmasuk">Pesan Masuk</a>
         </li>
-        <li class="active cs">
+        <!-- <li class="active cs">
             <a href="cs-pesanmsk.php">Pesan Masuk</a>
+        </li> -->
+        <li class="<?= ($nama_hal == 'pesan-tkm')?'active':'' ?> cs">
+            <a href="/cs/pesanterkirim">Pesan Terkirim</a>
         </li>
-        <li class="cs">
+        <!-- <li class="cs">
             <a href="cs-pesantkm.php">Pesan Terkirim</a>
-        </li>
+        </li> -->
     </ul>
 </div> 
