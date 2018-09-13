@@ -17,7 +17,7 @@
         </li>
     </ul>
 </div>
-<div class="modal fade bd-example-modal-lg" tabindex="" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-lg">
                     <div class="modal-content" style="padding:10px;">
                         <div class="row">
