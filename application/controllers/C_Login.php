@@ -16,6 +16,8 @@ class C_Login extends CI_Controller {
 	        $this->output->set_header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");    
 	}
 
+	//LOGIN
+
 	public function index()
 	{
 		$this->load->model('UserPerusahaan');
@@ -67,6 +69,9 @@ class C_Login extends CI_Controller {
 		}
 	}
 
+
+	//LOGOUT
+
 	public function logout(){
 		// $this->load->library('session');
 		// // $this->session->unset_userdata('username');
@@ -92,6 +97,8 @@ class C_Login extends CI_Controller {
 
 	}
 
+	//LOGIN PEMESAN
+
 	public function loginUser(){
 		$req = json_decode( file_get_contents('php://input') );
 		$username = $req->username;
@@ -112,6 +119,8 @@ class C_Login extends CI_Controller {
 			]);
 		}
 	}
+
+	//TES LEMPAR EMAIL PEMESAN LEWAT JSON
 
 	public function test(){
 		//$req = json_decode( file_get_contents('php://input') );

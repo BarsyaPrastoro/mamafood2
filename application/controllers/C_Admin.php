@@ -26,6 +26,19 @@ class C_Admin extends CI_Controller {
 		]);
 	}
 
+	public function detailPegawai($idPegawai){
+		$this->load->model('UserPerusahaan');
+		$dataPegawai = $this->UserPerusahaan->getPegawaiById($idPegawai);
+		$dataPegawai['idUser'] = ("ID NUMBER");
+		$this->load->view('divisi/admin/detail/detail-pegawai.php',[
+			'dataPegawai' => $dataPegawai,
+			'acc_indicator' => $this->acc_indicator,
+			'nama_hal' => 'adm-pegawai',
+			'topbar' => $this->load->view('topbar',[],true)
+		]);
+
+	}
+
 	public function dataUser(){
 		$this->load->model('UserPerusahaan');
 		$semuaUser = $this->UserPerusahaan->getUser();
@@ -39,4 +52,10 @@ class C_Admin extends CI_Controller {
 		]);
 	}
 	
+	function insertPegawai(){
+		$this->load->model('UserPerusahaan');
+		//$this->load->view 	('divisi/admin/adm-pegawai.php');
+		$this->UserPerusahaan->insertPegawai();
+		redirect('/admin/pegawai', 'refresh');
+	}
 }

@@ -13,6 +13,7 @@ class Auth{
 
 	function isAuthUser($token){
 		$atoken = explode('.',$token);
+		if(count($atoken) < 2) return false;
 		$username = $atoken[0];
 		$sig = $atoken[1];
 		if($sig != hash_hmac('SHA256', $username, $this->secret)){
@@ -29,6 +30,7 @@ class Auth{
 
 	function getUserByToken($token){
 		$atoken = explode('.',$token);
+		if(count($atoken) < 2) return false;
 		$username = $atoken[0];
 		return $username;
 	}

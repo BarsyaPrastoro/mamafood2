@@ -1,43 +1,13 @@
-<!DOCTYPE html>
-<?php
-session_start();
-include '../../../Connect.php';
-$id = $_GET['id'];
-$sqlpegawai = "select * from userperusahaan where idUser=$id";
-$resultpegawai = mysqli_query($conn,$sqlpegawai);
-$rowpegawai = mysqli_fetch_array($resultpegawai);
-if($rowpegawai['status'] == 1) {
-    $status = "Applicant Reviewer";
-}else if($rowpegawai['status'] == 2) {
-    $status= "Profitable Measurer";
-}else if($rowpegawai['status'] == 3){
-    $status= "Customer Service";
-}else if($rowpegawai['status'] == 4){
-    $status= "Admin";
-}
-
-if(isset($_POST['delete'])){                
-    $sqldelete = "DELETE FROM userperusahaan WHERE idUser=$id";
-    if(mysqli_query($conn, $sqldelete)){        
-        header('location: ../adm-pegawai.php');
-    }else{
-        echo "data entry failed";                
-    }
-}
-    
-
-
-    
-?>
 <html>
     <head>
-        <link rel="stylesheet" href="../../../asset/css/style.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>public/css/style.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <?= $topbar ?>
+       <!--  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -59,24 +29,33 @@ if(isset($_POST['delete'])){
                     </form>
                 </div>
             </div>
-        </nav>
+        </nav> -->
 
         <div id="wrapper" class="">
             <div class="container-fluid">
+
                 <!-- Sidebar -->
+
                 <div id="sidebar-wrapper">
                     <ul class="sidebar-nav">
                         <li class="sidebar-brand">
                             <br>
                         </li>
                         <li class="sidebar-brand">
-                            <img src="../../../asset/gambar/LOGONAMA.png" id="logo" width="175px"> 
+                            
+                            <img width="175px" src="<?php echo base_url() . 'public/images/LOGONAMA.png'; ?>" />  
                         </li>
-                        <li class="active cs">
+                        <!-- <li class="active cs">
                             <a href="../adm-pegawai.php">Akun Pegawai</a>
+                        </li> -->
+                        <li class="<?= ($nama_hal == 'adm-pegawai')?'active':'' ?> cs">
+                            <a href="/admin/pegawai">Akun Pegawai</a>
                         </li>
-                         <li class="cs">
+                         <!-- <li class="cs">
                             <a href="../adm-user.php">Akun User</a>
+                        </li> -->
+                        <li class="<?= ($nama_hal == 'adm-user')?'active':'' ?> cs">
+                            <a href="/admin/user">Akun User</a>
                         </li>
                         <li class="form-inline" style="margin-top:300px; margin-left:40px">
                             <button type="button" class="btn btn-secondary">Edit</button>
@@ -86,6 +65,7 @@ if(isset($_POST['delete'])){
                         </li>
                     </ul>
                 </div>
+
                 <div id="page-content-wrapper">
                     <div class="container-fluid">
                         <div class="row">
@@ -94,7 +74,7 @@ if(isset($_POST['delete'])){
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <img src="../../../asset/gambar/printilan/garyisti.jpg" width="350px;">
+                                   <!-- <img src="../../../asset/gambar/printilan/garyisti.jpg" width="350px;"> -->
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -105,13 +85,14 @@ if(isset($_POST['delete'])){
                             <div class="col-md-2">
                                 
                             </div>
+                            <?php if(isset($dataPegawai)): ?>
                             <div class="col-md-4">                                
                                     <div class="form-group">
                                         <label for="name">Nama Lengkap</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                             </span>
-                                            <input type="text" class="form-control" id="name" disabled value="<?= $rowpegawai['namaPegawai']?>" />
+                                            <input type="text" class="form-control" id="name" disabled value="<?=$dataPegawai['namaPegawai']?>" />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -119,7 +100,8 @@ if(isset($_POST['delete'])){
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-eye-open"></span>
                                             </span>
-                                            <input type="text" class="form-control" id="email" disabled value="<?=$status; ?>" />
+                                            
+                                            <input type="text" class="form-control" id="email" disabled value="<?=$dataPegawai['status'] ?>" />
                                         </div>
                                     </div>                                
                                     <div class="form-group">
@@ -127,10 +109,11 @@ if(isset($_POST['delete'])){
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span>
                                             </span>
-                                            <input type="text" class="form-control" id="email" disabled value="<?=$rowpegawai['password']; ?>" />
+                                            <input type="text" class="form-control" id="email" disabled value="<?=$dataPegawai['password']; ?>" />
                                         </div>
                                     </div>                                                                
                             </div>
+                            
                             <div class="col-md-4">
                                 
                                 <div class="form-group">
@@ -138,7 +121,7 @@ if(isset($_POST['delete'])){
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span>
                                         </span>
-                                        <input type="email" class="form-control" id="email" disabled value="<?=$rowpegawai['noTelepon']; ?>" />
+                                        <input type="email" class="form-control" id="email" disabled value="<?=$dataPegawai['telepon']; ?>" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -146,11 +129,12 @@ if(isset($_POST['delete'])){
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span>
                                         </span>
-                                        <textarea class="form-control" rows="8" id="comment" disabled><?=$rowpegawai['alamat']; ?></textarea>
+                                        <textarea class="form-control" rows="8" id="comment" disabled><?=$dataPegawai['alamat']; ?></textarea>
                                     </div>
                                 </div>
                                 
                             </div>
+                            <?php endif; ?>
                             <div class="col-md-2">
                                 
                             </div>

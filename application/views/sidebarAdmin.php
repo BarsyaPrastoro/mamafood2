@@ -26,7 +26,7 @@
                             </div>
                         </div>
                         <hr>
-                        <form method="POST">
+                        <form method="post" action="/admin/pegawai/insertPegawai" >
                             <div class="row">
                                 <div class="col-md-8" style="border-right:1px solid lightgray">
                                     <div class="form-group">

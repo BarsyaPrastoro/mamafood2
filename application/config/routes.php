@@ -67,8 +67,10 @@ $route['reviewer/pengajuan-menu'] = 'C_Pedagang/reviewerMenu';
 /*
 ROUTE ADMIN
 */
-$route['admin/pegawai'] = 'C_Admin/dataPegawai';
-$route['admin/user'] = 'C_Admin/dataUser';
+$route['admin/pegawai'] 				= 'C_Admin/dataPegawai';
+$route['admin/user'] 					= 'C_Admin/dataUser';
+$route['admin/pegawai/insertPegawai']	= 'C_Admin/insertPegawai';
+$route['admin/pegawai/detail']			= 'C_Admin/detailPegawai';
 
 /*
 ROUTE PROFITABLEMEASURER bn

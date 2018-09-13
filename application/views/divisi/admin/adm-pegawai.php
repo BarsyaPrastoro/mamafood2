@@ -192,8 +192,9 @@ if(isset($_POST['submit'])){
                                 </thead>
                                 <tbody>
                                     <?php foreach($semuaPegawai as $row): ?>
-                                        <tr>
+                                        <tr>                                            
                                             <td><?= $row->idUser ?></td>
+                                            <?php $id = $row->idUser ?>
                                             <td><?php if ($row->status == 1) :  ?>
                                                 <?php echo "Applicant Reviewer"?>
                                             <?php endif; ?>
@@ -210,9 +211,9 @@ if(isset($_POST['submit'])){
                                                 <?php echo "Admin"?>
                                             <?php endif; ?>
                                             </td>
-                                            <td><?= $row->namaPegawai ?></td>
+                                            <td><?= $row->namaPegawai ?></td>                                        
                                             <td>
-                                                <a href="">
+                                                <a href="/C_Admin/detailPegawai/<?php echo $id ?>">
                                                     Details
                                                 </a>
                                             </td>
