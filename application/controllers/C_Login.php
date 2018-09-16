@@ -131,6 +131,8 @@ class C_Login extends CI_Controller {
 			header('Content-Type: application/json');
 			echo json_encode([
 				'status' => 'OK',
+				'nama' => $user->namaUser,
+				'noTelpon' => $user->noTelpon,
 				'email' => $user->emailUser
 			]);
 		}else{

@@ -12,6 +12,18 @@ class User extends CI_Model {
 		return $query->result();
 	}
 
+	//insert User / SIGNUP PEMESAN
+
+	public function signUpPemesan($data){
+		
+		$nama = $data['nama'];
+		$email = $data['email'];
+		$password = $data['password'];
+		$telepon = $data['noTelpon'];
+		$this->db->query("INSERT INTO user(role, namaUser,emailUser, password, noTelpon, Alamat) VALUES(0,'$nama','$email','$password','$telepon','bandung')");
+
+	}
+
 	public function getByUser($username){
 		$query = $this->db->query("select * from user where namaUser=? and role = 0 ",[
 			$username

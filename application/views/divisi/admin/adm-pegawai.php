@@ -213,7 +213,7 @@ if(isset($_POST['submit'])){
                                             </td>
                                             <td><?= $row->namaPegawai ?></td>                                        
                                             <td>
-                                                <a href="/C_Admin/detailPegawai/<?php echo $id ?>">
+                                                <a href="/admin/pegawai/detail/<?php echo $id ?>">
                                                     Details
                                                 </a>
                                             </td>

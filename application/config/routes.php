@@ -70,7 +70,7 @@ ROUTE ADMIN
 $route['admin/pegawai'] 				= 'C_Admin/dataPegawai';
 $route['admin/user'] 					= 'C_Admin/dataUser';
 $route['admin/pegawai/insertPegawai']	= 'C_Admin/insertPegawai';
-$route['admin/pegawai/detail']			= 'C_Admin/detailPegawai';
+$route['admin/pegawai/detail/(:num)']	= 'C_Admin/detailPegawai/$1';
 
 /*
 ROUTE PROFITABLEMEASURER bn
@@ -91,6 +91,7 @@ $route['cs/pesanterkirim'] = 'C_customerservice/pesanTerkirim';
 // API
 $route['api/login'] = 'C_Login/loginUser';
 $route['api/test'] = 'C_Login/test';
+$route['api/signup'] = 'C_API/signUp';
 
 
 
