@@ -119,7 +119,7 @@ class C_Login extends CI_Controller {
 			]);
 		}
 	}
-
+	
 	//TES LEMPAR EMAIL PEMESAN LEWAT JSON
 
 	public function test(){
@@ -133,7 +133,8 @@ class C_Login extends CI_Controller {
 				'status' => 'OK',
 				'nama' => $user->namaUser,
 				'noTelpon' => $user->noTelpon,
-				'email' => $user->emailUser
+				'email' => $user->emailUser,
+				'role' => $user->role
 			]);
 		}else{
 			header('Content-Type: application/json');

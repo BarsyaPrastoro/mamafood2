@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class User extends CI_Model {
 	public function isExist($username, $password){
 		$this->load->database();
-		$query = $this->db->query("select * from user where namaUser=? and password=? and role = 0 ",[
+		$query = $this->db->query("select * from user where namaUser=? and password=? ",[
 			$username,
 			$password
 		]);
@@ -25,7 +25,7 @@ class User extends CI_Model {
 	}
 
 	public function getByUser($username){
-		$query = $this->db->query("select * from user where namaUser=? and role = 0 ",[
+		$query = $this->db->query("select * from user where namaUser=?",[
 			$username
 		]);
 		$row = $query->result();
