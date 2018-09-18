@@ -35,4 +35,13 @@ class Menu extends CI_Model {
 			return false;
 		}		
 	}
+
+	public function insert($data){
+		$idPedagang = $data['idPedagang'];
+		$namaMenu = $data['namaMenu'];
+		$hargaMenu = $data['hargaMenu'];
+		$deskripsiMenu = $data['deskripsiMenu'];
+		$this->db->query("INSERT INTO menu(idPedagang, namaMenu, hargaMenu, deskripsiMenu) VALUES('$idPedagang','$namaMenu','$hargaMenu','$deskripsiMenu')");
+
+	}
 }

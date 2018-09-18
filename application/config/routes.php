@@ -94,6 +94,7 @@ $route['api/test'] = 'C_Login/test';
 $route['api/signup'] = 'C_API/signUp';
 $route['api/menu'] = 'C_API/menu';
 $route['api/menu/(:num)'] = 'C_API/oneMenu/$1';
+$route['api/menu'] = 'C_API/menu';
 
 
 
