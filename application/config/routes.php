@@ -63,6 +63,7 @@ $route['reviewer/pedagang'] = 'C_Pedagang/reviewerPedagang';
 $route['reviewer/pelanggan'] = 'C_Pedagang/reviewerPelanggan';
 $route['reviewer/pengajuan'] = 'C_Pedagang/reviewerPengajuan';
 $route['reviewer/pengajuan-menu'] = 'C_Pedagang/reviewerMenu';
+$route['reviewer/pedagang/detail/(:num)'] = 'C_Pedagang/detailPedagang/$1';
 
 /*
 ROUTE ADMIN
@@ -91,10 +92,9 @@ $route['cs/pesanterkirim'] = 'C_customerservice/pesanTerkirim';
 // API
 $route['api/login'] = 'C_Login/loginUser';
 $route['api/test'] = 'C_Login/test';
-$route['api/signup'] = 'C_API/signUp';
+$route['api/signUpp'] = 'C_API/signUp';
 $route['api/menu'] = 'C_API/menu';
 $route['api/menu/(:num)'] = 'C_API/oneMenu/$1';
-$route['api/menu'] = 'C_API/menu';
 
 
 

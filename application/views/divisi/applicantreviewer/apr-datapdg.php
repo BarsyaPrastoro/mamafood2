@@ -81,16 +81,17 @@
                                         </tr>';
                                       }
                                     ?> -->
-                                    <?php foreach($dataPdg as $row): ?>
+                                    <?php foreach($dataPdg as $row): ?>                                        
                                         <tr>
-                                            <td><?= $row->idUser ?></td>
+                                            <td><?= $row->idPedagang ?></td>
+                                            <?php $id = $row->idPedagang ?>
                                             <td><?= $row->namaUser ?></td>
                                             <td><?= $row->waktuSignUp ?></td>
                                             <td>
                                                 <?= ($row->statusAkun == 0)?"Pending":"Accepted" ?>
                                             </td>
                                             <td>
-                                                <a href="">
+                                                <a href="/reviewer/pedagang/detail/<?php echo $id ?>">
                                                     Details
                                                 </a>
                                             </td>

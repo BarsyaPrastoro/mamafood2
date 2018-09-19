@@ -16,7 +16,7 @@ class C_Pedagang extends CI_Controller {
 		$this->load->view('pedagang',['semuaPedagang' => $semuaPedagang]);
 		
 	}
-
+	//PEDAGANG
 	public function reviewerPedagang(){
 		$this->auth->doAuth();
 		$this->load->model('Pedagang');
@@ -30,6 +30,28 @@ class C_Pedagang extends CI_Controller {
 			], true)
 		]);
 	}
+
+	//DETAIL PEDAGANG
+	public function detailPedagang($idPedagang){
+		$this->auth->doAuth();
+		$this->load->model('Pedagang');
+		$dataPedagang = $this->Pedagang->getPedagangById($idPedagang);
+		$dataPedagang['idPedagang'] = ("ID NUMBER");
+		// header('Content-Type: application/json');
+		// echo json_encode(var_dump($dataPedagang));
+		// die();
+		$this->load->view('divisi/applicantreviewer/detail/detail-datapdg.php',[
+			'dataPedagang' => $dataPedagang,
+			'acc_indicator' => $this->acc_indicator,
+			'nama_hal' => 'reviewer-pedagang',
+			'topbar' => $this->load->view('topbar',[],true),
+			'sidebar' => $this->load->view('sidebar',[
+				'nama_hal' => 'reviewer-pedagang'
+			], true)
+		]);
+
+	}
+
 	public function reviewerPelanggan(){
 		$this->auth->doAuth();
 		$this->load->model('Pedagang');

@@ -23,6 +23,13 @@ class Pedagang extends CI_Model {
 		]);
 		return $query->result();	
 	}
+	public function getPedagangById($idPedagang){
+		$this->load->database();
+		$query = $this->db->query("select * from data_pedagang left outer join menu_pedagang on data_pedagang.idPedagang = menu_pedagang.idPedagang where idUser = ?", [
+			$idPedagang
+		]);
+		return $query->row_array();
+	}
 
 	public function getPelanggan(){
 		$this->load->database();
@@ -37,6 +44,9 @@ class Pedagang extends CI_Model {
 			", [$status]);
 		return $query->result();
 	}
+
+
+	
 	/*public function filter($args){
 		$sql = "select * from user ";
 		$filter_stat = false;
