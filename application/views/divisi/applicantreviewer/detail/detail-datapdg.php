@@ -149,7 +149,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <!-- <img class="fotomenudape"src="data:image/jpeg;base64,<?= base64_encode( $dataPedagang['fotoMenu'] )?>"> -->
+                                <img class="fotomenudape"src="<?= base_url() ?>public/images/fotomenu/<?= $dataPedagang['idMenu'] ?>.jpg">
                             </div>
                         </div>
                         <hr>

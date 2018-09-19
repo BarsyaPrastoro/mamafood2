@@ -90,11 +90,14 @@ class C_API extends CI_Controller {
 			
 
 			$data = [];
+			$req = json_decode( file_get_contents('php://input') );
+			$fd = fopen("public/images/fotomenu/test.jpg","wb");
+			fwrite($fd,base64_decode($req->fotoMenu));
+			fclose($fd);
 
-			$data['namaMenu'] = $this->input->post('namaMenu');
-			$data['hargaMenu'] = $this->input->post('hargaMenu');
-			$data['deskripsiMenu'] = $this->input->post('deskripsiMenu');
-			
+			$data['namaMenu'] = $req->namaMenu;
+			$data['hargaMenu'] = $req->hargaMenu;
+			$data['deskripsiMenu'] = $req->deskripsiMenu;
 
 			$username = $this->auth->getUserByToken($token);
 
@@ -104,26 +107,13 @@ class C_API extends CI_Controller {
 
 			//$this->db->trans_begin();
 
+
 			$resdb = $this->menu->insert($data);
-
-			$config['upload_path']          = './public/images/fotomenu/';
-			$config['allowed_types']        = 'jpg';
-			$config['max_size']             = 2000;
-			$config['file_name']             = $this->db->insert_id()."";
-
-			$this->load->library('upload', $config);
-
-			if ( ! $this->upload->do_upload('fotoMenu')) {
-				//$this->db->trans_rollback();
-				echo json_encode([
-					"status" => "NOK",
-					"message" => "Upload failed!"
-				]);
-				return;
-			}
-
+			$idMenu = $this->db->insert_id();
+			$fd = fopen("public/images/fotomenu/$idMenu.jpg","wb");
+			fwrite($fd,base64_decode($req->fotoMenu));
+			fclose($fd);
 			//$this->db->trans_commit();
-
 			echo json_encode([
 				"status" => "OK"        
 			]);
