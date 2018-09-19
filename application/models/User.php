@@ -35,4 +35,10 @@ class User extends CI_Model {
 			return $row[0];
 		}
 	}
+
+	public function getUserById($idUser){
+		$this->load->database();
+		$query = $this->db->query("select * from user where idUser = ?", [$idUser]);
+		return $query->row_array();
+	}
 }

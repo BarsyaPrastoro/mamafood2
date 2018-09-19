@@ -93,6 +93,7 @@
                                     <?php foreach($semuaUser as $row): ?>
                                         <tr>
                                             <td><?= $row->idUser ?></td>
+                                            <?php $id = $row->idUser ?>
                                             <td>
                                                 <?= ($row->role == 0)?"Pemesan":"Pedagang"?>
                                             </td>
@@ -101,7 +102,7 @@
                                             <td><?= $row->noTelpon ?></td>
                                             <td><?= $row->Alamat ?></td>
                                             <td>
-                                                <a href="">
+                                                <a href="/admin/user/detail/<?php echo $id ?>">
                                                     Details
                                                 </a>
                                             </td>

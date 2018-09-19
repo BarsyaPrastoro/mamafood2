@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<?php
-
-?>
 <html>
     <head>
-        <link rel="stylesheet" href="../../../asset/css/style.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>public/css/style.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <?= $topbar ?>
+        <!-- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -32,7 +29,7 @@
                     </form>
                 </div>
             </div>
-        </nav>
+        </nav> -->
 
         <div id="wrapper" class="">
             <div class="container-fluid">
@@ -43,16 +40,26 @@
                             <br>
                         </li>
                         <li class="sidebar-brand">
-                            <img src="../../../asset/gambar/LOGONAMA.png" id="logo" width="175px"> 
+                            
+                            <img width="175px" src="<?php echo base_url() . 'public/images/LOGONAMA.png'; ?>" />  
                         </li>
-                        <li class="cs">
+                        <!-- <li class="active cs">
                             <a href="../adm-pegawai.php">Akun Pegawai</a>
+                        </li> -->
+                        <li class="<?= ($nama_hal == 'adm-pegawai')?'active':'' ?> cs">
+                            <a href="/admin/pegawai">Akun Pegawai</a>
                         </li>
-                         <li class="active cs">
+                         <!-- <li class="cs">
                             <a href="../adm-user.php">Akun User</a>
+                        </li> -->
+                        <li class="<?= ($nama_hal == 'adm-user')?'active':'' ?> cs">
+                            <a href="/admin/user">Akun User</a>
                         </li>
                         <li class="form-inline" style="margin-top:300px; margin-left:40px">
-                            <button type="button" class="btn btn-secondary">Delete Account</button>
+                            <button type="button" class="btn btn-secondary">Edit</button>
+                            <form method="post">
+                                <input name="delete" type="submit" class="btn btn-secondary" value="delete"/>
+                            </form>
                         </li>
                     </ul>
                 </div>
@@ -60,11 +67,11 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-4">
-                                <label>Barsya</label>
+                                <!-- <label>Barsya</label> -->
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <img src="../../../asset/gambar/printilan/garyisti.jpg" width="350px;">
+                                    <!-- <img src="../../../asset/gambar/printilan/garyisti.jpg" width="350px;"> -->
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -75,13 +82,15 @@
                             <div class="col-md-2">
                                 
                             </div>
+                            <?php if(isset($dataUser)): ?>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="name">Nama Lengkap</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                         </span>
-                                        <input type="text" class="form-control" id="name" disabled value="<?= $row['namaUser']?>" />
+                                        
+                                        <input type="text" class="form-control" id="name" disabled value="<?=$dataUser['namaUser']?>" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -89,7 +98,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-eye-open"></span>
                                         </span>
-                                        <input type="text" class="form-control" id="email" disabled value="<?=$row['emailUser']; ?>" />
+                                        <input type="text" class="form-control" id="iduser" disabled value="<?=$dataUser['idUser']?>" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -97,7 +106,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span>
                                         </span>
-                                        <input type="email" class="form-control" id="email" disabled value="<?=$row['noTelpon']; ?>" />
+                                        <input type="email" class="form-control" id="email" disabled value="<?=$dataUser['emailUser'] ?>" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -105,7 +114,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span>
                                         </span>
-                                        <input type="text" class="form-control" id="email" disabled value="<?=$row['Alamat']; ?>" />
+                                        <input type="text" class="form-control" id="password" disabled value="<?=$dataUser['password'] ?>" />
                                     </div>
                                 </div>
                                 
@@ -117,7 +126,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span>
                                         </span>
-                                        <input type="email" class="form-control" id="email" disabled value="<?=$row['noTelpon']; ?>" />
+                                        <input type="email" class="form-control" id="email" disabled value="<?=$dataUser['noTelpon'] ?>" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -125,10 +134,10 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span>
                                         </span>
-                                        <textarea class="form-control" rows="8" id="comment"></textarea>
+                                        <textarea class="form-control" rows="8" id="Alamat" disabled><?=$dataUser['Alamat'] ?></textarea>
                                     </div>
                                 </div>
-                                
+                                <?php endif; ?>
                             </div>
                             <div class="col-md-2">
                                 
