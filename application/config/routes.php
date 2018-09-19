@@ -71,6 +71,8 @@ $route['admin/pegawai'] 				= 'C_Admin/dataPegawai';
 $route['admin/user'] 					= 'C_Admin/dataUser';
 $route['admin/pegawai/insertPegawai']	= 'C_Admin/insertPegawai';
 $route['admin/pegawai/detail/(:num)']	= 'C_Admin/detailPegawai/$1';
+$route['admin/user/detail/(:num)']		= 'C_Admin/detailUser/$1';
+
 
 /*
 ROUTE PROFITABLEMEASURER bn

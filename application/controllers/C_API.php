@@ -87,6 +87,8 @@ class C_API extends CI_Controller {
 			// $menu = $this->Menu->one($id);
 			// header('Content-Type: application/json');
 			// echo json_encode($menu);
+			
+
 			$data = [];
 
 			$data['namaMenu'] = $this->input->post('namaMenu');

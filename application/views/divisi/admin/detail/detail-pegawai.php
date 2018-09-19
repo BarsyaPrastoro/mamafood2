@@ -98,8 +98,7 @@
                                     <div class="form-group">
                                         <label for="email">Jabatan</label>
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-eye-open"></span>
-                                            </span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphic
                                             
                                             <input type="text" class="form-control" id="email" disabled value="<?=$dataPegawai['status'] ?>" />
                                         </div>
@@ -109,7 +108,7 @@
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span>
                                             </span>
-                                            <input type="text" class="form-control" id="email" disabled value="<?=$dataPegawai['password']; ?>" />
+                                            <input type="text" class="form-control" id="email" disabled value="<?=$dataPegawai['password'] ?>" />
                                         </div>
                                     </div>                                                                
                             </div>
@@ -121,7 +120,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span>
                                         </span>
-                                        <input type="email" class="form-control" id="email" disabled value="<?=$dataPegawai['telepon']; ?>" />
+                                        <input type="email" class="form-control" id="email" disabled value="<?=$dataPegawai['telepon'] ?>" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -129,7 +128,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span>
                                         </span>
-                                        <textarea class="form-control" rows="8" id="comment" disabled><?=$dataPegawai['alamat']; ?></textarea>
+                                        <textarea class="form-control" rows="8" id="comment" disabled><?=$dataPegawai['alamat'] ?></textarea>
                                     </div>
                                 </div>
                                 
