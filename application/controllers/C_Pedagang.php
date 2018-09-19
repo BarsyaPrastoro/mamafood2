@@ -44,6 +44,7 @@ class C_Pedagang extends CI_Controller {
 		]);
 	}
 	public function reviewerPengajuan(){
+		$this->auth->doAuth();
 		$this->load->model('Pedagang');
 		$dataPengajuan = $this->Pedagang->getStatusAkun(0);
 		$this->load->view('divisi/applicantreviewer/apr-pengajuanpdg.php',[
@@ -56,6 +57,7 @@ class C_Pedagang extends CI_Controller {
 		]);
 	}
 	public function reviewerMenu(){
+		$this->auth->doAuth();
 		$this->load->model('Pedagang');
 		$dataMenu = $this->Pedagang->getStatusMenu(0);
 		$this->load->view('divisi/applicantreviewer/apr-konfirm.php',[

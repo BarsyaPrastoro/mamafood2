@@ -12,6 +12,7 @@ class C_keuangan extends CI_Controller {
 	}
 	
 	public function laporanKeuangan(){
+		$this->auth->doAuth();
 		$this->load->model('Pedagang');
 		$semuaPedagang = $this->Pedagang->all();
 		$this->load->view('divisi/profitablemeasure/pm-laporankeuangan.php',[
@@ -27,6 +28,7 @@ class C_keuangan extends CI_Controller {
 
 	//belom bener
 	public function transaksiPedagang(){
+		$this->auth->doAuth();
 		$this->load->model('Pedagang');
 		$semuaPedagang = $this->Pedagang->all();
 		$this->load->view('divisi/profitablemeasure/pm-transaksipdgpbl.php',[
@@ -43,6 +45,7 @@ class C_keuangan extends CI_Controller {
 
 	//belom bener
 	public function laporanBeliSaldo(){
+		$this->auth->doAuth();
 		$this->load->model('Pedagang');
 		$semuaPedagang = $this->Pedagang->all();
 		$this->load->view('divisi/profitablemeasure/pm-laporanbelisaldo.php',[
@@ -59,6 +62,7 @@ class C_keuangan extends CI_Controller {
 
 	//belom bener
 	public function laporanBeliPromo(){
+		$this->auth->doAuth();
 		$this->load->model('Pedagang');
 		$semuaPedagang = $this->Pedagang->all();
 		$this->load->view('divisi/profitablemeasure/pm-laporanbelipromo.php',[
@@ -75,6 +79,7 @@ class C_keuangan extends CI_Controller {
 
 	//belom bener
 	public function laporanWithdraw(){
+		$this->auth->doAuth();
 		$this->load->model('Pedagang');
 		$semuaPedagang = $this->Pedagang->all();
 		$this->load->view('divisi/profitablemeasure/pm-laporanwithdraw.php',[
