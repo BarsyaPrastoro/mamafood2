@@ -13,6 +13,7 @@ class C_Admin extends CI_Controller {
 	}
 
 	public function dataPegawai(){
+		$this->auth->doAuth();
 		$this->load->model('UserPerusahaan');
 		$semuaPegawai = $this->UserPerusahaan->getPegawai();
 		$this->load->view('divisi/admin/adm-pegawai.php',[
@@ -27,6 +28,7 @@ class C_Admin extends CI_Controller {
 	}
 
 	public function detailPegawai($idPegawai){
+		$this->auth->doAuth();
 		$this->load->model('UserPerusahaan');
 		$dataPegawai = $this->UserPerusahaan->getPegawaiById($idPegawai);
 		$dataPegawai['idUser'] = ("ID NUMBER");
@@ -42,6 +44,7 @@ class C_Admin extends CI_Controller {
 	
 
 	public function dataUser(){
+		$this->auth->doAuth();
 		$this->load->model('UserPerusahaan');
 		$semuaUser = $this->UserPerusahaan->getUser();
 		$this->load->view('divisi/admin/adm-user.php',[
@@ -68,6 +71,7 @@ class C_Admin extends CI_Controller {
 	}
 	
 	function insertPegawai(){
+		$this->auth->doAuth();
 		$this->load->model('UserPerusahaan');
 		//$this->load->view 	('divisi/admin/adm-pegawai.php');
 		$this->UserPerusahaan->insertPegawai();

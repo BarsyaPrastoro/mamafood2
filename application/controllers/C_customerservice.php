@@ -13,6 +13,7 @@ class C_customerservice extends CI_Controller {
 	}
 
 	public function pesanMasuk(){
+		$this->auth->doAuth();
 		//$this->load->model('UserPerusahaan');
 		//$semuaPegawai = $this->UserPerusahaan->getPegawai();
 		$this->load->view('divisi/customerservice/cs-pesanmsk.php',[
@@ -26,6 +27,7 @@ class C_customerservice extends CI_Controller {
 	}
 	
 	public function pesanTerkirim(){
+		$this->auth->doAuth();
 		//$this->load->model('UserPerusahaan');
 		//$semuaPegawai = $this->UserPerusahaan->getPegawai();
 		$this->load->view('divisi/customerservice/cs-pesantkm.php',[
