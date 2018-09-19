@@ -77,7 +77,6 @@
                                         </div>
                                     </div>
                                 </div> -->
-                                <?php if(isset($dataPedagang)): ?>
                                     <div class="col-md-8">
 
                                         <div class="form-group">
@@ -123,113 +122,122 @@
 
                             </div>
 
-                    </div>
-                    <div class="col-md-5" id="menupdg">
-                        <h3>Menu</h3>
-                        <hr>
+                        </div>
+                        <div class="col-md-5" id="menupdg">
+                            <h3>Menu</h3>
+                            <hr>
+
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Nama Menu</label>
+                                        <input type="text" class="form-control" id="name" disabled 
+                                        value="<?= $dataPedagang['namaMenu'] ?>" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Harga Menu</label>
+                                        <input type="text" class="form-control" id="name" disabled
+                                        value="<?= $dataPedagang['hargaMenu'] ?>" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Deskripsi</label>
+                                        <textarea type="text" class="form-control" id="name" rows="3" disabled value=""><?= $dataPedagang['deskripsiMenu'] ?></textarea>
 
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Nama Menu</label>
-                                    <input type="text" class="form-control" id="name" disabled 
-                                    value="<?= $dataPedagang['namaMenu'] ?>" />
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="name">Harga Menu</label>
-                                    <input type="text" class="form-control" id="name" disabled
-                                    value="<?= $dataPedagang['hargaMenu'] ?>" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="name">Deskripsi</label>
-                                    <textarea type="text" class="form-control" id="name" rows="3" disabled value=""><?= $dataPedagang['deskripsiMenu'] ?></textarea>
-
-
+                                <div class="col-md-6">
+                                    <!-- <img class="fotomenudape"src="data:image/jpeg;base64,<?= base64_encode( $dataPedagang['fotoMenu'] )?>"> -->
                                 </div>
                             </div>
+<<<<<<< HEAD
                             <div class="col-md-6">
                                 <img class="fotomenudape"src="<?= base_url() ?>public/images/fotomenu/<?= $dataPedagang['idMenu'] ?>.jpg">
                             </div>
                         </div>
                         <hr>
 
+=======
+                            <hr>
+                        
+>>>>>>> 6fffe61203c8fa2cfa0dc0ac96cebf372b1642d2
                     </div>
-                    <?php endif; ?>
-                    <div class="col-md-3" id="transpdg">
-                        <h3>Transaksi</h3>
-                        <hr>
-                        <table class="table table-bordered table-striped" id="myTable">
-                            <thead>
-                              <tr>
-                                <th>Transaksi</th>
-                                <th>Pemesan</th>
-                                <th>Tanggal</th>
-                                <th>Waktu</th>
-                            </tr>
-                        </thead>
-                        <tbody id="myTable">
-                            <tr>
-                                <td>pm02</td>
-                                <td>Gary Isti</td>
-                                <td>20-12-2017</td>
-                                <td>14.30</td>
-                            </tr>
-                            <tr>
-                                <td>pm03</td>
-                                <td>Halim</td>
-                                <td>20-12-2017</td>
-                                <td>11.25</td>
-                            </tr>
-                            <tr>
-                                <td>pm02</td>
-                                <td>Gary Isti</td>
-                                <td>20-12-2017</td>
-                                <td>14.30</td>
-                            </tr>
-                            <tr>
-                                <td>pm02</td>
-                                <td>Gary Isti</td>
-                                <td>20-12-2017</td>
-                                <td>14.30</td>
-                            </tr>
-                            <tr>
-                                <td>pm03</td>
-                                <td>Halim</td>
-                                <td>20-12-2017</td>
-                                <td>11.25</td>
-                            </tr>
-                            <tr>
-                                <td>pm02</td>
-                                <td>Gary Isti</td>
-                                <td>20-12-2017</td>
-                                <td>14.30</td>
-                            </tr>
-                            <tr>
-                                <td>pm02</td>
-                                <td>Gary Isti</td>
-                                <td>20-12-2017</td>
-                                <td>14.30</td>
-                            </tr>
-                            <tr>
-                                <td>pm03</td>
-                                <td>Halim</td>
-                                <td>20-12-2017</td>
-                                <td>11.25</td>
-                            </tr>
-                            <tr>
-                                <td>pm02</td>
-                                <td>Gary Isti</td>
-                                <td>20-12-2017</td>
-                                <td>14.30</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <?php endif; ?>
+                <div class="col-md-3" id="transpdg">
+                    <h3>Transaksi</h3>
+                    <hr>
+                    <table class="table table-bordered table-striped" id="myTable">
+                        <thead>
+                          <tr>
+                            <th>Transaksi</th>
+                            <th>Pemesan</th>
+                            <th>Tanggal</th>
+                            <th>Waktu</th>
+                        </tr>
+                    </thead>
+                    <tbody id="myTable">
+                        <tr>
+                            <td>pm02</td>
+                            <td>Gary Isti</td>
+                            <td>20-12-2017</td>
+                            <td>14.30</td>
+                        </tr>
+                        <tr>
+                            <td>pm03</td>
+                            <td>Halim</td>
+                            <td>20-12-2017</td>
+                            <td>11.25</td>
+                        </tr>
+                        <tr>
+                            <td>pm02</td>
+                            <td>Gary Isti</td>
+                            <td>20-12-2017</td>
+                            <td>14.30</td>
+                        </tr>
+                        <tr>
+                            <td>pm02</td>
+                            <td>Gary Isti</td>
+                            <td>20-12-2017</td>
+                            <td>14.30</td>
+                        </tr>
+                        <tr>
+                            <td>pm03</td>
+                            <td>Halim</td>
+                            <td>20-12-2017</td>
+                            <td>11.25</td>
+                        </tr>
+                        <tr>
+                            <td>pm02</td>
+                            <td>Gary Isti</td>
+                            <td>20-12-2017</td>
+                            <td>14.30</td>
+                        </tr>
+                        <tr>
+                            <td>pm02</td>
+                            <td>Gary Isti</td>
+                            <td>20-12-2017</td>
+                            <td>14.30</td>
+                        </tr>
+                        <tr>
+                            <td>pm03</td>
+                            <td>Halim</td>
+                            <td>20-12-2017</td>
+                            <td>11.25</td>
+                        </tr>
+                        <tr>
+                            <td>pm02</td>
+                            <td>Gary Isti</td>
+                            <td>20-12-2017</td>
+                            <td>14.30</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-
         </div>
+
     </div>
+</div>
 
 </div>
 </div>
