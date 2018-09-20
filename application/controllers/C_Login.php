@@ -100,7 +100,7 @@ class C_Login extends CI_Controller {
 	//LOGIN PEMESAN
 
 	public function loginUser(){
-		$req = (array) json_decode( file_get_contents('php://input') );
+		$req =(array) json_decode( file_get_contents('php://input') );
 		$username = $req['username'];
 		$password = $req['password'];
 		$this->load->model('User');
