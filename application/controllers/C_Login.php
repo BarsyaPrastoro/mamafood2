@@ -100,9 +100,9 @@ class C_Login extends CI_Controller {
 	//LOGIN PEMESAN
 
 	public function loginUser(){
-		$req = json_decode( file_get_contents('php://input') );
-		$username = $req->username;
-		$password = $req->password;
+		$req = (array) json_decode( file_get_contents('php://input') );
+		$username = $req['username'];
+		$password = $req['password'];
 		$this->load->model('User');
 		$data = $this->User->isExist($username, $password);
 		if(count($data) === 1){
@@ -123,7 +123,7 @@ class C_Login extends CI_Controller {
 	//TES LEMPAR EMAIL PEMESAN LEWAT JSON
 
 	public function test(){
-		//$req = json_decode( file_get_contents('php://input') );
+		$req = json_decode( file_get_contents('php://input') );
 		$this->load->model('User');
 		$token = $this->input->get_request_header('Authorization', true);
 		if($this->auth->isAuthUser($token)){
@@ -134,7 +134,7 @@ class C_Login extends CI_Controller {
 				'nama' => $user->namaUser,
 				'noTelpon' => $user->noTelpon,
 				'email' => $user->emailUser,
-				'role' => $user->role
+				//'role' => $user->role
 			]);
 		}else{
 			header('Content-Type: application/json');
