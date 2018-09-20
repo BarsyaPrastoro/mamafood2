@@ -1,12 +1,12 @@
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>public/css/style.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    </head>
-    <body>
-        <?= $topbar ?>
+<head>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>public/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <?= $topbar ?>
        <!--  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -42,7 +42,7 @@
                             <br>
                         </li>
                         <li class="sidebar-brand">
-                            
+
                             <img width="175px" src="<?php echo base_url() . 'public/images/LOGONAMA.png'; ?>" />  
                         </li>
                         <!-- <li class="active cs">
@@ -70,95 +70,96 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-4">
-                                
+
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                   <!-- <img src="../../../asset/gambar/printilan/garyisti.jpg" width="350px;"> -->
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                
-                            </div>
+                                 <!-- <img src="../../../asset/gambar/printilan/garyisti.jpg" width="350px;"> -->
+                             </div>
+                         </div>
+                         <div class="col-md-4">
+
+                         </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-2">
+
                         </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                
-                            </div>
-                            <?php if(isset($dataPegawai)): ?>
+                        <?php if(isset($dataPegawai)): ?>
+
                             <div class="col-md-4">                                
-                                    <div class="form-group">
-                                        <label for="name">Nama Lengkap</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
-                                            </span>
-                                            <input type="text" class="form-control" id="name" disabled value="<?=$dataPegawai['namaPegawai']?>" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email">Jabatan</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphic
-                                            
-                                            <input type="text" class="form-control" id="email" disabled value="<?=$dataPegawai['status'] ?>" />
-                                        </div>
-                                    </div>                                
-                                    <div class="form-group">
-                                        <label for="email">Password</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span>
-                                            </span>
-                                            <input type="text" class="form-control" id="email" disabled value="<?=$dataPegawai['password'] ?>" />
-                                        </div>
-                                    </div>                                                                
-                            </div>
-                            
-                            <div class="col-md-4">
-                                
                                 <div class="form-group">
-                                    <label for="email">Telepon</label>
+                                    <label for="name">Nama Lengkap</label>
                                     <div class="input-group">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span>
-                                        </span>
-                                        <input type="email" class="form-control" id="email" disabled value="<?=$dataPegawai['telepon'] ?>" />
-                                    </div>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                                    </span>
+                                    <input type="text" class="form-control" id="name" disabled value="<?=$dataPegawai['namaPegawai']?>" />
                                 </div>
-                                <div class="form-group">
-                                    <label for="email">Alamat</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span>
-                                        </span>
-                                        <textarea class="form-control" rows="8" id="comment" disabled><?=$dataPegawai['alamat'] ?></textarea>
-                                    </div>
-                                </div>
-                                
                             </div>
-                            <?php endif; ?>
-                            <div class="col-md-2">
-                                
+                            <div class="form-group">
+                                <label for="email">Jabatan</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                                </span>
+                                <input type="text" class="form-control" id="email" disabled value="<?=$status?>" />
                             </div>
+                        </div>                                
+                        <div class="form-group">
+                            <label for="email">Password</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span>
+                            </span>
+                            <input type="text" class="form-control" id="email" disabled value="<?=$dataPegawai['password'] ?>" />
                         </div>
-                        
+                    </div>                                                                
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="form-group">
+                        <label for="email">Telepon</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span>
+                        </span>
+                        <input type="email" class="form-control" id="email" disabled value="<?=$dataPegawai['telepon'] ?>" />
                     </div>
                 </div>
-                
+                <div class="form-group">
+                    <label for="email">Alamat</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span>
+                    </span>
+                    <textarea class="form-control" rows="8" id="comment" disabled><?=$dataPegawai['alamat'] ?></textarea>
+                </div>
             </div>
+
         </div>
-        <script>
-            $("#menu-toggle").click(function(e) {
-                e.preventDefault();
-                $("#wrapper").toggleClass("toggled");
-            });
-            
-            
-            $(document).ready(function(){
-              $("#myInput").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("#myTable tr").filter(function() {
-                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-              });
-            });
-        </script>
-    </body>
+    <?php endif; ?>
+    <div class="col-md-2">
+
+    </div>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
+</body>
 </html>

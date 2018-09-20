@@ -31,11 +31,21 @@ class C_Admin extends CI_Controller {
 		$this->auth->doAuth();
 		$this->load->model('UserPerusahaan');
 		$dataPegawai = $this->UserPerusahaan->getPegawaiById($idPegawai);
-		$dataPegawai['idUser'] = ("ID NUMBER");
+		if ($dataPegawai['status'] == 1) {
+			$status = "Applicant Reviewer";
+		}else if ($dataPegawai['status'] == 2) {
+			$status = "Profitable Measurer";
+		}else if ($dataPegawai['status'] == 3) {
+			$status = "Customer Service";
+		}else if ($dataPegawai['status'] == 4) {
+			$status = "Admin";
+		}
+		//$dataPegawai['idUser'] = ("ID NUMBER");
 		$this->load->view('divisi/admin/detail/detail-pegawai.php',[
 			'dataPegawai' => $dataPegawai,
 			'acc_indicator' => $this->acc_indicator,
 			'nama_hal' => 'adm-pegawai',
+			'status' => $status,
 			'topbar' => $this->load->view('topbar',[],true)
 		]);
 
