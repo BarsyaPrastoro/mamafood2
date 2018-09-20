@@ -94,7 +94,7 @@ $route['cs/pesanterkirim'] = 'C_customerservice/pesanTerkirim';
 // API
 $route['api/login'] = 'C_Login/loginUser';
 $route['api/test'] = 'C_Login/test';
-$route['api/signUpp'] = 'C_API/signUp';
+$route['api/signUp'] = 'C_API/signUp';
 $route['api/menu'] = 'C_API/menu';
 $route['api/menu/(:num)'] = 'C_API/oneMenu/$1';
 

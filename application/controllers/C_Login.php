@@ -103,14 +103,22 @@ class C_Login extends CI_Controller {
 		$req =(array) json_decode( file_get_contents('php://input') );
 		$username = $req['username'];
 		$password = $req['password'];
-		$this->load->model('User');
-		$data = $this->User->isExist($username, $password);
-		if(count($data) === 1){
-			header('Content-Type: application/json');
-			echo json_encode([
-				'status' => 'OK',
-				'token' => $this->auth->generateToken($username)
-			]);
+		if(!empty($username) && !empty($password)){
+			$this->load->model('User');
+			$data = $this->User->isExist($username, $password);
+			if(count($data) === 1){
+				header('Content-Type: application/json');
+				echo json_encode([
+					'status' => 'OK',
+					'token' => $this->auth->generateToken($username)
+				]);
+			}else{
+				header('Content-Type: application/json');
+				echo json_encode([
+					'status' => 'NOK',
+					'message' => 'Login Gagal!'
+				]);
+			}
 		}else{
 			header('Content-Type: application/json');
 			echo json_encode([
