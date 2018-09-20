@@ -122,12 +122,11 @@
                                 </div> -->
 
                             </div>
-                        <?php endif; ?>
+                        
                         </div>
                         <div class="col-md-5" id="menupdg">
                             <h3>Menu</h3>
                             <hr>
-
                             
                             <div class="row">
                                 <div class="col-md-6">
@@ -153,7 +152,7 @@
                                 </div>
                                 
                             </div>
-
+                            <?php endif; ?>    
 
                         </div>
                         <hr>
@@ -200,7 +199,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>r
+                    </div>
 
                 </div>
                 
