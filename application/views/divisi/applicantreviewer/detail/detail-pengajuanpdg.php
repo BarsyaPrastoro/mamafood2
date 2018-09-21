@@ -1,33 +1,14 @@
-<?php
-session_start();
-include '../../../Connect.php';
-$id = $_GET['id'];
-$sqlpengajuan = "select * from data_pedagang where idPedagang=$id";
-$result = mysqli_query($conn,$sqlpengajuan);
-$row = mysqli_fetch_array($result);
-
-$sqlmenu = "select * from menu_pedagang where idPedagang=$id";
-$resultMenu = mysqli_query($conn,$sqlmenu);
-if(isset($_POST['accept'])){    
-    $sqlupdate = "UPDATE pedagang SET statusAkun=1 WHERE idPedagang = $id ";    
-    if(mysqli_query($conn, $sqlupdate)){        
-        header('location:../apr-datapdg.php');
-        echo "success";
-    }else{        
-        echo "data input failed";
-    }
-}
-
-?>
 <html>
     <head>
-        <link rel="stylesheet" href="../../../asset/css/style.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>public/css/style.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+        <?= $topbar ?>
+       <!--  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -50,11 +31,12 @@ if(isset($_POST['accept'])){
                 </div>
             </div>
         </nav>
-
+ -->
         <div id="wrapper" class="">
             <div class="container-fluid">
                 <!-- Sidebar -->
-                <div id="sidebar-wrapper">
+                <?= $sidebar ?>
+                <!-- <div id="sidebar-wrapper">
                     <ul class="sidebar-nav">
                         <li class="sidebar-brand">
                             <br>
@@ -75,7 +57,8 @@ if(isset($_POST['accept'])){
                             <a href="../apr-konfirm.php">Konfirmasi Menu</a>
                         </li>
                     </ul>
-                </div>
+                </div> -->
+                <?php if(isset($dataPedagang)): ?>
                 <div id="page-content-wrapper">
                     <div class="container-fluid">
                         <div class="row">
@@ -85,7 +68,7 @@ if(isset($_POST['accept'])){
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                         </span>
-                                        <input type="text" class="form-control" id="name" disabled value="<?= $row['namaUser']?>" />
+                                        <input type="text" class="form-control" id="name" disabled value="<?= $dataPedagang['namaUser']?>" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -93,7 +76,7 @@ if(isset($_POST['accept'])){
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                         </span>
-                                        <input type="email" class="form-control" id="email" disabled value="<?=$row['emailUser']; ?>" />
+                                        <input type="email" class="form-control" id="email" disabled value="<?=$dataPedagang['emailUser']; ?>" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -101,7 +84,7 @@ if(isset($_POST['accept'])){
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span>
                                         </span>
-                                        <input type="email" class="form-control" id="email" disabled value="<?=$row['noTelpon']; ?>" />
+                                        <input type="email" class="form-control" id="email" disabled value="<?=$dataPedagang['noTelpon']; ?>" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -109,16 +92,16 @@ if(isset($_POST['accept'])){
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span>
                                         </span>
-                                        <input type="email" class="form-control" id="email" disabled value="<?=$row['Alamat']; ?>" />
+                                        <input type="email" class="form-control" id="email" disabled value="<?=$dataPedagang['Alamat']; ?>" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="name">KTP</label>
-                                    <div style="text-align: center">
-                                        <img class="fotoktppepe" src="data:image/jpeg;base64,<?= base64_encode( $row['FotoKtp'] )?>">
-                                    </div>
+                                    <!-- <div style="text-align: center">
+                                        <img class="fotoktppepe" src="data:image/jpeg;base64,<?= base64_encode( $dataPedagang['FotoKtp'] )?>">
+                                    </div> -->
                                 </div>
-                                <form method="post">
+                                <form method="post" action="/reviewer/pengajuan/approve/<?php echo $dataPedagang['idPedagang'];?>">
                                     <div class="form-inline acc">
                                         <input name=accept type="submit" class="btn btn-secondary" value="Accept"/>
                                         <button type="button" class="btn btn-secondary">Decline</button>
@@ -131,27 +114,29 @@ if(isset($_POST['accept'])){
                             <div class="col-md-6 menu">
                                 <h3>Menu yang Diajukan</h3>
                                 <hr>
-                                <?php while($rowMenu = mysqli_fetch_array($resultMenu)): ?>
+                                
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="name">Nama Menu</label>
-                                                <input type="text" class="form-control" id="name" disabled value="<?= $rowMenu['namaMenu'] ?>" />
+                                                <input type="text" class="form-control" id="name" disabled value="<?= $dataPedagang['namaMenu'] ?>" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="name">Harga Menu</label>
-                                                <input type="text" class="form-control" id="name" disabled value="<?= $rowMenu['hargaMenu'] ?>" />
+                                                <input type="text" class="form-control" id="name" disabled value="<?= $dataPedagang['hargaMenu'] ?>" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="name">Deskripsi</label>
-                                                <input type="text" class="form-control" id="name" disabled value="<?= $rowMenu['deskripsiMenu'] ?>" />
+                                                <textarea type="text" class="form-control" id="name" disabled ><?= $dataPedagang['deskripsiMenu'] ?></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <img src="../../../asset/gambar/printilan/terongbalado.jpg" width="300px">
+                                            <img class="fotomenudape"src="<?= base_url() ?>public/images/fotomenu/<?= $dataPedagang['idMenu'] ?>.jpg"
+                                            >
                                         </div>
                                     </div>
-                                <?php endwhile; ?>
+                <?php endif; ?>
+                               
                             </div>
                         </div>
                         

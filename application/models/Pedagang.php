@@ -31,6 +31,14 @@ class Pedagang extends CI_Model {
 		return $query->row_array();
 	}
 
+	public function getPengajuanPedagangById($idPedagang){
+		$this->load->database();
+		$query = $this->db->query("select * from data_pedagang left outer join menu_pedagang on data_pedagang.idPedagang = menu_pedagang.idPedagang where idUser = ? AND data_pedagang.statusAkun = 0", [
+			$idPedagang
+		]);
+		return $query->row_array();
+	}
+
 	public function getMenuByIdPedagang($idPedagang){
 		$this->load->database();
 		$query = $this->db->query("select * from menu where idPedagang = ?", [
@@ -51,6 +59,17 @@ class Pedagang extends CI_Model {
 				select * from menu_pedagang where status = ? 
 			", [$status]);
 		return $query->result();
+	}
+
+
+	public function approveStatusPedagang($idPedagang){
+		$data = array(
+               'statusAkun' => 1
+               
+            );
+
+		$this->db->where('idPedagang', $idPedagang);
+		$this->db->update('pedagang', $data); 
 	}
 
 

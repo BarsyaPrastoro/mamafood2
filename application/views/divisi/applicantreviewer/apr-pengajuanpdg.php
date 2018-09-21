@@ -62,32 +62,16 @@
                                   </tr>
                                 </thead>
                                 <tbody id="myTable">
-                                  <!-- <?php
-                                      $query = mysqli_query($conn, $sql);
-                                      while ($row = mysqli_fetch_array($query)){  
-                                        $id = $row['idPedagang'];
-                                        if($row['statusAkun'] == 0) {
-                                            $status = "Pending";
-                                        } else {
-                                            $status= "Accepted";
-                                        }
-                                        echo'<tr>                                        
-                                        <td>'.$row['idPedagang'].'</td>
-                                        <td>'.$row['namaUser'].'</td>
-                                        <td>'.$status.'</td>
-                                        <td><a href="./detail/detail-pengajuanpdg.php?id=' . $id . '">Details</a></td>
-                                        </tr>';
-                                      }
-                                      ?> -->    
                                       <?php foreach($dataPengajuan as $row): ?>
                                         <tr>
                                             <td><?= $row->idUser ?></td>
+                                            <?php $id = $row->idUser ?>
                                             <td><?= $row->namaUser ?></td>
                                             <td>
                                                 <?= ($row->statusAkun == 0)?"Pending":"Accepted" ?>
                                             </td>
                                             <td>
-                                                <a href="">
+                                                <a href="/reviewer/pengajuan/detail/<?php echo $id ?>">
                                                     Details
                                                 </a>
                                             </td>

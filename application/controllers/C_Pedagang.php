@@ -3,12 +3,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class C_Pedagang extends CI_Controller {
 	public $acc_indicator;
+	public $idPedagang;
+
+
 	public function __construct(){
 		parent::__construct();
 		$this->acc_indicator = $this->load->view('acc-indicator',[
 			'username' => $this->session->userdata('username'),
 		], true);
 	}
+
+
 	public function dataPengajuanPedagang()
 	{
 		$this->load->model('Pedagang');
@@ -16,6 +21,9 @@ class C_Pedagang extends CI_Controller {
 		$this->load->view('pedagang',['semuaPedagang' => $semuaPedagang]);
 		
 	}
+
+	
+
 	//PEDAGANG
 	public function reviewerPedagang(){
 		$this->auth->doAuth();
@@ -84,6 +92,39 @@ class C_Pedagang extends CI_Controller {
 			], true)
 		]);
 	}
+
+	public function detailPengajuan($idPedagang){
+		$this->auth->doAuth();
+		$this->load->model('Pedagang');
+		$dataPedagang = $this->Pedagang->getPengajuanPedagangById($idPedagang);
+		//$dataPedagang['idPedagang'] = ("ID NUMBER");
+		$dataMenuPedagang = $this->Pedagang->getMenuByIdPedagang($idPedagang);
+		$dataMenuPedagang['idPedagang'] = ("ID NUMBER");
+		
+		// header('Content-Type: application/json');
+		// echo json_encode(var_dump($dataPedagang));
+		// die();
+		$this->load->view('divisi/applicantreviewer/detail/detail-pengajuanpdg.php',[
+			'dataPedagang' => $dataPedagang,
+			'dataMenuPedagang' => $dataMenuPedagang,
+			'acc_indicator' => $this->acc_indicator,
+			'nama_hal' => 'pengajuan-pedagang',
+			'topbar' => $this->load->view('topbar',[],true),
+			'sidebar' => $this->load->view('sidebar',[
+				'nama_hal' => 'pengajuan-pedagang'
+			], true)
+		]);
+	}
+
+	public function approvePedagang($idPedagang){
+		$this->auth->doAuth();
+		$this->load->model('pedagang');
+		//$this->load->view 	('divisi/admin/adm-pegawai.php');
+		$this->pedagang->approveStatusPedagang($idPedagang);
+		//$dataPedagang['idPedagang'] = ("ID NUMBER");
+		redirect('/reviewer/pengajuan', 'refresh');
+	}
+
 	public function reviewerMenu(){
 		$this->auth->doAuth();
 		$this->load->model('Pedagang');
@@ -97,4 +138,14 @@ class C_Pedagang extends CI_Controller {
 			], true)
 		]);
 	}
+	//SQL APPROVE SIGNUP PEDAGANG
+	// 	if(isset($_POST['accept'])){    
+	//     $sqlupdate = "UPDATE pedagang SET statusAkun=1 WHERE idPedagang = $id ";    
+	//     if(mysqli_query($conn, $sqlupdate)){        
+	//         header('location:../apr-datapdg.php');
+	//         echo "success";
+	//     }else{        
+	//         echo "data input failed";
+	//     }
+	// }
 }
