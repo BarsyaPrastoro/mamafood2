@@ -11,6 +11,26 @@ class C_API extends CI_Controller {
 
 		$this->load->model('user');
 
+		$query = $this->user->signUpPedagang((array)$req);
+
+		if($query == true) {
+			$outputData = (object)array(
+				'status' => true,
+				'msg' => 'Register Success',
+				'redirect' => 'home'  
+			);
+		} 
+	}
+
+	//SIGNUP PEDAGANG
+
+	function signUpPedagang(){
+		if($this->input->method() != "post") return;
+
+		$req = json_decode( file_get_contents('php://input') );
+
+		$this->load->model('pedagang');
+
 		$query = $this->user->signUpPemesan((array)$req);
 
 		if($query == true) {

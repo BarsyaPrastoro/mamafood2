@@ -58,6 +58,7 @@
                                     <th>ID</th>
                                     <th>Nama Pelanggan</th>
                                     <th>Email</th>
+                                    <th>Alamat</th>
                                     <th>Telepon</th>
                                     
                                   </tr>
@@ -65,10 +66,11 @@
                                 <tbody>
                                   <?php foreach($dataPlg as $row): ?>
                                     <tr>
-                                        <td><?= $row->idPemesan ?></td>
-                                        <td><?= $row->nama ?></td>
-                                        <td><?= $row->Email ?></td>
-                                        <td><?= $row->noTelepon ?></td>
+                                        <td><?= $row->idUser ?></td>
+                                        <td><?= $row->namaUser ?></td>
+                                        <td><?= $row->emailUser ?></td>
+                                        <td><?= $row->Alamat ?></td>
+                                        <td><?= $row->noTelpon ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                                 </tbody>

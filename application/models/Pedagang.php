@@ -16,6 +16,17 @@ class Pedagang extends CI_Model {
 		return $query->result();
 	}
 
+	//SIGNUP PEDAGANG
+	public function signUpPedagang($data){
+		
+		$nama = $data['nama'];
+		$email = $data['email'];
+		$password = $data['password'];
+		$telepon = $data['noTelpon'];
+		$this->db->query("");
+
+	}
+
 	public function getStatusAkun($statusAkun){
 		$this->load->database();
 		$query = $this->db->query("select * from data_pedagang where statusAkun = ? ",[
@@ -49,14 +60,14 @@ class Pedagang extends CI_Model {
 
 	public function getPelanggan(){
 		$this->load->database();
-		$query = $this->db->query("select * from data_pemesan");
+		$query = $this->db->query("select * from user where role = 0");
 		return $query->result();	
 	}
 
 	public function getStatusMenu($status){
 		$this->load->database();
 		$query = $this->db->query("
-				select * from menu_pedagang where status = ? 
+			select * from menu_pedagang where status = ? 
 			", [$status]);
 		return $query->result();
 	}
@@ -64,9 +75,9 @@ class Pedagang extends CI_Model {
 
 	public function approveStatusPedagang($idPedagang){
 		$data = array(
-               'statusAkun' => 1
-               
-            );
+			'statusAkun' => 1
+
+		);
 
 		$this->db->where('idPedagang', $idPedagang);
 		$this->db->update('pedagang', $data); 
