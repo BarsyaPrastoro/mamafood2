@@ -36,8 +36,14 @@ class User extends CI_Model {
 		$this->db->query("INSERT INTO user(role, namaUser,emailUser, password, noTelpon, Alamat) VALUES(0,'$nama','$email','$password','$telepon','$alamat')");
 	}
 
-	function updatePemesan($id, $data ){
-
+	function updatePemesan($id, $data){
+		$this->load->database();
+		$nama = $data['nama'];
+		$email = $data['emailUser'];
+		$password = $data['password'];
+		$telepon = $data['noTelpon'];
+		$alamat = $data['Alamat'];
+		$this->db->query("UPDATE `user` SET `namaUser` = '$nama' , `emailUser` = '$email', `password` = '$password', `noTelpon` = '$telepon', `Alamat` = '$alamat' WHERE (`user`.`idUser` = '$id')");  
 	}
 
 

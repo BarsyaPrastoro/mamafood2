@@ -100,6 +100,8 @@ $route['api/signup'] = 'C_API/signUp';
 $route['api/signuppedagang'] = 'C_API/signUpPedagang';
 $route['api/menu'] = 'C_API/menu';
 $route['api/menu/(:num)'] = 'C_API/oneMenu/$1';
+$route['api/edituser/(:num)'] = 'C_API/editUser/$1';
+
 
 
 

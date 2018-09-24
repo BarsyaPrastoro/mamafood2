@@ -21,17 +21,6 @@ class C_API extends CI_Controller {
 			);
 		} 
 	}
-	function update_student_id1() {
-		$id= $this->input->post('did');
-		$data = array(
-		'Student_Name' => $this->input->post('dname'),
-		'Student_Email' => $this->input->post('demail'),
-		'Student_Mobile' => $this->input->post('dmobile'),
-		'Student_Address' => $this->input->post('daddress')
-		);
-		$this->update_model->update_student_id1($id,$data);
-		$this->show_student_id();
-	}
 
 	//SIGNUP PEDAGANG
 
@@ -145,6 +134,42 @@ class C_API extends CI_Controller {
 			fwrite($fd,base64_decode($req->fotoMenu));
 			fclose($fd);
 			//$this->db->trans_commit();
+			echo json_encode([
+				"status" => "OK"        
+			]);
+		}
+		else{
+			echo json_encode([
+				"status" => "NOK",
+				"message" => "Invalid Token"        
+			]);
+		}
+	}
+
+	function editUser($id){
+		if($this->input->method() != "post") return;
+		header('Content-Type: application/json');
+		$this->load->model('user');
+		$token = $this->input->get_request_header('Authorization', true);
+
+		if($this->auth->isAuthUser($token)){
+
+			$data = [];
+			$req = json_decode( file_get_contents('php://input') );
+			$username = $this->auth->getUserByToken($token);
+
+			$userdata = $this->user->getByUser($username);
+
+			$data['idUser'] = $userdata->idUser;
+			$id = $data['idUser'];
+
+			$data['nama'] = $req->nama;
+			$data['password'] = $req->password;
+			$data['emailUser'] = $req->email;
+			$data['noTelpon'] = $req->noTelpon;
+			$data['Alamat'] = $req->alamat;
+
+			$res = $this->user->updatePemesan($id, $data);
 			echo json_encode([
 				"status" => "OK"        
 			]);
