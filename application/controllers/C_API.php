@@ -3,15 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 class C_API extends CI_Controller {
-	
+	//SIGNUP PEMESAN
 	function signUp(){
 		if($this->input->method() != "post") return;
+		$data = json_decode( file_get_contents('php://input') );
 
-		$req = json_decode( file_get_contents('php://input') );
 
 		$this->load->model('user');
 
-		$query = $this->user->signUpPedagang((array)$req);
+		$query = $this->user->signUpPemesan((array)$data);
 
 		if($query == true) {
 			$outputData = (object)array(
@@ -20,6 +20,17 @@ class C_API extends CI_Controller {
 				'redirect' => 'home'  
 			);
 		} 
+	}
+	function update_student_id1() {
+		$id= $this->input->post('did');
+		$data = array(
+		'Student_Name' => $this->input->post('dname'),
+		'Student_Email' => $this->input->post('demail'),
+		'Student_Mobile' => $this->input->post('dmobile'),
+		'Student_Address' => $this->input->post('daddress')
+		);
+		$this->update_model->update_student_id1($id,$data);
+		$this->show_student_id();
 	}
 
 	//SIGNUP PEDAGANG
