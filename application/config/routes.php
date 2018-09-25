@@ -66,6 +66,8 @@ $route['reviewer/pengajuan/approve/(:num)'] = 'C_Pedagang/approvePedagang/$1';
 $route['reviewer/pengajuan/detail/(:num)'] = 'C_Pedagang/detailPengajuan/$1';
 $route['reviewer/pengajuan-menu'] = 'C_Pedagang/reviewerMenu';
 $route['reviewer/pedagang/detail/(:num)'] = 'C_Pedagang/detailPedagang/$1';
+$route['reviewer/menu/detail/(:num)'] = 'C_Pedagang/detailPengajuanMenu/$1';
+
 
 /*
 ROUTE ADMIN

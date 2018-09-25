@@ -65,8 +65,9 @@
                                         <tr>
                                             <td><?= $row->namaPedagang ?></td>
                                             <td><?= $row->namaMenu ?></td>
+                                            <?php $id = $row->idMenu ?>
                                             <td>
-                                                <a href="">
+                                                <a href="/reviewer/menu/detail/<?php echo $id ?>">
                                                     Details
                                                 </a>
                                             </td>

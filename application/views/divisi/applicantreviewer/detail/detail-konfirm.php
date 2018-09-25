@@ -6,7 +6,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <?= $topbar ?>
+        <!-- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -28,33 +29,13 @@
                     </form>
                 </div>
             </div>
-        </nav>
+        </nav> -->
 
         <div id="wrapper" class="">
             <div class="container-fluid">
                 <!-- Sidebar -->
-                <div id="sidebar-wrapper">
-                    <ul class="sidebar-nav">
-                        <li class="sidebar-brand">
-                            <br>
-                        </li>
-                        <li class="sidebar-brand">
-                            <img src="../../../asset/gambar/LOGONAMA.png" id="logo" width="175px"> 
-                        </li>
-                        <li class="cs">
-                            <a href="../apr-pengajuanpdg.php">Pengajuan Pedagang</a>
-                        </li>
-                         <li class="cs">
-                            <a href="../apr-datapdg.php">Data Pedagang</a>
-                        </li>                
-                        <li class="cs">
-                            <a href="../apr-dataplg.php">Data Pelanggan</a>
-                        </li>
-                        <li class="active cs">
-                            <a href="../apr-konfirm.php">Konfirmasi Menu</a>
-                        </li>
-                    </ul>
-                </div>
+                <?= $sidebar ?>
+                
                 <div id="page-content-wrapper">
                     <div class="container-fluid">
                         <div class="row">
@@ -65,6 +46,7 @@
                                 </div>
                             </div>
                             <div class="col-md-8 menukon">
+                                
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -83,46 +65,7 @@
                                     <div class="col-md-6">
                                         <img src="../../../asset/gambar/printilan/terongbalado.jpg" width="300px">
                                     </div>
-                                </div>
                                 <hr>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Nama Menu</label>
-                                            <input type="text" class="form-control" id="name" disabled value="Terong Balado" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">Harga Menu</label>
-                                            <input type="text" class="form-control" id="name" disabled value="Rp 17.000" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">Deskripsi</label>
-                                            <input type="text" class="form-control" id="name" disabled value="Makanan khas Sumatera Barat" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="../../../asset/gambar/printilan/terongbalado.jpg" width="300px">
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Nama Menu</label>
-                                            <input type="text" class="form-control" id="name" disabled value="Terong Balado" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">Harga Menu</label>
-                                            <input type="text" class="form-control" id="name" disabled value="Rp 17.000" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">Deskripsi</label>
-                                            <input type="text" class="form-control" id="name" disabled value="Makanan khas Sumatera Barat" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="../../../asset/gambar/printilan/terongbalado.jpg" width="300px">
-                                    </div>
                                 </div>
                             </div>
                         </div>

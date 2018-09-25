@@ -62,7 +62,7 @@
                 <div id="page-content-wrapper">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-5" style="position: fixed">
+                            <div class="col-md-4" style="position: fixed">
                                 <div class="form-group">
                                     <label for="name">Nama</label>
                                     <div class="input-group">
@@ -108,15 +108,13 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="col-md-1">
-                                
-                            </div>
+                          
                             <div class="col-md-6 menu">
                                 <h3>Menu yang Diajukan</h3>
                                 <hr>
                                 
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-7">
                                             <div class="form-group">
                                                 <label for="name">Nama Menu</label>
                                                 <input type="text" class="form-control" id="name" disabled value="<?= $dataPedagang['namaMenu'] ?>" />
@@ -130,12 +128,12 @@
                                                 <textarea type="text" class="form-control" id="name" disabled ><?= $dataPedagang['deskripsiMenu'] ?></textarea>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-5">
                                             <img class="fotomenudape"src="<?= base_url() ?>public/images/fotomenu/<?= $dataPedagang['idMenu'] ?>.jpg"
                                             >
                                         </div>
                                     </div>
-                <?php endif; ?>
+                                 <?php endif; ?>
                                
                             </div>
                         </div>

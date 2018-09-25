@@ -138,6 +138,20 @@ class C_Pedagang extends CI_Controller {
 			], true)
 		]);
 	}
+
+	public function detailPengajuanMenu($idMenu){
+		$this->auth->doAuth();
+		$this->load->model('Menu');
+		$dataMenu = $this->Menu->one($idMenu);
+		$this->load->view('divisi/applicantreviewer/detail/detail-konfirm.php',[
+			'dataMenu' => $dataMenu,
+			'acc_indicator' => $this->acc_indicator,
+			'topbar' => $this->load->view('topbar',[],true),
+			'sidebar' => $this->load->view('sidebar',[
+				'nama_hal' => 'konfirmasi-menu'
+			], true)
+		]);
+	}
 	//SQL APPROVE SIGNUP PEDAGANG
 	// 	if(isset($_POST['accept'])){    
 	//     $sqlupdate = "UPDATE pedagang SET statusAkun=1 WHERE idPedagang = $id ";    
