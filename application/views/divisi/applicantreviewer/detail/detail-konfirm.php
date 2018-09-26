@@ -1,6 +1,6 @@
 <html>
     <head>
-        <link rel="stylesheet" href="../../../asset/css/style.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>public/css/style.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -35,15 +35,18 @@
             <div class="container-fluid">
                 <!-- Sidebar -->
                 <?= $sidebar ?>
-                
+                <?php if(isset($dataMenu)): ?>
                 <div id="page-content-wrapper">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-4" style="position: fixed; margin-top: 250px;">
-                                <div class="form-inline acc">
-                                    <button type="button" class="btn btn-secondary">Accept</button>
-                                    <button type="button" class="btn btn-secondary">Decline</button>
-                                </div>
+
+                                <form method="post" action="/reviewer/pengajuan-menu/approve/<?php echo $dataMenu['idMenu'];?>">
+                                    <div class="form-inline acc">
+                                        <input name=accept type="submit" class="btn btn-secondary" value="Accept"/>
+                                        <button type="button" class="btn btn-secondary">Decline</button>
+                                    </div>
+                                </form>
                             </div>
                             <div class="col-md-8 menukon">
                                 
@@ -51,22 +54,24 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="name">Nama Menu</label>
-                                            <input type="text" class="form-control" id="name" disabled value="Terong Balado" />
+                                            <input type="text" class="form-control" id="name" disabled value="<?= $dataMenu['namaMenu']?>" />
                                         </div>
                                         <div class="form-group">
                                             <label for="name">Harga Menu</label>
-                                            <input type="text" class="form-control" id="name" disabled value="Rp 17.000" />
+                                            <input type="text" class="form-control" id="name" disabled value="<?= $dataMenu['hargaMenu']?>" />
                                         </div>
                                         <div class="form-group">
                                             <label for="name">Deskripsi</label>
-                                            <input type="text" class="form-control" id="name" disabled value="Makanan khas Sumatera Barat" />
+                                            <input type="text" class="form-control" id="name" disabled value="<?= $dataMenu['deskripsiMenu']?>" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <img src="../../../asset/gambar/printilan/terongbalado.jpg" width="300px">
+                                        <img class="fotomenudape"src="<?= base_url() ?>public/images/fotomenu/<?= $dataMenu['idMenu'] ?>.jpg"
+                                            width="300px">
                                     </div>
                                 <hr>
                                 </div>
+                                <?php endif; ?>
                             </div>
                         </div>
                         

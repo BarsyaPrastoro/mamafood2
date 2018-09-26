@@ -36,6 +36,14 @@ class Menu extends CI_Model {
 		}		
 	}
 
+	public function getMenuById($idMenu){
+		$this->load->database();
+		$query = $this->db->query("select * from menu where idMenu = ?", [
+			$idMenu
+		]);
+		return $query->row_array();
+	}
+
 	public function insert($data){
 		$idPedagang = $data['idPedagang'];
 		$namaMenu = $data['namaMenu'];
@@ -43,5 +51,15 @@ class Menu extends CI_Model {
 		$deskripsiMenu = $data['deskripsiMenu'];
 		$this->db->query("INSERT INTO menu(idPedagang, namaMenu, hargaMenu, deskripsiMenu) VALUES('$idPedagang','$namaMenu','$hargaMenu','$deskripsiMenu')");
 
+	}
+
+	public function approveMenu($idMenu){
+		$data = array(
+			'status' => 1
+
+		);
+
+		$this->db->where('idMenu', $idMenu);
+		$this->db->update('menu', $data); 
 	}
 }

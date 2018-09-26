@@ -142,7 +142,8 @@ class C_Pedagang extends CI_Controller {
 	public function detailPengajuanMenu($idMenu){
 		$this->auth->doAuth();
 		$this->load->model('Menu');
-		$dataMenu = $this->Menu->one($idMenu);
+		$dataMenu = $this->Menu->getMenuById($idMenu);
+		$dataMenuPedagang['idMenu'] = ("ID NUMBER");
 		$this->load->view('divisi/applicantreviewer/detail/detail-konfirm.php',[
 			'dataMenu' => $dataMenu,
 			'acc_indicator' => $this->acc_indicator,
@@ -151,6 +152,15 @@ class C_Pedagang extends CI_Controller {
 				'nama_hal' => 'konfirmasi-menu'
 			], true)
 		]);
+	}
+
+	public function approveMenu($idMenu){
+		$this->auth->doAuth();
+		$this->load->model('menu');
+		//$this->load->view 	('divisi/admin/adm-pegawai.php');
+		$this->menu->approveMenu($idMenu);
+		//$dataPedagang['idPedagang'] = ("ID NUMBER");
+		redirect('reviewer/pengajuan-menu', 'refresh');
 	}
 	//SQL APPROVE SIGNUP PEDAGANG
 	// 	if(isset($_POST['accept'])){    
