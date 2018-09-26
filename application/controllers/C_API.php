@@ -49,7 +49,7 @@ class C_API extends CI_Controller {
 		if ($this->input->method() != "get") return;
 		header('Content-Type: application/json');
 		$this->load->model('Menu');
-
+		$this->load->model('user');
 		$token = $this->input->get_request_header('Authorization', true);
 		if($this->auth->isAuthUser($token)){
 			$sortby = $this->input->get('sortby',true);
@@ -60,7 +60,17 @@ class C_API extends CI_Controller {
 			if (empty($sortdir)) {
 				$sortdir = "asc";
 			}
-			$menu = $this->Menu->all($sortby, $sortdir);
+			$username = $this->auth->getUserByToken($token);
+			$user = $this->user->getByUser($username);
+			$cols = ['idMenu','namaMenu','hargaMenu','deskripsiMenu', 'namaPedagang','fotoMenu'];
+			$filter =  [];
+			if(intval($user->role) === 1){
+				$filter =  [
+					'idPedagang' => $user->idUser
+				];
+				$cols = ['*'];
+			}
+			$menu = $this->Menu->all($cols,$sortby, $sortdir, $filter);
 			
 			echo json_encode($menu);
 		}else{
@@ -71,9 +81,52 @@ class C_API extends CI_Controller {
 		}
 	}
 
-	//API Menu sebiji
+	//API Menu detail untuk pembeli
 
 	function oneMenu($id){
+		if ($this->input->method() != "get") return;
+
+		$this->load->model('Menu');
+
+
+		$token = $this->input->get_request_header('Authorization', true);
+		header('Content-Type: application/json');
+		if($this->auth->isAuthUser($token)){
+			$this->load->model('user');
+			$username = $this->auth->getUserByToken($token);
+			$user = $this->user->getByUser($username);
+			$filter = [
+				'idMenu' => $id
+			];
+			$cols = ['idMenu','namaMenu','hargaMenu','deskripsiMenu', 'namaPedagang','fotoMenu'];
+			if(intval($user->role) === 1){
+				$filter = [
+					'idMenu' => $id,
+					'idPedagang' => $user->idUser
+				];
+				$cols = ['*'];
+			}
+			$menu = $this->Menu->one($cols,$filter);
+			if(!$menu){
+				echo json_encode([
+					"status" => "NOK"
+				]);
+			}else{
+				echo json_encode($menu);	
+			}
+			
+		}else{
+			echo json_encode([
+				"status" => "NOK",
+				"message" => "Invalid Token"        
+			]);
+		}
+
+	}
+
+	//API MENU PEDAGANG 1 ID
+
+	function menuPedagang($idPedagang){
 		if ($this->input->method() != "get") return;
 
 		$this->load->model('Menu');
@@ -81,7 +134,8 @@ class C_API extends CI_Controller {
 		$token = $this->input->get_request_header('Authorization', true);
 		header('Content-Type: application/json');
 		if($this->auth->isAuthUser($token)){
-			$menu = $this->Menu->one($id);
+
+			$menu = $this->Menu->allMenuPedagang($idPedagang);
 			
 			echo json_encode($menu);
 		}else{
@@ -111,13 +165,10 @@ class C_API extends CI_Controller {
 
 			$data = [];
 			$req = json_decode( file_get_contents('php://input') );
-			$fd = fopen("public/images/fotomenu/test.jpg","wb");
-			fwrite($fd,base64_decode($req->fotoMenu));
-			fclose($fd);
-
 			$data['namaMenu'] = $req->namaMenu;
 			$data['hargaMenu'] = $req->hargaMenu;
 			$data['deskripsiMenu'] = $req->deskripsiMenu;
+			$data['fotoMenu'] = $req->fotoMenu;
 
 			$username = $this->auth->getUserByToken($token);
 
@@ -130,9 +181,6 @@ class C_API extends CI_Controller {
 
 			$resdb = $this->menu->insert($data);
 			$idMenu = $this->db->insert_id();
-			$fd = fopen("public/images/fotomenu/$idMenu.jpg","wb");
-			fwrite($fd,base64_decode($req->fotoMenu));
-			fclose($fd);
 			//$this->db->trans_commit();
 			echo json_encode([
 				"status" => "OK"        

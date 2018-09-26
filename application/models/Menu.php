@@ -11,22 +11,39 @@ class Menu extends CI_Model {
 	public $status;
 	public $namaPedagang;
 
-	public function all($sortby, $sortdir){
-		$this->load->database();
-		// $query = $this->db->query("select * from menu_pedagang ORDER BY ? ?", [
-		// 	$sortby,
-		// 	$sortdir
-		// ]);
-		$query = $this->db->query("select * from menu_pedagang ORDER BY $sortby $sortdir");
+	//menu home pembeli
+
+	public function all($cols,$sortby, $sortdir, $filter){
+		$filter_str = "";
+		foreach($filter as $key => $value){
+			if(empty($filter_str)){
+				$filter_str .= 'where ';
+			}else{
+				$filter_str .= '&& ';
+			}
+			$filter_str .= "$key = $value";
+
+		}
+		$cols_str = implode(',',$cols);
+		$query = $this->db->query("select $cols_str from  menu_pedagang $filter_str ORDER BY $sortby $sortdir");
 		return $query->result();
-	
 	}	
 
-	public function one($id){
-	
-		$query = $this->db->query("select * from menu_pedagang where idMenu = ?" , [
-			$id
-		]);
+	//menu detail 1 pembeli
+
+	public function one($cols,$filter){
+		$filter_str = "";
+		foreach($filter as $key => $value){
+			if(empty($filter_str)){
+				$filter_str .= 'where ';
+			}else{
+				$filter_str .= '&& ';
+			}
+			$filter_str .= "$key = $value";
+
+		}
+		$cols_str = implode(',',$cols);
+		$query = $this->db->query("select $cols_str from menu_pedagang $filter_str");
 		$res = $query->result();
 
 		if (count($res) > 0) {
@@ -36,6 +53,25 @@ class Menu extends CI_Model {
 		}		
 	}
 
+
+	//MENU untuk 1 pedagang
+
+	public function allMenuPedagang($idPedagang){
+
+		$query = $this->db->query("select * from menu_pedagang where idPedagang in(select idPedagang from menu_pedagang group by idPedagang having count(*) >= 1)" , [
+			$idPedagang
+		]);
+		$res = $query->result();
+
+		if (count($res) > 0) {
+			return $res[0];
+		}else{
+			return false;
+		}		
+	}	
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//model untuk web//
 	public function getMenuById($idMenu){
 		$this->load->database();
 		$query = $this->db->query("select * from menu where idMenu = ?", [
@@ -49,8 +85,8 @@ class Menu extends CI_Model {
 		$namaMenu = $data['namaMenu'];
 		$hargaMenu = $data['hargaMenu'];
 		$deskripsiMenu = $data['deskripsiMenu'];
-		$this->db->query("INSERT INTO menu(idPedagang, namaMenu, hargaMenu, deskripsiMenu) VALUES('$idPedagang','$namaMenu','$hargaMenu','$deskripsiMenu')");
-
+		$fotoMenu = $data['fotoMenu'];
+		$this->db->query("INSERT INTO menu(idPedagang, namaMenu, hargaMenu, deskripsiMenu, fotoMenu) VALUES('$idPedagang','$namaMenu','$hargaMenu','$deskripsiMenu','$fotoMenu')");
 	}
 
 	public function approveMenu($idMenu){
