@@ -93,6 +93,7 @@ $route['pm/transaksipedagang'] = 'C_keuangan/transaksiPedagang';
 ROUTE CS
 */
 $route['cs/pesanmasuk'] = 'C_customerservice/pesanMasuk';
+$route['cs/pesanmasuk/detail/(:num)'] = 'C_customerservice/detailPesan/$1';
 $route['cs/pesanterkirim'] = 'C_customerservice/pesanTerkirim';
 
 

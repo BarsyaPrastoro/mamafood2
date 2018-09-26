@@ -14,10 +14,24 @@ class C_customerservice extends CI_Controller {
 
 	public function pesanMasuk(){
 		$this->auth->doAuth();
-		//$this->load->model('UserPerusahaan');
-		//$semuaPegawai = $this->UserPerusahaan->getPegawai();
+		$this->load->model('Pesan');
+		$mail = $this->Pesan->all();
 		$this->load->view('divisi/customerservice/cs-pesanmsk.php',[
-			//'semuaPegawai' => $semuaPegawai,
+			'mail' => $mail,
+			'acc_indicator' => $this->acc_indicator,
+			'topbar' => $this->load->view('topbar',[],true),
+			'sidebarCS' => $this->load->view('sidebarCS',[
+				'nama_hal' => 'pesan-msk'
+			], true)
+		]);
+	}
+
+	public function detailPesan($idPesan){
+		$this->auth->doAuth();
+		$this->load->model('Pesan');
+		$detailMail = $this->Pesan->detail($idPesan);
+		$this->load->view('divisi/customerservice/detail/detail-modalpesan.php',[
+			'detailMail' => $detailMail,
 			'acc_indicator' => $this->acc_indicator,
 			'topbar' => $this->load->view('topbar',[],true),
 			'sidebarCS' => $this->load->view('sidebarCS',[
@@ -39,4 +53,6 @@ class C_customerservice extends CI_Controller {
 			], true)
 		]);
 	}
+
+
 }

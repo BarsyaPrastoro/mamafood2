@@ -1,14 +1,23 @@
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>public/css/style.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
-        
-    </head>
-    <body>
-        <?= $topbar ?>
+<head>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>public/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    
+</head>
+<body>
+    
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="padding:10px;">
+            <?= $modalpesan?>
+        </div>
+    </div>
+</div>
+
+<?= $topbar ?>
         <!-- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">                    
@@ -64,68 +73,81 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group" style="float:right">
-                                    
+
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-lg-12">                                
                               <table class="table table-bordered table-striped table-responsive" id="myTable"
-                                     data-toggle="table"
-                                     data-search="true"
-                                     data-filter-control="true" 
-                                     data-show-export="true"
-                                     data-click-to-select="true"
-                                     data-toolbar="#toolbar">
-                                <thead>
+                              data-toggle="table"
+                              data-search="true"
+                              data-filter-control="true" 
+                              data-show-export="true"
+                              data-click-to-select="true"
+                              data-toolbar="#toolbar">
+                              <thead>
                                   <tr>
                                     <th>Nama</th>
-                                    <th>Pesan</th>
-                                    <th>Status</th>
-                                      <th></th>
-                                      
-                                  </tr>
-                                </thead>
-                                <tbody>
+                                    <th>Role</th>
+                                    <th>Tanggal</th>
+                                    <th></th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($mail as $row): ?>
+                                    <?php $idPesan = $row->idPesan ?>
                                     <tr>
-                                        <td>juan</td>
-                                        <td>Haruskah ku ganti akun</td>
-                                        <td>Pedagang</td>
-                                        <td><a href="detail/detail-pesanmsk.php">Details</a></td>
-                                    </tr>
+                                        <td><?=  $row->namaUser ?></td>
+                                        <td>
+                                            <?php if ($row->role == 0) :  ?>
+                                                <?php echo "Pembeli"?>
+                                            <?php endif; ?>
+
+                                            <?php if ($row->role == 1) :  ?>
+                                                <?php echo "Pedagang"?>
+                                            <?php endif; ?>
+
+                                        </td>
+                                        <td><?=  $row->tanggal ?></td>
+                                        <td><a href="/cs/pesanmasuk/detail/<?php echo $idPesan ?>" data-toogle = "modal">Detail</a></td>
+                                        </tr>
+                                <?php endforeach; ?>
                                 </tbody>
-                              </table>
-                            </div>
+                            </table>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+
                         </div>
                     </div>
                 </div>
-                
             </div>
+
         </div>
-        <script>
-            $("#menu-toggle").click(function(e) {
-                e.preventDefault();
-                $("#wrapper").toggleClass("toggled");
-            });
-            
-            
-            $(document).ready(function(){
-              $("#myInput").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("#myTable tr").filter(function() {
-                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-              });
-            });
-            
-            
-            
-            
-        </script>
-    </body>
+    </div>
+    <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+
+
+        $(document).ready(function(){
+          $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        });
+      });
+
+
+
+
+  </script>
+</body>
 </html>
