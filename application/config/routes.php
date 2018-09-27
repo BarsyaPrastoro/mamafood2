@@ -62,7 +62,9 @@ ROUTE APPLICANT REVIEWER
 $route['reviewer/pedagang'] = 'C_Pedagang/reviewerPedagang';
 $route['reviewer/pelanggan'] = 'C_Pedagang/reviewerPelanggan';
 $route['reviewer/pengajuan'] = 'C_Pedagang/reviewerPengajuan';
-$route['reviewer/pengajuan/approve/(:num)'] = 'C_Pedagang/approvePedagang/$1';
+
+$route['reviewer/pengajuan/detail/approve/(:num)'] = 'C_Pedagang/approvePedagang/$1';
+
 $route['reviewer/pengajuan/detail/(:num)'] = 'C_Pedagang/detailPengajuan/$1';
 $route['reviewer/pengajuan-menu'] = 'C_Pedagang/reviewerMenu';
 $route['reviewer/pedagang/detail/(:num)'] = 'C_Pedagang/detailPedagang/$1';

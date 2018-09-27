@@ -119,9 +119,9 @@ class C_Pedagang extends CI_Controller {
 	public function approvePedagang($idPedagang){
 		$this->auth->doAuth();
 		$this->load->model('pedagang');
-		//$this->load->view 	('divisi/admin/adm-pegawai.php');
+		
 		$this->pedagang->approveStatusPedagang($idPedagang);
-		//$dataPedagang['idPedagang'] = ("ID NUMBER");
+		
 		redirect('/reviewer/pengajuan', 'refresh');
 	}
 
