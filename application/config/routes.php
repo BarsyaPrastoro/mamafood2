@@ -99,7 +99,7 @@ $route['cs/pesanterkirim'] = 'C_customerservice/pesanTerkirim';
 
 // API
 $route['api/login'] = 'C_Login/loginUser';
-$route['api/test'] = 'C_Login/test';
+$route['api/token'] = 'C_Login/magicMethod';
 $route['api/signup'] = 'C_API/signUp';
 $route['api/signuppedagang'] = 'C_API/signUpPedagang';
 //pembeli

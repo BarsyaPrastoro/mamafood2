@@ -128,9 +128,9 @@ class C_Login extends CI_Controller {
 		}
 	}
 	
-	//TES LEMPAR EMAIL PEMESAN LEWAT JSON
+	//MAGIC METHOD
 
-	public function test(){
+	public function magicMethod(){
 		$req = json_decode( file_get_contents('php://input') );
 		$this->load->model('User');
 		$token = $this->input->get_request_header('Authorization', true);
@@ -140,9 +140,9 @@ class C_Login extends CI_Controller {
 			echo json_encode([
 				'status' => 'OK',
 				'nama' => $user->namaUser,
+				'role' => $user->role,
 				'noTelpon' => $user->noTelpon,
-				'email' => $user->emailUser,
-				//'role' => $user->role
+				'email' => $user->emailUser
 			]);
 		}else{
 			header('Content-Type: application/json');

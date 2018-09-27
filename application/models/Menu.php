@@ -70,8 +70,7 @@ class Menu extends CI_Model {
 		}		
 	}	
 
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//model untuk web//
+	///////////////////
 	public function getMenuById($idMenu){
 		$this->load->database();
 		$query = $this->db->query("select * from menu where idMenu = ?", [
@@ -86,7 +85,10 @@ class Menu extends CI_Model {
 		$hargaMenu = $data['hargaMenu'];
 		$deskripsiMenu = $data['deskripsiMenu'];
 		$fotoMenu = $data['fotoMenu'];
-		$this->db->query("INSERT INTO menu(idPedagang, namaMenu, hargaMenu, deskripsiMenu, fotoMenu) VALUES('$idPedagang','$namaMenu','$hargaMenu','$deskripsiMenu','$fotoMenu')");
+		$this->db->query("INSERT INTO menu
+			(idPedagang, namaMenu, hargaMenu, deskripsiMenu, fotoMenu) 
+			VALUES
+			('$idPedagang','$namaMenu','$hargaMenu','$deskripsiMenu','$fotoMenu')"); 
 	}
 
 	public function approveMenu($idMenu){
