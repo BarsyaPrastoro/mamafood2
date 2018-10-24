@@ -66,7 +66,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <img class="fotomenudape"src="<?= base_url() ?>public/images/fotomenu/<?= $dataMenu['idMenu'] ?>.jpg"
+                                        <img class="fotomenudape"src="data:image/jpeg;base64, <?= $dataMenu['fotoMenu'] ?>"
                                             width="300px">
                                     </div>
                                 <hr>
