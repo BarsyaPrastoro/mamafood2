@@ -76,44 +76,45 @@
                                             <img class="fotodape"src="data:image/jpeg;base64,<?= base64_encode( $dataPedagang['fotoProfil'] )?>">
                                         </div>
                                     </div>
-                                </div> -->
-                                <?php if(isset($dataPedagang)): ?>
-                                    <div class="col-md-8">
+                                </div> -->                      
+                    <?php if(isset($dataPedagang)): ?>
 
-                                        <div class="form-group">
-                                            <label for="name">Nama</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
-                                            </span>
-                                            <input type="text" class="form-control" id="name" disabled value="<?= $dataPedagang['namaUser'] ?>" />
-                                        </div>
-                                    </div>
+                                <div class="col-md-8">
 
                                     <div class="form-group">
-                                        <label for="email">Email</label>
+                                        <label for="name">Nama</label>
                                         <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                         </span>
-                                        <input type="email" class="form-control" id="email" disabled value="<?= $dataPedagang['emailUser'] ?>" />
+                                        <input type="text" class="form-control" id="name" disabled value="<?= $dataPedagang['namaUser'] ?>" />
                                     </div>
                                 </div>
+
                                 <div class="form-group">
-                                    <label for="email">Telepon</label>
+                                    <label for="email">Email</label>
                                     <div class="input-group">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                     </span>
-                                    <input type="email" class="form-control" id="email" disabled value="<?= $dataPedagang['noTelpon']?>" />
+                                    <input type="email" class="form-control" id="email" disabled value="<?= $dataPedagang['emailUser'] ?>" />
                                 </div>
                             </div>
-
                             <div class="form-group">
-                                <label for="email">Alamat</label>
+                                <label for="email">Telepon</label>
                                 <div class="input-group">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span>
                                 </span>
-                                <input type="email" class="form-control" id="email" disabled value="<?= $dataPedagang['Alamat']?>" />
+                                <input type="email" class="form-control" id="email" disabled value="<?= $dataPedagang['noTelpon']?>" />
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label for="email">Alamat</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span>
+                            </span>
+                            <input type="email" class="form-control" id="email" disabled value="<?= $dataPedagang['Alamat']?>" />
+                        </div>
+                    </div>
                                 <!-- <div class="form-group">
                                     <label for="name">KTP</label>
                                     <div class="kotakktp" style="text-align: center">
@@ -122,92 +123,98 @@
                                 </div> -->
 
                             </div>
-                        
-                        </div>
-                        <div class="col-md-5" id="menupdg">
-                            <h3>Menu</h3>
-                            <hr>
-                            
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">Nama Menu</label>
-                                        <input type="text" class="form-control" id="name" disabled 
-                                        value="<?= $dataPedagang['namaMenu'] ?>" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="name">Harga Menu</label>
-                                        <input type="text" class="form-control" id="name" disabled
-                                        value="<?= $dataPedagang['hargaMenu'] ?>" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="name">Deskripsi</label>
-                                        <textarea type="text" class="form-control" id="name" rows="3" disabled value=""><?= $dataPedagang['deskripsiMenu'] ?></textarea>
 
-                                        <div class="">
-                                            <img class="fotomenudape"src="<?= base_url() ?>public/images/fotomenu/<?= $dataPedagang['idMenu'] ?>.jpg">
+                        </div>
+                    <?php endif; ?>
+                    <div class="col-md-5" id="menupdg">
+                        <h3>Menu</h3>
+
+                        <?php if(isset($dataMenuPedagang)): ?>
+                            <hr>
+                            <?php foreach ($dataMenuPedagang as $menu):?>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="name">Nama Menu</label>
+                                            <input type="text" class="form-control" id="name" disabled 
+                                            value="<?= $menu['namaMenu'] ?>" />
                                         </div>
+                                        <div class="form-group">
+                                            <label for="name">Harga Menu</label>
+                                            <input type="text" class="form-control" id="name" disabled
+                                            value="<?= $menu['hargaMenu'] ?>" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name">Deskripsi</label>
+                                            <textarea type="text" class="form-control" id="name" rows="3" disabled value=""><?= $menu['deskripsiMenu'] ?></textarea>
 
+                                            <div class="">
+                                                <img class="fotomenudape"src="<?= base_url() ?>public/images/fotomenu/<?= $menu['idMenu'] ?>.jpg">
+                                            </div>
+
+                                        </div>
                                     </div>
+
                                 </div>
-                                
-                            </div>
-                            <?php endif; ?>    
-
-                        </div>
-                        <hr>
+                            <?php endforeach;?>
+                        <?php endif; ?>
 
 
-                        <hr>
-                        
-                        <div class="col-md-3" id="transpdg">
-                            <h3>Transaksi</h3>
-                            <hr>
-                            <table class="table table-bordered table-striped" id="myTable">
-                                <thead>
-                                  <tr>
-                                    <th>Transaksi</th>
-                                    <th>Pemesan</th>
-                                    <th>Tanggal</th>
-                                    <th>Waktu</th>
-                                </tr>
-                            </thead>
-                            <tbody id="myTable">
-                                <tr>
-                                    <td>pm02</td>
-                                    <td>Gary Isti</td>
-                                    <td>20-12-2017</td>
-                                    <td>14.30</td>
-                                </tr>
-                                <tr>
-                                    <td>pm03</td>
-                                    <td>Halim</td>
-                                    <td>20-12-2017</td>
-                                    <td>11.25</td>
-                                </tr>
-                                <tr>
-                                    <td>pm02</td>
-                                    <td>Gary Isti</td>
-                                    <td>20-12-2017</td>
-                                    <td>14.30</td>
-                                </tr>
-                                <tr>
-                                    <td>pm02</td>
-                                    <td>Gary Isti</td>
-                                    <td>20-12-2017</td>
-                                    <td>14.30</td>
-                                </tr>
-                            </tbody>
-                        </table>
+
                     </div>
+                    <hr>
 
+
+                    <hr>
+
+                    <div class="col-md-3" id="transpdg">
+                        <h3>Transaksi</h3>
+                        <hr>
+                        <table class="table table-bordered table-striped" id="myTable">
+                            <thead>
+                              <tr>
+                                <th>Transaksi</th>
+                                <th>Pemesan</th>
+                                <th>Tanggal</th>
+                                <th>Waktu</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">
+                            <tr>
+                                <td>pm02</td>
+                                <td>Gary Isti</td>
+                                <td>20-12-2017</td>
+                                <td>14.30</td>
+                            </tr>
+                            <tr>
+                                <td>pm03</td>
+                                <td>Halim</td>
+                                <td>20-12-2017</td>
+                                <td>11.25</td>
+                            </tr>
+                            <tr>
+                                <td>pm02</td>
+                                <td>Gary Isti</td>
+                                <td>20-12-2017</td>
+                                <td>14.30</td>
+                            </tr>
+                            <tr>
+                                <td>pm02</td>
+                                <td>Gary Isti</td>
+                                <td>20-12-2017</td>
+                                <td>14.30</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                
-                
+
             </div>
 
+
         </div>
+
     </div>
+</div>
 
 </div>
 </div>

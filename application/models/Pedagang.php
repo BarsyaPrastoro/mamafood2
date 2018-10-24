@@ -52,10 +52,10 @@ class Pedagang extends CI_Model {
 
 	public function getMenuByIdPedagang($idPedagang){
 		$this->load->database();
-		$query = $this->db->query("select * from menu where idPedagang in(select idPedagang from menu group by idPedagang having count(*) >= 1)", [
+		$query = $this->db->query("select * from menu where idPedagang=?", [
 			$idPedagang
 		]);
-		return $query->row_array();
+		return $query->result_array();
 	}
 
 	public function getPelanggan(){
