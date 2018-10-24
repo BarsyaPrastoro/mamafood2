@@ -149,7 +149,7 @@
                                             <textarea type="text" class="form-control" id="name" rows="3" disabled value=""><?= $menu['deskripsiMenu'] ?></textarea>
 
                                             <div class="">
-                                                <img class="fotomenudape"src="<?= base_url() ?>public/images/fotomenu/<?= $menu['idMenu'] ?>.jpg">
+                                                <img class="fotomenudape"src= "data:image/jpeg;base64,'.base64_encode( $menu['fotoMenu'] ).'" />
                                             </div>
 
                                         </div>
