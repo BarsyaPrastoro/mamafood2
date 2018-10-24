@@ -36,7 +36,7 @@ class Pedagang extends CI_Model {
 	}
 	public function getPedagangById($idPedagang){
 		$this->load->database();
-		$query = $this->db->query("select distinct * from data_pedagang left outer join menu_pedagang on data_pedagang.idPedagang = menu_pedagang.idPedagang where idUser = ?", [
+		$query = $this->db->query("select distinct * from data_pedagang join menu_pedagang on data_pedagang.idPedagang = menu_pedagang.idPedagang where idUser = ?", [
 			$idPedagang
 		]);
 		return $query->row_array();
