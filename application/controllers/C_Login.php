@@ -101,6 +101,7 @@ class C_Login extends CI_Controller {
 
 	public function loginUser(){
 		$req =(array) json_decode( file_get_contents('php://input') );
+		log_message("error","Login = " . file_get_contents('php://input'));
 		$username = $req['username'];
 		$password = $req['password'];
 		if(!empty($username) && !empty($password)){

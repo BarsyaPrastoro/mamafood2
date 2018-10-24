@@ -66,7 +66,13 @@ class C_API extends CI_Controller {
 			$filter =  [];
 			if(intval($user->role) === 1){
 				$filter =  [
-					'idPedagang' => $user->idUser
+					'idPedagang' => $user->idUser,
+					'status' => 1
+				];
+				$cols = ['*'];
+			}else if(intval($user->role) === 0){
+				$filter =  [
+					'status' => 1
 				];
 				$cols = ['*'];
 			}
@@ -164,7 +170,10 @@ class C_API extends CI_Controller {
 			
 
 			$data = [];
+			
+			log_message('error', "before"); 
 			$req = json_decode( file_get_contents('php://input') );
+			log_message('error', "after");
 			$data['namaMenu'] = $req->namaMenu;
 			$data['hargaMenu'] = $req->hargaMenu;
 			$data['deskripsiMenu'] = $req->deskripsiMenu;
@@ -178,8 +187,9 @@ class C_API extends CI_Controller {
 
 			//$this->db->trans_begin();
 
-
+			log_message('error', "before sql");
 			$resdb = $this->menu->insert($data);
+			log_message('error', "after sql");
 			$idMenu = $this->db->insert_id();
 			//$this->db->trans_commit();
 			echo json_encode([

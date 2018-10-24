@@ -28,5 +28,6 @@
                     </form>
                 </div>
             </div>
+            <?php phpinfo(); ?>
     </body>
 </html>
