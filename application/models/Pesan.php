@@ -8,14 +8,14 @@ class Pesan extends CI_Model {
 		// 	$sortby,
 		// 	$sortdir
 		// ]);
-		$query = $this->db->query("select * from pesan_user");
+		$query = $this->db->query("select * from pesan_masuk");
 		return $query->result();
 	
 	}
 
 	public function detail($idPesan){
 		$this->load->database();
-		$query = $this->db->query("select * from pesan_user where idPesan = ?", [
+		$query = $this->db->query("select * from pesan_masuk where idPesan = ?", [
 			$idPesan
 		]);
 		return $query->row_array();
