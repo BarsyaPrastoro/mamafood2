@@ -240,4 +240,8 @@ class C_API extends CI_Controller {
 		}
 	}
 
+	function beliMenu(){
+		
+	}
+
 }
