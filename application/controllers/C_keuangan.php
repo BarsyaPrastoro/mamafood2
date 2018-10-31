@@ -29,10 +29,10 @@ class C_keuangan extends CI_Controller {
 	//belom bener
 	public function transaksiPedagang(){
 		$this->auth->doAuth();
-		$this->load->model('Pedagang');
-		$semuaPedagang = $this->Pedagang->all();
+		$this->load->model('Transaksi');
+		$semuaTransaksi = $this->Transaksi->all();
 		$this->load->view('divisi/profitablemeasure/pm-transaksipdgpbl.php',[
-			'semuaPegawai' => $semuaPedagang,
+			'semuaTransaksi' => $semuaTransaksi,
 			'acc_indicator' => $this->acc_indicator,
 			'topbar' => $this->load->view('topbar',[],true),
 			'sidebarPM' => $this->load->view('sidebarPM',[

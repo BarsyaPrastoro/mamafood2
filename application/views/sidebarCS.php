@@ -19,9 +19,5 @@
             <a href="cs-pesantkm.php">Pesan Terkirim</a>
         </li> -->
     </ul>
-    <form class="navbar-form navbar-right" action="#" method="GET">                        
-        <div class="input-group">                            
-            <input type="text" class="form-control" placeholder="Search..." id="myInput" name="search" value="">
-        </div>
-    </form>
+    
 </div> 

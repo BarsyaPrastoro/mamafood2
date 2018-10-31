@@ -22,6 +22,6 @@
                     <input type="text" class="form-control" placeholder="Search..." id="myInput" name="search" value="">
                 </div>
             </form>
-        </div>
+        </div
     </div>
 </nav>
