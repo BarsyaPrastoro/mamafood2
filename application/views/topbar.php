@@ -13,7 +13,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><!-- <a href="../../login.php"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Log Out</a> -->
                     <form class="form" method="post" action="../logout" >
-                        <button  name="logout" type="submit" class="btn btn-primary">Logout</button>
+                        <button  name="logout" type="submit" class="btn" style="margin-top: 8px; margin-right: 10px; background-color: grey; color: white;">Logout</button>
                     </form>
                 </li>
             </ul>                    
