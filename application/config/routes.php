@@ -114,6 +114,8 @@ $route['api/menupedagang/(:num)'] = 'C_API/menuPedagang/$1';
 $route['api/edituser/(:num)'] = 'C_API/editUser/$1';
 
 $route['api/insertmenu'] = 'C_API/insertMenu';
+//data pedagang
+$route['api/datapedagang'] = 'C_API/listPedagang';
 
 
 

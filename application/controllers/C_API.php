@@ -240,8 +240,26 @@ class C_API extends CI_Controller {
 		}
 	}
 
+	function listPedagang(){
+		if ($this->input->method() != "get") return;
+		header('Content-Type: application/json');
+		$this->load->model('Pedagang');
+		$token = $this->input->get_request_header('Authorization', true);
+		if($this->auth->isAuthUser($token)){
+			
+			$menu = $this->Pedagang->all();
+			
+			echo json_encode($menu);
+		}else{
+			echo json_encode([
+				"status" => "NOK",
+				"message" => "Invalid Token"        
+			]);
+		}
+	}
+
 	function beliMenu(){
-		
+
 	}
 
 }
