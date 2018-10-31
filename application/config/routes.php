@@ -108,7 +108,7 @@ $route['api/signuppedagang'] = 'C_API/signUpPedagang';
 //pembeli
 $route['api/menu'] = 'C_API/menu';
 $route['api/menu/(:num)'] = 'C_API/oneMenu/$1';
-//pedagang
+//pedagang menu pedagang
 $route['api/menupedagang/(:num)'] = 'C_API/menuPedagang/$1';
 
 $route['api/edituser/(:num)'] = 'C_API/editUser/$1';
