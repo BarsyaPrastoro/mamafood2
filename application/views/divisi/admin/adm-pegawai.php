@@ -28,6 +28,7 @@ if(isset($_POST['submit'])){
         
         
     </head>
+
     <body>
         <?= $topbar ?>
 <!--    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -192,7 +193,7 @@ if(isset($_POST['submit'])){
                                 </thead>
                                 <tbody>
                                     <?php foreach($semuaPegawai as $row): ?>
-                                        <tr>                                            
+                                        <tr >                                            
                                             <td><?= $row->idUser ?></td>
                                             <?php $id = $row->idUser ?>
                                             <td><?php if ($row->status == 1) :  ?>

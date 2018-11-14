@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 class C_API extends CI_Controller {
+
 	//SIGNUP PEMESAN
 	function signUp(){
 		if($this->input->method() != "post") return;
@@ -22,24 +23,77 @@ class C_API extends CI_Controller {
 		} 
 	}
 
+	function editUser($id){
+		if($this->input->method() != "post") return;
+		header('Content-Type: application/json');
+		$this->load->model('user');
+		$token = $this->input->get_request_header('Authorization', true);
+
+		if($this->auth->isAuthUser($token)){
+
+			$data = [];
+			$req = json_decode( file_get_contents('php://input') );
+			$username = $this->auth->getUserByToken($token);
+
+			$userdata = $this->user->getByUser($username);
+
+			$data['idUser'] = $userdata->idUser;
+			$id = $data['idUser'];
+
+			$data['nama'] = $req->nama;
+			$data['password'] = $req->password;
+			$data['emailUser'] = $req->email;
+			$data['noTelpon'] = $req->noTelpon;
+			$data['Alamat'] = $req->alamat;
+
+			$res = $this->user->updatePemesan($id, $data);
+			echo json_encode([
+				"status" => "OK"        
+			]);
+		}
+		else{
+			echo json_encode([
+				"status" => "NOK",
+				"message" => "Invalid Token"        
+			]);
+		}
+	}
+
 	//SIGNUP PEDAGANG
 
 	function signUpPedagang(){
 		if($this->input->method() != "post") return;
+		header('Content-Type: application/json');	
+		
+		$token = $this->input->get_request_header('Authorization', true);	
+		$this->load->model('user');
+		$this->load->model('Pedagang');
 
-		$req = json_decode( file_get_contents('php://input') );
+		if ($this->auth->isAuthUser($token)) {
+			$username = $this->auth->getUserByToken($token);
+			$user  =(array) $this->user->getByUser($username);
+			$data = [];
+			$req = json_decode( file_get_contents('php://input') );
+			$id = $user['idUser'];
+			$data['idPedagang'] = $user['idUser'];
+			// $data['fotoKtp'] = $req->fotoKtp;
+			
+			$this->db->trans_start();
+			
+			$resdb = $this->Pedagang->insert($data);
+			$query = $this->user->signUpPedagang($id);
+			$this->db->trans_complete();
+			echo json_encode([
+				"status" => "OK"        
+			]);	
+		}else{
+			echo json_encode([
+				"status" => "NOK",
+				"message" => "Invalid Token"        
+			]);
+		}
 
-		$this->load->model('pedagang');
-
-		$query = $this->user->signUpPemesan((array)$req);
-
-		if($query == true) {
-			$outputData = (object)array(
-				'status' => true,
-				'msg' => 'Register Success',
-				'redirect' => 'home'  
-			);
-		} 
+		 
 	}
 
 	// API Menu home pembeli
@@ -141,7 +195,9 @@ class C_API extends CI_Controller {
 		header('Content-Type: application/json');
 		if($this->auth->isAuthUser($token)){
 
-			$menu = $this->Menu->allMenuPedagang($idPedagang);
+			$menu = $this->Menu->all(['idMenu','namaMenu','fotoMenu','deskripsiMenu','hargaMenu'],'namaMenu','asc',[
+				'idPedagang' => $idPedagang
+			]);
 			
 			echo json_encode($menu);
 		}else{
@@ -204,41 +260,7 @@ class C_API extends CI_Controller {
 		}
 	}
 
-	function editUser($id){
-		if($this->input->method() != "post") return;
-		header('Content-Type: application/json');
-		$this->load->model('user');
-		$token = $this->input->get_request_header('Authorization', true);
-
-		if($this->auth->isAuthUser($token)){
-
-			$data = [];
-			$req = json_decode( file_get_contents('php://input') );
-			$username = $this->auth->getUserByToken($token);
-
-			$userdata = $this->user->getByUser($username);
-
-			$data['idUser'] = $userdata->idUser;
-			$id = $data['idUser'];
-
-			$data['nama'] = $req->nama;
-			$data['password'] = $req->password;
-			$data['emailUser'] = $req->email;
-			$data['noTelpon'] = $req->noTelpon;
-			$data['Alamat'] = $req->alamat;
-
-			$res = $this->user->updatePemesan($id, $data);
-			echo json_encode([
-				"status" => "OK"        
-			]);
-		}
-		else{
-			echo json_encode([
-				"status" => "NOK",
-				"message" => "Invalid Token"        
-			]);
-		}
-	}
+	
 
 	function listPedagang(){
 		if ($this->input->method() != "get") return;
@@ -258,8 +280,8 @@ class C_API extends CI_Controller {
 		}
 	}
 
-	function beliMenu(){
-		
+	function pesanMenu(){
+
 	}
 
 }

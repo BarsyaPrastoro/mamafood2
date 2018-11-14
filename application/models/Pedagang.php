@@ -12,19 +12,8 @@ class Pedagang extends CI_Model {
 
 	public function all(){
 		$this->load->database();
-		$query = $this->db->query("select * from pedagang");
+		$query = $this->db->query("select * from data_pedagang");
 		return $query->result();
-	}
-
-	//SIGNUP PEDAGANG
-	public function signUpPedagang($data){
-		
-		$nama = $data['nama'];
-		$email = $data['email'];
-		$password = $data['password'];
-		$telepon = $data['noTelpon'];
-		$this->db->query("");
-
 	}
 
 	public function getStatusAkun($statusAkun){
@@ -83,7 +72,14 @@ class Pedagang extends CI_Model {
 		$this->db->update('pedagang', $data); 
 	}
 
-
+	public function insert($data){
+		$idPedagang = $data['idPedagang'];
+		$fotoKtp = $data['fotoKtp'];
+		$this->db->query("INSERT INTO pedagang
+			(idPedagang) 
+			VALUES
+			('$idPedagang')"); 
+	}
 	
 	/*public function filter($args){
 		$sql = "select * from user ";

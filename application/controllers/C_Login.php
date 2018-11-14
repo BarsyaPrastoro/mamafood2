@@ -6,14 +6,14 @@ class C_Login extends CI_Controller {
 
 	function __construct()
 	{
-	    parent::__construct(); 
+		parent::__construct(); 
 
-	    $this->load->model('UserPerusahaan');    
+		$this->load->model('UserPerusahaan');    
 
-	    $this->output->set_header('Last-Modified: ' . gmdate("D, d M Y H:i:s") . ' GMT');
-	        $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
-	        $this->output->set_header('Pragma: no-cache');
-	        $this->output->set_header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");    
+		$this->output->set_header('Last-Modified: ' . gmdate("D, d M Y H:i:s") . ' GMT');
+		$this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
+		$this->output->set_header('Pragma: no-cache');
+		$this->output->set_header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");    
 	}
 
 	//LOGIN
@@ -85,15 +85,15 @@ class C_Login extends CI_Controller {
 		// // redirect('/login');
 		// //$this->load->view('login');
 		$newdata = array(
-                'username'  =>'',
-                'password' => '',
-                'logged_in' => FALSE,
-               );
+			'username'  =>'',
+			'password' => '',
+			'logged_in' => FALSE,
+		);
 
-	     $this->session->unset_userdata('username');
-	     $this->session->sess_destroy();
+		$this->session->unset_userdata('username');
+		$this->session->sess_destroy();
 
-	     redirect('/','refresh');
+		redirect('/','refresh');
 
 	}
 
@@ -102,17 +102,25 @@ class C_Login extends CI_Controller {
 	public function loginUser(){
 		$req =(array) json_decode( file_get_contents('php://input') );
 		log_message("error","Login = " . file_get_contents('php://input'));
-		$username = $req['username'];
-		$password = $req['password'];
-		if(!empty($username) && !empty($password)){
-			$this->load->model('User');
-			$data = $this->User->isExist($username, $password);
-			if(count($data) === 1){
-				header('Content-Type: application/json');
-				echo json_encode([
-					'status' => 'OK',
-					'token' => $this->auth->generateToken($username)
-				]);
+		if(isset($req['username']) && isset($req['password'])){
+			$username = $req['username'];
+			$password = $req['password'];
+			if(!empty($username) && !empty($password)){
+				$this->load->model('User');
+				$data = $this->User->isExist($username, $password);
+				if(count($data) === 1){
+					header('Content-Type: application/json');
+					echo json_encode([
+						'status' => 'OK',
+						'token' => $this->auth->generateToken($username)
+					]);
+				}else{
+					header('Content-Type: application/json');
+					echo json_encode([
+						'status' => 'NOK',
+						'message' => 'Login Gagal!'
+					]);
+				}
 			}else{
 				header('Content-Type: application/json');
 				echo json_encode([
@@ -124,9 +132,11 @@ class C_Login extends CI_Controller {
 			header('Content-Type: application/json');
 			echo json_encode([
 				'status' => 'NOK',
-				'message' => 'Login Gagal!'
+				'message' => 'username or password is not set'
 			]);
 		}
+		
+		
 	}
 	
 	//MAGIC METHOD

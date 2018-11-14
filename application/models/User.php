@@ -24,6 +24,16 @@ class User extends CI_Model {
 		$this->db->query("INSERT INTO user(role, namaUser,emailUser, password, noTelpon, Alamat) VALUES(0,'$nama','$email','$password','$telepon','$alamat')");
 
 	}
+	//
+	//INSERT PEDAGANG
+	//
+	public function signUpPedagang($id){
+		$this->load->database();
+		$this->db->query("UPDATE `user` SET `role` = '1' WHERE `user`.`idUser` = $id");
+
+	}
+
+
 
 	//EDIT USER
 	function getPemesanById($data){

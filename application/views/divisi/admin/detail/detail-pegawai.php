@@ -99,7 +99,7 @@
                             <div class="form-group">
                                 <label for="email">Jabatan</label>
                                 <div class="input-group">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span>
                                 </span>
                                 <input type="text" class="form-control" id="email" disabled value="<?=$status?>" />
                             </div>

@@ -102,17 +102,17 @@ $route['cs/pesanterkirim'] = 'C_customerservice/pesanTerkirim';
 // API
 $route['api/login'] = 'C_Login/loginUser';
 $route['api/token'] = 'C_Login/magicMethod';
-$route['api/signup'] = 'C_API/signUp';
 
-$route['api/signuppedagang'] = 'C_API/signUpPedagang';
+
 //pembeli
+$route['api/signup'] = 'C_API/signUp';
 $route['api/menu'] = 'C_API/menu';
 $route['api/menu/(:num)'] = 'C_API/oneMenu/$1';
-//pedagang menu pedagang
+
+//pedagang
+$route['api/signuppedagang'] = 'C_API/signUpPedagang';
 $route['api/menupedagang/(:num)'] = 'C_API/menuPedagang/$1';
-
 $route['api/edituser/(:num)'] = 'C_API/editUser/$1';
-
 $route['api/insertmenu'] = 'C_API/insertMenu';
 //data pedagang
 $route['api/datapedagang'] = 'C_API/listPedagang';
