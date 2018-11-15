@@ -302,7 +302,7 @@ class C_API extends CI_Controller {
 			log_message('error', "before"); 
 			$req = json_decode( file_get_contents('php://input') );
 			log_message('error', "after");
-			$data['namaMenu'] = $req->namaMenu;
+			$data['id_pemesan'] = $req->namaMenu;
 			$data['hargaMenu'] = $req->hargaMenu;
 			$data['deskripsiMenu'] = $req->deskripsiMenu;
 			$data['fotoMenu'] = $req->fotoMenu;
