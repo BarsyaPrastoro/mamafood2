@@ -64,10 +64,17 @@ class C_API extends CI_Controller {
 	function signUpPedagang(){
 		if($this->input->method() != "post") return;
 		header('Content-Type: application/json');	
-		
-		$token = $this->input->get_request_header('Authorization', true);	
+
 		$this->load->model('user');
 		$this->load->model('Pedagang');
+		$this->load->library('Auth');
+		
+		$token = $this->input->get_request_header('Authorization', true);	
+
+
+		// echo json_encode([
+		// 		"token" => $token       
+		// 	]);
 
 		if ($this->auth->isAuthUser($token)) {
 			$username = $this->auth->getUserByToken($token);
@@ -89,7 +96,7 @@ class C_API extends CI_Controller {
 		}else{
 			echo json_encode([
 				"status" => "NOK",
-				"message" => "Invalid Token"        
+				"message" => "BAD REQUEST"        
 			]);
 		}
 
