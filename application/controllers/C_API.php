@@ -100,7 +100,7 @@ class C_API extends CI_Controller {
 			]);
 		}
 
-		 
+
 	}
 
 	// API Menu home pembeli
@@ -204,7 +204,9 @@ class C_API extends CI_Controller {
 
 			$menu = $this->Menu->all(['idMenu','namaMenu','fotoMenu','deskripsiMenu','hargaMenu'],'namaMenu','asc',[
 				'idPedagang' => $idPedagang
+
 			]);
+
 			
 			echo json_encode($menu);
 		}else{
@@ -287,6 +289,9 @@ class C_API extends CI_Controller {
 		}
 	}
 
+<<<<<<< HEAD
+	
+=======
 	//transaksi
 
 	function pesanMenu(){
@@ -338,6 +343,7 @@ class C_API extends CI_Controller {
 			]);
 		}
 	}
+>>>>>>> a41b9c6dff670a74c8d934bb62a0ee32e995d380
 
 	//SALDO UNTUK USER TERTENTU
 
