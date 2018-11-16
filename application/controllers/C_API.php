@@ -289,9 +289,6 @@ class C_API extends CI_Controller {
 		}
 	}
 
-<<<<<<< HEAD
-	
-=======
 	//transaksi
 
 	function pesanMenu(){
@@ -343,7 +340,6 @@ class C_API extends CI_Controller {
 			]);
 		}
 	}
->>>>>>> a41b9c6dff670a74c8d934bb62a0ee32e995d380
 
 	//SALDO UNTUK USER TERTENTU
 
