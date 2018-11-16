@@ -24,5 +24,15 @@ class Transaksi extends CI_Model {
 			('$noTransaksi','$jenisPembayaran','$jenisPengambilan','$buktiTransfer','$totalHarga','$jumlahPesanan','$idPemesan','$idPedagang')"); 
 	}
 
+	function beliMenu($data){
+		$idOrder = $data['idOrder'];
+		$idPemesan = $data['idPemesan'];
+		$idMenu = $data['idMenu'];
+		$this->db->query("INSERT INTO pesan_menu 
+			(idOrder, idPemesan, idMenu)
+			VALUES
+			('$idOrder', '$idPemesan', '$idMenu')");
+	}
+
 }
 ?>

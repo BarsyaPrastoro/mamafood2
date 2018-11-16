@@ -309,16 +309,16 @@ class C_API extends CI_Controller {
 			log_message('error', "before"); 
 			$req = json_decode( file_get_contents('php://input') );
 			log_message('error', "after");
-			$data['id_pemesan'] = $req->namaMenu;
-			$data['hargaMenu'] = $req->hargaMenu;
-			$data['deskripsiMenu'] = $req->deskripsiMenu;
-			$data['fotoMenu'] = $req->fotoMenu;
+			// $data['id_pemesan'] = $req->namaMenu;
+			// $data['hargaMenu'] = $req->hargaMenu;
+			// $data['deskripsiMenu'] = $req->deskripsiMenu;
+			// $data['fotoMenu'] = $req->fotoMenu;
 
 			$username = $this->auth->getUserByToken($token);
 
 			$userdata = $this->user->getByUser($username);
 
-			$data['idPedagang'] = $userdata->idUser;
+			$data['id_pemesan'] = $userdata->idUser;
 
 			//$this->db->trans_begin();
 
@@ -332,6 +332,35 @@ class C_API extends CI_Controller {
 			]);
 		}
 		else{
+			echo json_encode([
+				"status" => "NOK",
+				"message" => "Invalid Token"        
+			]);
+		}
+	}
+
+	//SALDO UNTUK USER TERTENTU
+
+	function saldoUser(){
+		if ($this->input->method() != "get") return;
+		header('Content-Type: application/json');
+		$this->load->model('Saldo');
+		$this->load->model('user');
+		$token = $this->input->get_request_header('Authorization', true);
+		if($this->auth->isAuthUser($token)){
+
+			$username = $this->auth->getUserByToken($token);
+
+			$userdata = $this->user->getByUser($username);
+
+			$idUser = $userdata->idUser;
+
+			//echo $idUser;
+
+			$saldo = $this->Saldo->saldoUser($idUser);
+			
+			echo json_encode($saldo) ;
+		}else{
 			echo json_encode([
 				"status" => "NOK",
 				"message" => "Invalid Token"        

@@ -74,4 +74,16 @@ class User extends CI_Model {
 		$query = $this->db->query("select * from user where idUser = ?", [$idUser]);
 		return $query->row_array();
 	}
+
+	//PERSALDOAN
+
+	public function getSaldo($idUser){
+		$this->load->database();
+		$query = $this->db->query("select saldo from user where idUser = ?", [$idUser]);
+		return $query->row_array();
+	}
+
+	public function updateSaldo($idUser){
+		
+	}
 }

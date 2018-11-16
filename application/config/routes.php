@@ -117,6 +117,9 @@ $route['api/insertmenu'] = 'C_API/insertMenu';
 //data pedagang
 $route['api/datapedagang'] = 'C_API/listPedagang';
 
+//saldo
+
+$route['api/saldouser'] = 'C_API/saldoUser';
 
 
 
