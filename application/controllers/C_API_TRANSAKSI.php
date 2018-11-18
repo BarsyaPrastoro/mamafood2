@@ -36,13 +36,14 @@ class C_API_TRANSAKSI extends CI_Controller {
 
 			$data['idPedagang'] = $userdata->idUser;
 
-			//$this->db->trans_begin();
-
+			
+			$this->db->trans_start();
 			log_message('error', "before sql");
 			$resdb = $this->menu->insert($data);
 			log_message('error', "after sql");
 			$idMenu = $this->db->insert_id();
-			//$this->db->trans_commit();
+			$this->db->trans_complete();
+
 			echo json_encode([
 				"status" => "OK"        
 			]);
