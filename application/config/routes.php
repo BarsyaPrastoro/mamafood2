@@ -121,6 +121,10 @@ $route['api/datapedagang'] = 'C_API/listPedagang';
 
 $route['api/saldouser'] = 'C_API/saldoUser';
 
+//transaksi jual beli
+
+$route['api/pesanmenu'] = 'C_API_TRANSAKSI/pesanMenu';
+
 
 
 $route['404_override'] = '';
