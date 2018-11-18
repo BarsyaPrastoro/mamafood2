@@ -33,7 +33,7 @@ class Pedagang extends CI_Model {
 
 	public function getPengajuanPedagangById($idPedagang){
 		$this->load->database();
-		$query = $this->db->query("select * from data_pedagang left outer join menu_pedagang on data_pedagang.idPedagang = menu_pedagang.idPedagang where idUser = ? AND data_pedagang.statusAkun = 0", [
+		$query = $this->db->query("select * from data_pedagang where idUser = ? AND data_pedagang.statusAkun = 0", [
 			$idPedagang
 		]);
 		return $query->row_array();
