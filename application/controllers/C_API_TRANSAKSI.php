@@ -39,8 +39,10 @@ class C_API_TRANSAKSI extends CI_Controller {
 			
 			$this->db->trans_start();
 			log_message('error', "before sql");
+			//ngapain insert menu
 			$resdb = $this->menu->insert($data);
 			log_message('error', "after sql");
+			//ieu naon
 			$idMenu = $this->db->insert_id();
 			$this->db->trans_complete();
 
