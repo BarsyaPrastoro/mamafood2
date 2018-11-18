@@ -297,6 +297,7 @@ class C_API extends CI_Controller {
 		$this->load->model('Transaksi');
 		$this->load->library('auth');
 		$this->load->model('User');
+		
 
 		$token = $this->input->get_request_header('Authorization', true);
 

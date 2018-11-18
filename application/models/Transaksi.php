@@ -19,19 +19,22 @@ class Transaksi extends CI_Model {
 		$idPedagang = $data['idPedagang'];
 		$idPemesan = $data['idPemesan'];
 		$this->db->query("INSERT INTO transaksi
-			(no_transaksi, jenis_pembayaran, jenis_pengambilan, bukti_transfer, total_harga, jumlah_pesanan, id_pemesan, id_pedagang) 
+			(jenis_pembayaran, jenis_pengambilan, total_harga, id_pemesan, id_pedagang) 
 			VALUES
-			('$noTransaksi','$jenisPembayaran','$jenisPengambilan','$buktiTransfer','$totalHarga','$jumlahPesanan','$idPemesan','$idPedagang')"); 
+			('$jenisPembayaran','$jenisPengambilan','$totalHarga','$idPemesan','$idPedagang')"); 
+		return this->db->insert_id();
 	}
 
 	function beliMenu($data){
 		$idOrder = $data['idOrder'];
 		$idPemesan = $data['idPemesan'];
 		$idMenu = $data['idMenu'];
+		$kuantitas = $data['kuantitas'];
+
 		$this->db->query("INSERT INTO pesan_menu 
-			(idOrder, idPemesan, idMenu)
+			(idOrder, idPemesan, idMenu, kuantitas)
 			VALUES
-			('$idOrder', '$idPemesan', '$idMenu')");
+			('$idOrder', '$idPemesan', '$idMenu', '$kuantitas')");
 	}
 
 }
