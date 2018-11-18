@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Transaksi extends CI_Model {
 	public function all(){
 		$this->load->database();
-		$query = $this->db->query("select * from transaksi");
+		$query = $this->db->query("select * from transaksi_pedagang_pembeli");
 		return $query->result();
 
 	}

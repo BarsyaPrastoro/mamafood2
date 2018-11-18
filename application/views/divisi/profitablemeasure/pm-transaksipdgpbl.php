@@ -115,7 +115,7 @@
                                     <th>Nama Pedagang</th>
                                     <th>Nama Pemesan</th>
                                     <th>Tanggal/Waktu</th>
-                                    <th>Total</th>
+                                    <th>Total Harga</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
@@ -124,8 +124,8 @@
                                     <?php $idTransaksi = $row->id_transaksi ?>
                                     <tr>
                                         <td><?=$row->no_transaksi ?></td>
-                                        <td><?=$row->id_pedagang ?></td>
-                                        <td><?=$row->id_pemesan ?></td>
+                                        <td><?=$row->nama_pedagang ?></td>
+                                        <td><?=$row->nama_pemesan ?></td>
                                         <td><?=$row->tanggal_transaksi ?></td>
                                         <td><?=$row->total_harga ?></td>
                                         <td>

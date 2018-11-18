@@ -86,7 +86,6 @@ class C_API extends CI_Controller {
 			// $data['fotoKtp'] = $req->fotoKtp;
 			
 			$this->db->trans_start();
-			
 			$resdb = $this->Pedagang->insert($data);
 			$query = $this->user->signUpPedagang($id);
 			$this->db->trans_complete();
