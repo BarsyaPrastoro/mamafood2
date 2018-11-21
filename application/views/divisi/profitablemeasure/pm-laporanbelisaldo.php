@@ -1,24 +1,24 @@
 <html>
-    <head>
-        <!-- <link rel="stylesheet" href="../../asset/css/style.css"> -->
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>public/css/style.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
-        
+<head>
+    <!-- <link rel="stylesheet" href="../../asset/css/style.css"> -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>public/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
-        
-    </head>
-    <body>
-        <?= $topbar ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+    
+</head>
+<body>
+    <?= $topbar ?>
         <!-- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">                    
@@ -42,11 +42,11 @@
                 </div>
             </div>
         </nav>
- -->
-        <div id="wrapper" class="">
-            <div class="container-fluid">
-                <!-- Sidebar -->
-                <?= $sidebarPM ?>
+    -->
+    <div id="wrapper" class="">
+        <div class="container-fluid">
+            <!-- Sidebar -->
+            <?= $sidebarPM ?>
                 <!-- <div id="sidebar-wrapper">
                     <ul class="sidebar-nav">
                         <li class="sidebar-brand">
@@ -113,94 +113,60 @@
                                   <tr>
                                     <th>No Transaksi</th>
                                     <th>Nama Pembeli</th>
-                                      <th>Tanggal/Waktu</th>
-                                      <th>Top-Up</th>
-                                  </tr>
-                                </thead>
-                                <tbody id="myTable">
+                                    <th>Tanggal/Waktu</th>
+                                    <th>Top-Up</th>
+                                </tr>
+                            </thead>
+                            <tbody id="myTable">
+                                <?php foreach($keuntungan as $row): ?>
+
                                     <tr>
-                                        <td>a213</td>
-                                        <td>Melly</td>
-                                        <td>20-12-2017</td>
-                                        <td>200.000</td>
+                                        <td><?=$row->id?></td>
+                                        <td><?=$row->tanggal ?></td>
+                                        <td><?=$row->jumlah?></td>
+
                                     </tr>
-                                    <tr>
-                                        <td>a213</td>
-                                        <td>Melly</td>
-                                        <td>20-12-2017</td>
-                                        <td>200.000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>a213</td>
-                                        <td>Melly</td>
-                                        <td>20-12-2017</td>
-                                        <td>200.000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>a213</td>
-                                        <td>Melly</td>
-                                        <td>20-12-2017</td>
-                                        <td>200.000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>a213</td>
-                                        <td>Melly</td>
-                                        <td>20-12-2017</td>
-                                        <td>200.000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>a213</td>
-                                        <td>Melly</td>
-                                        <td>20-12-2017</td>
-                                        <td>200.000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>a213</td>
-                                        <td>Melly</td>
-                                        <td>20-12-2017</td>
-                                        <td>200.000</td>
-                                    </tr>
-                                    
-                                </tbody>
-                              </table>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                
-                            </div>
-                        </div>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                
+                <div class="row">
+                    <div class="col-lg-12">
+                        
+                    </div>
+                </div>
             </div>
         </div>
-        <script>
-            $("#menu-toggle").click(function(e) {
-                e.preventDefault();
-                $("#wrapper").toggleClass("toggled");
-            });
-            
-            
-            
-            
-            
-            
-            $(document).ready(function(){
-              $("#myInput").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("#myTable tr").filter(function() {
-                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-              });
-            });
-            
-            
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-            
-            
-        </script>
-    </body>
+        
+    </div>
+</div>
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    
+    
+    
+    
+    
+    
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+    
+    
+    $(function () {
+        $('#datetimepicker1').datetimepicker();
+    });
+    
+    
+</script>
+</body>
 </html>
