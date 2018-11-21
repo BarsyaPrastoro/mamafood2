@@ -123,7 +123,7 @@
                                 <?php foreach($semuaTransaksi as $row): ?>
                                     <?php $idTransaksi = $row->id_transaksi ?>
                                     <tr>
-                                        <td><?=$row->no_transaksi ?></td>
+                                        <td><?=$row->id_transaksi ?></td>
                                         <td><?=$row->nama_pedagang ?></td>
                                         <td><?=$row->nama_pemesan ?></td>
                                         <td><?=$row->tanggal_transaksi ?></td>

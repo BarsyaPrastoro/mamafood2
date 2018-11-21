@@ -86,10 +86,12 @@ $route['admin/user/detail/(:num)']		= 'C_Admin/detailUser/$1';
 ROUTE PROFITABLEMEASURER bn
 */
 $route['pm/laporankeuangan'] = 'C_keuangan/laporanKeuangan';
+$route['pm/laporankeuangan/gantipersentase'] = 'C_keuangan/gantiPersentase';
 $route['pm/laporanbelisaldo'] = 'C_keuangan/laporanBeliSaldo';
 $route['pm/laporanbelipromo'] = 'C_keuangan/laporanBeliPromo';
 $route['pm/laporanwithdraw'] = 'C_keuangan/laporanWithdraw';
 $route['pm/transaksipedagang'] = 'C_keuangan/transaksiPedagang';
+
 
 /*
 ROUTE CS
