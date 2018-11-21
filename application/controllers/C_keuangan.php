@@ -13,10 +13,10 @@ class C_keuangan extends CI_Controller {
 	
 	public function laporanKeuangan(){
 		$this->auth->doAuth();
-		$this->load->model('Pedagang');
-		$semuaPedagang = $this->Pedagang->all();
+		$this->load->model('Keuangan');
+		$keuntungan = $this->Keuangan->all();
 		$this->load->view('divisi/profitablemeasure/pm-laporankeuangan.php',[
-			'semuaPegawai' => $semuaPedagang,
+			'keuntungan' => $keuntungan,
 			'acc_indicator' => $this->acc_indicator,
 			'topbar' => $this->load->view('topbar',[],true),
 			'sidebarPM' => $this->load->view('sidebarPM',[
@@ -24,6 +24,13 @@ class C_keuangan extends CI_Controller {
 
 			], true)
 		]);
+	}
+	public function gantiPersentase(){
+		$this->auth->doAuth();
+		$data = $this->input->post("persentase");
+		$this->load->model('Keuangan');
+		$keuntungan = $this->Keuangan->gantiPersentase($data);
+		redirect('/pm/laporankeuangan', 'refresh');
 	}
 
 	//belom bener
