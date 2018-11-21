@@ -21,6 +21,27 @@ class Keuangan extends CI_Model {
 		return (int) $persentase[0]['persentase'];
 	}
 
+	public function approveTopup($idTopup){
+		$this->load->database();
+		$this->db->query("UPDATE `topup_saldo` SET `status_approval` = 1 WHERE `id_topup` = $idTopup");
+	}
+
+	public function getJumlah($idTopup){
+		$this->load->database();
+		$query = $this->db->query("select jumlah_topup from topup_saldo where id_topup = $idTopup");
+		$jumlah = $query->result_array();
+		return (int) $jumlah[0]['jumlah_topup'];
+	}
+
+
+	public function topup($jumlah, $idUser){
+		$this->load->database();
+		$query = $this->db->query("select jumlah from saldo where idSaldo = $idUser");
+		$saldo = $query->row()->jumlah; 
+		$saldoAkhir = $saldo + $jumlah;
+		$this->db->query("UPDATE 'saldo' SET 'jumlah' = $saldoAkhir WHERE 'idSaldo' = $idUser");
+
+	}
 
 }
 ?>

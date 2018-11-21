@@ -53,7 +53,7 @@ class C_keuangan extends CI_Controller {
 	//belom bener
 	public function laporanBeliSaldo(){
 		$this->auth->doAuth();
-		$this->load->model('Pedagang');
+		$this->load->model('Keuangan');
 		$semuaPedagang = $this->Pedagang->all();
 		$this->load->view('divisi/profitablemeasure/pm-laporanbelisaldo.php',[
 			'semuaPegawai' => $semuaPedagang,
@@ -64,6 +64,13 @@ class C_keuangan extends CI_Controller {
 
 			], true)
 		]);
+	}
+
+	public function approveSaldo(){
+		$this->auth->doAuth();
+		$this->load->model('Keuangan');
+		$approve = $this->Keuangan->topup();
+		redirect('/pm/laporanbelisaldo', 'refresh');	
 	}
 
 

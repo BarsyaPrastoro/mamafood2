@@ -88,6 +88,7 @@ ROUTE PROFITABLEMEASURER bn
 $route['pm/laporankeuangan'] = 'C_keuangan/laporanKeuangan';
 $route['pm/laporankeuangan/gantipersentase'] = 'C_keuangan/gantiPersentase';
 $route['pm/laporanbelisaldo'] = 'C_keuangan/laporanBeliSaldo';
+$route['pm/laporanbelisaldo/approve'] = 'C_keuangan/approveSaldo';
 $route['pm/laporanbelipromo'] = 'C_keuangan/laporanBeliPromo';
 $route['pm/laporanwithdraw'] = 'C_keuangan/laporanWithdraw';
 $route['pm/transaksipedagang'] = 'C_keuangan/transaksiPedagang';
