@@ -21,6 +21,25 @@ class Saldo extends CI_Model {
 		return $query->row_array();
 	}
 
+	//buat ngurangin saldo
+
+	public function pay($idUser, $value){
+		$query = $this->db->query("select jumlah from saldo where idSaldo = $idUser");
+		$saldo = $query->row()->jumlah;
+		$saldoAkhir = $saldo - $value;
+		if(intval($saldo) < intval($value)) return false;
+		$this->db->query("update saldo set jumlah = $saldoAkhir where idSaldo = $idUser");
+		return true;
+	}
+
+	public function receive($idUser, $value){
+		$query = $this->db->query("select jumlah from saldo where idSaldo = $idUser");
+		$saldo = $query->row()->jumlah;
+		$saldoAkhir = $saldo + $value;
+		$this->db->query("update saldo set jumlah = $saldoAkhir where idSaldo = $idUser");
+		return true;
+	}
+
 	public function insert($data){
 		$id = $data['idPedagang'];
 		$namaMenu = $data['namaMenu'];
@@ -31,6 +50,16 @@ class Saldo extends CI_Model {
 			(idPedagang, namaMenu, hargaMenu, deskripsiMenu, fotoMenu) 
 			VALUES
 			('$idPedagang','$namaMenu','$hargaMenu','$deskripsiMenu','$fotoMenu')"); 
+	}
+
+	public function top_up($data){
+		$jumlah = $data['jumlah_topup'];
+		$id = $data['id_user'];
+		$bukti_transfer = $data['bukti_transfer'];
+		$this->db->query("INSERT INTO topup_saldo 
+			(jumlah_topup, id_user, bukti_transfer)
+			VALUES
+			('$jumlah', '$id', '$bukti_transfer')");
 	}
 }
 ?>

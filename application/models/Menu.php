@@ -21,8 +21,12 @@ class Menu extends CI_Model {
 			}else{
 				$filter_str .= '&& ';
 			}
-			$filter_str .= "$key = $value ";
-
+			if(is_array($value)){
+				$in_str = implode(',',$value);
+				$filter_str .= "$key in ($in_str) ";
+			}else{
+				$filter_str .= "$key = $value ";	
+			}
 		}
 		$cols_str = implode(',',$cols);
 		$query = $this->db->query("select $cols_str from  menu_pedagang $filter_str ORDER BY $sortby $sortdir");

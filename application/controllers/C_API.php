@@ -287,7 +287,7 @@ class C_API extends CI_Controller {
 			]);
 		}
 	}
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//transaksi
 
 	function pesanMenu(){
@@ -296,6 +296,8 @@ class C_API extends CI_Controller {
 		$this->load->model('Transaksi');
 		$this->load->library('auth');
 		$this->load->model('User');
+		$this->load->model('Menu');
+		$this->load->model('Saldo');
 		
 
 		$token = $this->input->get_request_header('Authorization', true);
@@ -318,20 +320,60 @@ class C_API extends CI_Controller {
 
 			$username = $this->auth->getUserByToken($token);
 
-			$userdata = $this->user->getByUser($username);
+			$userdata = $this->User->getByUser($username);
 
-			$data['id_pemesan'] = $userdata->idUser;
-
-			//$this->db->trans_begin();
+			$this->db->trans_begin();
 
 			log_message('error', "before sql");
-			$resdb = $this->menu->insert($data);
-			log_message('error', "after sql");
-			$idMenu = $this->db->insert_id();
-			//$this->db->trans_commit();
-			echo json_encode([
-				"status" => "OK"        
+			$idTransaksi = $this->Transaksi->doTransaksi([
+				'idPemesan' => $userdata->idUser,
+				'idPedagang' => $req->id_pedagang,
+				'jenisPembayaran' => $req->jenis_pembayaran,
+				'jenisPengambilan' => $req->jenis_pengambilan
 			]);
+			
+
+			$orders = $req->orders;
+			$menu2kuantitas = [];
+			$order_ids = array_map(function($order){return $order->id_menu;}, $orders);
+			foreach($orders as $order){
+				$menu2kuantitas[$order->id_menu] = $order->kuantitas;
+			}
+
+			$menus = $this->Menu->all(['hargaMenu','idMenu'],'idMenu','asc',[
+				'idPedagang' => $req->id_pedagang,
+				'idMenu' => $order_ids
+			]);
+
+			$total = 0;
+
+			foreach($menus as $menu){
+				$total += $menu->hargaMenu * $menu2kuantitas[$menu->idMenu];
+				$this->Transaksi->beliMenu([
+					'idTransaksi' => $idTransaksi,
+					'idPemesan' => $userdata->idUser,
+					'idMenu' => $menu->idMenu,
+					'kuantitas' => $menu2kuantitas[$menu->idMenu]
+				]);
+			}
+
+			$saldoInfo = $this->Saldo->saldoUser($userdata->idUser);
+
+			if($total > $saldoInfo['jumlah']){
+				$this->db->trans_rollback();
+				echo json_encode([
+					"status" => "NOK",
+					"message" => "Saldo anda tidak mencukupi untuk melakukan transaksi ini"      
+				]);
+			}else{
+
+				$this->Transaksi->updateTotalHarga($idTransaksi,$total);
+				$this->db->trans_commit();
+				echo json_encode([
+					"status" => "OK"        
+				]);				
+			}
+
 		}
 		else{
 			echo json_encode([
@@ -340,6 +382,201 @@ class C_API extends CI_Controller {
 			]);
 		}
 	}
+
+	function approveOrder($idTransaksi){
+		header('Content-Type: application/json');
+		$this->load->model('Transaksi');
+		$this->load->library('auth');
+		$this->load->model('User');
+		$this->load->model('Menu');
+		$this->load->model('Saldo');
+		
+
+		$token = $this->input->get_request_header('Authorization', true);
+		if($this->auth->isAuthUser($token)) {
+			$username = $this->auth->getUserByToken($token);
+			$userdata = $this->User->getByUser($username);
+			$transaksi = $this->Transaksi->one($idTransaksi);
+
+
+			if($userdata->role == 1 && $userdata->idUser == $transaksi->id_pedagang){
+				$this->db->trans_begin();
+				$this->Transaksi->approveTransaction($idTransaksi);
+				if($transaksi->jenis_pembayaran == 0){
+					//mamapay
+					if($this->Saldo->pay($transaksi->id_pemesan,$transaksi->total_harga)){
+						$this->Transaksi->payTransaction($idTransaksi);
+						$this->Saldo->receive($transaksi->id_pedagang,$transaksi->total_harga * 100.0 / 110.0);
+						//TODO: tambah ke penjualan/pembukuan
+						$this->db->trans_commit();
+						echo json_encode([
+							"status" => "OK"        
+						]);
+					}else{
+						$this->db->trans_rollback();
+						echo json_encode([
+							"status" => "NOK",
+							"message" => "Saldo anda tidak mencukupi untuk melakukan transaksi ini"    
+						]);
+					}
+				}else{
+					//cash
+					if ($this->Saldo->saldoUser($transaksi->id_pedagang) < $transaksi->total_harga * 10.0 / 110.0) {
+						$this->db->trans_rollback();
+						echo json_encode([
+							"status" => "NOK",
+							"message" => "saldo tidak cukup untuk menerima orderan ini"       
+						]);
+					}else{
+						$this->db->trans_commit();
+						echo json_encode([
+							"status" => "OK"       
+						]);
+					}
+					
+				}
+			}else{
+				//not pedagang error
+				echo json_encode([
+					"status" => "NOK",
+					"message" => "Not Authorized"    
+				]);
+			}
+		}else{
+			echo json_encode([
+				"status" => "NOK",
+				"message" => "Invalid Token"        
+			]);
+		}
+	}
+
+	function orderReady($idTransaksi){
+		header('Content-Type: application/json');
+		$this->load->model('Transaksi');
+		$this->load->library('auth');
+		$this->load->model('User');
+		$this->load->model('Menu');
+		$this->load->model('Saldo');
+		
+
+		$token = $this->input->get_request_header('Authorization', true);
+		if($this->auth->isAuthUser($token)) {
+			$username = $this->auth->getUserByToken($token);
+			$userdata = $this->User->getByUser($username);
+			$transaksi = $this->Transaksi->one($idTransaksi);
+
+
+			if($userdata->role == 1 && $userdata->idUser == $transaksi->id_pedagang){
+				if($this->Saldo->pay($transaksi->id_pemesan,$transaksi->total_harga)){
+					$this->Transaksi->processTransaction($idTransaksi);
+					echo json_encode([
+						"status" => "OK",
+						"message" => "makanan siap"    
+					]);
+				}else{
+					$this->db->trans_rollback();
+					echo json_encode([
+						"status" => "NOK",
+						"message" => "Saldo anda tidak mencukupi untuk melakukan transaksi ini"    
+					]);
+				}
+				
+			}else{
+				//not pedagang error
+				echo json_encode([
+					"status" => "NOK",
+					"message" => "Not Authorized"    
+				]);
+			}
+		}else{
+			echo json_encode([
+				"status" => "NOK",
+				"message" => "Invalid Token"        
+			]);
+		}
+	}
+
+	function orderEnd($idTransaksi){
+		header('Content-Type: application/json');
+		$this->load->model('Transaksi');
+		$this->load->library('auth');
+		$this->load->model('User');
+		$this->load->model('Menu');
+		$this->load->model('Saldo');
+		
+
+		$token = $this->input->get_request_header('Authorization', true);
+		if($this->auth->isAuthUser($token)) {
+			$username = $this->auth->getUserByToken($token);
+			$userdata = $this->User->getByUser($username);
+			$transaksi = $this->Transaksi->one($idTransaksi);
+
+
+			if($userdata->role == 1 && $userdata->idUser == $transaksi->id_pedagang){
+				if ($transaksi->status_pesanan == 1) {
+
+					if($transaksi->jenis_pembayaran == 1){
+						//cek lagi kalo si saldo pedagangnya beneran bisa bayar kita
+						if($this->Saldo->pay($transaksi->id_pemesan,$transaksi->total_harga)){
+							$this->Saldo->pay($transaksi->id_pedagang, $transaksi->total_harga * 10.0 / 110.0);
+							$this->Transaksi->transactionEnd($idTransaksi);
+							echo json_encode([
+								"status" => "OK",
+								"message" => "transaksi selesai"    
+							]);
+						}else{
+							$this->db->trans_rollback();
+							echo json_encode([
+								"status" => "NOK",
+								"message" => "Saldo anda tidak mencukupi untuk melakukan transaksi ini"    
+							]);
+						}
+						
+					}else if($transaksi->jenis_pembayaran == 0){
+						if($this->Saldo->pay($transaksi->id_pemesan,$transaksi->total_harga)){
+							$this->Transaksi->transactionEnd($idTransaksi);
+							echo json_encode([
+								"status" => "OK",
+								"message" => "transaksi selesai"    
+							]);
+						}else{
+							$this->db->trans_rollback();
+							echo json_encode([
+								"status" => "NOK",
+								"message" => "Saldo anda tidak mencukupi untuk melakukan transaksi ini"    
+							]);
+						}
+						
+					}else{
+						echo json_encode([
+							"status" => "NOK",
+							"message" => "mayarna make naon?"    
+						]);
+					}
+
+				}else{
+					echo json_encode([
+						"status" => "NOK",
+						"message" => "makanan belom jadi"    
+					]);
+				}
+				
+			}else{
+				//not pedagang error
+				echo json_encode([
+					"status" => "NOK",
+					"message" => "Not Authorized"    
+				]);
+			}
+		}else{
+			echo json_encode([
+				"status" => "NOK",
+				"message" => "Invalid Token"        
+			]);
+		}
+	}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//SALDO UNTUK USER TERTENTU
 
@@ -362,6 +599,46 @@ class C_API extends CI_Controller {
 			$saldo = $this->Saldo->saldoUser($idUser);
 			
 			echo json_encode($saldo) ;
+		}else{
+			echo json_encode([
+				"status" => "NOK",
+				"message" => "Invalid Token"        
+			]);
+		}
+	}
+
+	function topUpSaldo(){
+		if ($this->input->method() != "post") return;
+		header('Content-Type: application/json');
+		$this->load->model('Saldo');
+		$this->load->model('user');
+		$token = $this->input->get_request_header('Authorization', true);
+		if($this->auth->isAuthUser($token)){
+
+			$username = $this->auth->getUserByToken($token);
+
+			$userdata = $this->user->getByUser($username);
+
+			$idUser = $userdata->idUser;
+
+			$req = json_decode( file_get_contents('php://input') );
+
+			//echo $idUser;
+
+			$this->Saldo->top_up([
+				'id_user' => $userdata->idUser,
+				'jumlah_topup' => $req->jumlah,
+				'bukti_transfer' => $req->bukti_transfer
+			]);
+
+
+
+			echo json_encode([
+				"status" => "OK",
+				"message" => "wait"        
+			]);
+			
+			//echo json_encode($saldo) ;
 		}else{
 			echo json_encode([
 				"status" => "NOK",
