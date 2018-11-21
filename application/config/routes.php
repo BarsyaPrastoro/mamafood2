@@ -130,11 +130,8 @@ $route['api/order/(:num)/ready']['GET'] = 'C_API/orderReady/$1';
 //transaksi beres
 $route['api/order/(:num)/end']['GET'] = 'C_API/orderEnd/$1';
 
-//transaksi jual beli
-
-$route['api/pesanmenu'] = 'C_API_TRANSAKSI/pesanMenu';
-
-
+//laporan pedagang
+$route['api/laporanpedagang'] = 'C_API/laporanPedagang';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

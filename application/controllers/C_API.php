@@ -546,7 +546,7 @@ class C_API extends CI_Controller {
 								"message" => "Saldo anda tidak mencukupi untuk melakukan transaksi ini"    
 							]);
 						}
-						
+
 					}else{
 						echo json_encode([
 							"status" => "NOK",
@@ -639,6 +639,36 @@ class C_API extends CI_Controller {
 			]);
 			
 			//echo json_encode($saldo) ;
+		}else{
+			echo json_encode([
+				"status" => "NOK",
+				"message" => "Invalid Token"        
+			]);
+		}
+	}
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//LAPORAN PEDAGANG
+
+	function laporanPedagang(){
+		if ($this->input->method() != "get") return;
+		header('Content-Type: application/json');
+		$this->load->model('Pedagang');
+		$this->load->model('user');
+		$token = $this->input->get_request_header('Authorization', true);
+		if($this->auth->isAuthUser($token)){
+
+			$username = $this->auth->getUserByToken($token);
+
+			$userdata = $this->user->getByUser($username);
+
+			$idUser = $userdata->idUser;
+
+			//echo $idUser;
+
+			$laporan = $this->Pedagang->laporanPedagang($idUser);
+			
+			echo json_encode($laporan) ;
 		}else{
 			echo json_encode([
 				"status" => "NOK",

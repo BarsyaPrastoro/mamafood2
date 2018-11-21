@@ -96,4 +96,14 @@ class Pedagang extends CI_Model {
 		$query = $this->db->query($sql);
 		return $query->result();
 	}*/
+
+
+
+	public function laporanPedagang($idPedagang){
+		$this->load->database();
+		$query = $this->db->query("
+			select * from transaksi_pedagang where id_pedagang = ? 
+			", [$idPedagang]);
+		return $query->result();
+	}
 }
