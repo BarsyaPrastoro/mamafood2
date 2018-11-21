@@ -86,4 +86,12 @@ class User extends CI_Model {
 	public function updateSaldo($idUser){
 		
 	}
+
+	public function laporanPedagang($idPedagang, $statusPengambilan){
+		$this->load->database();
+		$query = $this->db->query("
+			select * from transaksi_pedagang_pembeli where (id_pedagang = ? or id_pemesan = ?) and status_pengambilan = ?
+			", [$idPedagang, $idPedagang, $statusPengambilan]);
+		return $query->result();
+	}
 }

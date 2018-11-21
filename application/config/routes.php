@@ -124,16 +124,16 @@ $route['api/datapedagang'] = 'C_API/listPedagang';
 $route['api/saldouser'] = 'C_API/saldoUser';
 $route['api/topupsaldo'] = 'C_API/topUpSaldo';
 //bikin pesanan
-$route['api/order']['POST'] = 'C_API/pesanMenu';
+$route['api/order'] = 'C_API/pesanMenu';
 //terima pesanan
-$route['api/order/(:num)/approve']['GET'] = 'C_API/approveOrder/$1';
+$route['api/order/(:num)/approve'] = 'C_API/approveOrder/$1';
 //pesanan siap
-$route['api/order/(:num)/ready']['GET'] = 'C_API/orderReady/$1';
+$route['api/order/(:num)/ready'] = 'C_API/orderReady/$1';
 //transaksi beres
-$route['api/order/(:num)/end']['GET'] = 'C_API/orderEnd/$1';
+$route['api/order/(:num)/end'] = 'C_API/orderEnd/$1';
 
 //laporan pedagang
-$route['api/laporanpedagang'] = 'C_API/laporanPedagang';
+$route['api/laporan'] = 'C_API/laporan';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

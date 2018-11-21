@@ -298,6 +298,7 @@ class C_API extends CI_Controller {
 		$this->load->model('User');
 		$this->load->model('Menu');
 		$this->load->model('Saldo');
+
 		
 
 		$token = $this->input->get_request_header('Authorization', true);
@@ -384,12 +385,15 @@ class C_API extends CI_Controller {
 	}
 
 	function approveOrder($idTransaksi){
+		if($this->input->method() != "get") return;
 		header('Content-Type: application/json');
 		$this->load->model('Transaksi');
 		$this->load->library('auth');
 		$this->load->model('User');
 		$this->load->model('Menu');
 		$this->load->model('Saldo');
+		$this->load->model('Keuangan');
+		$persentase =$this->Keuangan->persentase() ;
 		
 
 		$token = $this->input->get_request_header('Authorization', true);
@@ -406,7 +410,7 @@ class C_API extends CI_Controller {
 					//mamapay
 					if($this->Saldo->pay($transaksi->id_pemesan,$transaksi->total_harga)){
 						$this->Transaksi->payTransaction($idTransaksi);
-						$this->Saldo->receive($transaksi->id_pedagang,$transaksi->total_harga * 100.0 / 110.0);
+						$this->Saldo->receive($transaksi->id_pedagang,$transaksi->total_harga * 100.0 / (100.0+$persentase));
 						//TODO: tambah ke penjualan/pembukuan
 						$this->db->trans_commit();
 						echo json_encode([
@@ -451,6 +455,7 @@ class C_API extends CI_Controller {
 	}
 
 	function orderReady($idTransaksi){
+		if($this->input->method() != "get") return;
 		header('Content-Type: application/json');
 		$this->load->model('Transaksi');
 		$this->load->library('auth');
@@ -497,12 +502,16 @@ class C_API extends CI_Controller {
 	}
 
 	function orderEnd($idTransaksi){
+		if($this->input->method() != "get") return;
 		header('Content-Type: application/json');
 		$this->load->model('Transaksi');
 		$this->load->library('auth');
 		$this->load->model('User');
 		$this->load->model('Menu');
 		$this->load->model('Saldo');
+		$this->load->model('Keuangan');
+
+		
 		
 
 		$token = $this->input->get_request_header('Authorization', true);
@@ -648,9 +657,9 @@ class C_API extends CI_Controller {
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//LAPORAN PEDAGANG
+	//LAPORAN 
 
-	function laporanPedagang(){
+	function laporan(){
 		if ($this->input->method() != "get") return;
 		header('Content-Type: application/json');
 		$this->load->model('Pedagang');
@@ -664,9 +673,15 @@ class C_API extends CI_Controller {
 
 			$idUser = $userdata->idUser;
 
+			$data = [];
+
+			$req = json_decode( file_get_contents('php://input') );
+
+			$statusPengambilan = $req->status_pengambilan;
+
 			//echo $idUser;
 
-			$laporan = $this->Pedagang->laporanPedagang($idUser);
+			$laporan = $this->user->laporanPedagang($idUser, $statusPengambilan);
 			
 			echo json_encode($laporan) ;
 		}else{
