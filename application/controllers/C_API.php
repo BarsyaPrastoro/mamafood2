@@ -659,7 +659,7 @@ class C_API extends CI_Controller {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//LAPORAN 
 
-	function laporan(){
+	function laporan($statusPengambilan){
 		if ($this->input->method() != "get") return;
 		header('Content-Type: application/json');
 		$this->load->model('Pedagang');
@@ -673,11 +673,11 @@ class C_API extends CI_Controller {
 
 			$idUser = $userdata->idUser;
 
-			$data = [];
+			// $data = [];
 
-			$req = json_decode( file_get_contents('php://input') );
+			// $req = json_decode( file_get_contents('php://input') );
 
-			$statusPengambilan = $req->status_pengambilan;
+			// $statusPengambilan = $req->status_pengambilan;
 
 			//echo $idUser;
 

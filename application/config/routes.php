@@ -133,7 +133,7 @@ $route['api/order/(:num)/ready'] = 'C_API/orderReady/$1';
 $route['api/order/(:num)/end'] = 'C_API/orderEnd/$1';
 
 //laporan pedagang
-$route['api/laporan'] = 'C_API/laporan';
+$route['api/laporan/(:num)'] = 'C_API/laporan/$1';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
