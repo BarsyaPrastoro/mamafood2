@@ -636,8 +636,8 @@ class C_API extends CI_Controller {
 
 			$this->Saldo->top_up([
 				'id_user' => $userdata->idUser,
-				'jumlah_topup' => $req['jumlah'],
-				'bukti_transfer' => $req['bukti_transfer']
+				'jumlah_topup' => $req->jumlah,
+				'bukti_transfer' => $req->bukti_transfer
 			]);
 
 
