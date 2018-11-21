@@ -25,22 +25,22 @@ class C_API_TRANSAKSI extends CI_Controller {
 			log_message('error', "before"); 
 			$req = json_decode( file_get_contents('php://input') );
 			log_message('error', "after");
-			$data['namaMenu'] = $req->namaMenu;
-			$data['hargaMenu'] = $req->hargaMenu;
-			$data['deskripsiMenu'] = $req->deskripsiMenu;
-			$data['fotoMenu'] = $req->fotoMenu;
-
+			
+			
+			//$data['idPedagang'] = $req->idPedagang;
+			//$data['idPemesan'] = $req ->idPemesan;
+			$data['jenisPembayaran'] = $req->jenisPembayaran;
+			$data['jenisPengambilan'] = $req->jenisPengambilan;
 			$username = $this->auth->getUserByToken($token);
-
+			$data['buktiTransfer'] = $req->buktiTransfer;
+			$data['totalHarga'] = $req->total;
 			$userdata = $this->user->getByUser($username);
-
 			$data['idPedagang'] = $userdata->idUser;
-
 			
 			$this->db->trans_start();
 			log_message('error', "before sql");
 			//ngapain insert menu
-			$resdb = $this->menu->insert($data);
+			$resdb = $this->transaksi->doTransaksi($data);
 			log_message('error', "after sql");
 			//ieu naon
 			$idMenu = $this->db->insert_id();
