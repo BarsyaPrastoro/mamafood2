@@ -54,9 +54,9 @@ class C_keuangan extends CI_Controller {
 	public function laporanBeliSaldo(){
 		$this->auth->doAuth();
 		$this->load->model('Keuangan');
-		$semuaPedagang = $this->Pedagang->all();
+		$semuaPembelian = $this->Keuangan->alltopup();
 		$this->load->view('divisi/profitablemeasure/pm-laporanbelisaldo.php',[
-			'semuaPegawai' => $semuaPedagang,
+			'semuaPembelian' => $semuaPembelian,
 			'acc_indicator' => $this->acc_indicator,
 			'topbar' => $this->load->view('topbar',[],true),
 			'sidebarPM' => $this->load->view('sidebarPM',[

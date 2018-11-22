@@ -21,6 +21,12 @@ class Keuangan extends CI_Model {
 		return (int) $persentase[0]['persentase'];
 	}
 
+	public function alltopup(){
+		$this->load->database();
+		$query = $this->db->query("select * from topup_saldo where status_approval = 0");
+		return $query->result();
+	}
+
 	public function approveTopup($idTopup){
 		$this->load->database();
 		$this->db->query("UPDATE `topup_saldo` SET `status_approval` = 1 WHERE `id_topup` = $idTopup");

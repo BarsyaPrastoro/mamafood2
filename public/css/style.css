@@ -37,6 +37,9 @@
 
 
 
+
+
+
 #biopdg{
     position: fixed;
 }
@@ -62,6 +65,12 @@
     width: 200px;
 }
 
+
+.table tbody tr:hover{
+    cursor: pointer;
+    background-color:   #FFA07A;
+    transition: all 0.2s ease-in-out;
+}
 
 
 
@@ -243,7 +252,10 @@
         position: relative;
         margin-right: 0;
     }
+
 }
+
+
 
 
 

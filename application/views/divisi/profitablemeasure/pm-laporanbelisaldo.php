@@ -1,24 +1,25 @@
 <html>
-    <head>
-        <!-- <link rel="stylesheet" href="../../asset/css/style.css"> -->
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>public/css/style.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
-        
+<head>
+    <!-- <link rel="stylesheet" href="../../asset/css/style.css"> -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>public/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
-        
-    </head>
-    <body>
-        <?= $topbar ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+
+
+</head>
+<body>
+    <?= $topbar ?>
         <!-- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">                    
@@ -42,11 +43,11 @@
                 </div>
             </div>
         </nav>
- -->
-        <div id="wrapper" class="">
-            <div class="container-fluid">
-                <!-- Sidebar -->
-                <?= $sidebarPM ?>
+    -->
+    <div id="wrapper" class="">
+        <div class="container-fluid">
+            <!-- Sidebar -->
+            <?= $sidebarPM ?>
                 <!-- <div id="sidebar-wrapper">
                     <ul class="sidebar-nav">
                         <li class="sidebar-brand">
@@ -82,7 +83,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-2">
-                                
+
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
@@ -99,108 +100,111 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    
+
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                
+
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">                                
-                              <table class="table table-bordered table-striped" id="myTable">
+                              <table class="table table-bordered" id="myTable">
                                 <thead>
                                   <tr>
                                     <th>No Transaksi</th>
+                                    <th>Top-Up</th>
+                                    <th>Tanggal/Waktu</th>
                                     <th>Nama Pembeli</th>
-                                      <th>Tanggal/Waktu</th>
-                                      <th>Top-Up</th>
-                                  </tr>
-                                </thead>
-                                <tbody id="myTable">
-                                    <tr>
-                                        <td>a213</td>
-                                        <td>Melly</td>
-                                        <td>20-12-2017</td>
-                                        <td>200.000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>a213</td>
-                                        <td>Melly</td>
-                                        <td>20-12-2017</td>
-                                        <td>200.000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>a213</td>
-                                        <td>Melly</td>
-                                        <td>20-12-2017</td>
-                                        <td>200.000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>a213</td>
-                                        <td>Melly</td>
-                                        <td>20-12-2017</td>
-                                        <td>200.000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>a213</td>
-                                        <td>Melly</td>
-                                        <td>20-12-2017</td>
-                                        <td>200.000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>a213</td>
-                                        <td>Melly</td>
-                                        <td>20-12-2017</td>
-                                        <td>200.000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>a213</td>
-                                        <td>Melly</td>
-                                        <td>20-12-2017</td>
-                                        <td>200.000</td>
-                                    </tr>
-                                    
-                                </tbody>
-                              </table>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                    <th>Bukti Transfer</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="myTable">
+                                <?php foreach($semuaPembelian as $row): ?>
+                                    <?php $id = $row->id_topup ?>
+                                    <tr data-toggle="modal" data-target="#modal<?php echo($id)  ?>">
+                                        <td><?=$row->id_topup?></td>
+                                        <td><?=$row->jumlah_topup ?></td>
+                                        <td><?=$row->tanggal ?></td>
+                                        <td><?=$row->id_user ?></td>
+                                        <td>
+                                            Foto
+                                        </td>
+                                        <td><?=$row->status_approval ?></td>
                 
-            </div>
+                                    </tr>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modal<?php echo($id) ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Bukti Transfer</h5>
+                                            <div class="col-md-5">
+                                                <img class="fotoktpdape" src= "data:image/jpeg;base64, <?= $row->bukti_transfer?>">
+                                            </div>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                          </button>
+                                      </div>
+                                      <div class="modal-body">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
-        <script>
-            $("#menu-toggle").click(function(e) {
-                e.preventDefault();
-                $("#wrapper").toggleClass("toggled");
-            });
-            
-            
-            
-            
-            
-            
-            $(document).ready(function(){
-              $("#myInput").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("#myTable tr").filter(function() {
-                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-              });
-            });
-            
-            
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-            
-            
-        </script>
-    </body>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+
+        </div>
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+
+
+
+
+
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+
+
+    $(function () {
+        $('#datetimepicker1').datetimepicker();
+    });
+
+
+    $('#myModal').on('shown.bs.modal', function () {
+      $('#myInput').trigger('focus')
+
+  })
+
+</script>
+</body>
 </html>
