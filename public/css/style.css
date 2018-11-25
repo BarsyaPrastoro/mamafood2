@@ -58,6 +58,8 @@
 }
 .fotoktpdape{
     width: 270px;
+    margin-left: auto;
+    margin-right: auto;
     
 }
 .fotomenudape{
@@ -73,7 +75,14 @@
 }
 
 
-
+.modal-title{
+    text-align: center;
+    background-color: gray;
+    margin-bottom: 20px!important;
+    padding: 15px;
+    font-size: 30px;
+    font-weight: bold;;
+}
 
 
 
