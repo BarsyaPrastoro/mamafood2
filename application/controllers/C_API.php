@@ -360,7 +360,7 @@ class C_API extends CI_Controller {
 
 			$saldoInfo = $this->Saldo->saldoUser($userdata->idUser);
 
-			if ($transaksi->jenis_pembayaran == 0) {
+			if ($req->jenis_pembayaran == 0) {
 				//mamapay
 				if($total > $saldoInfo['jumlah']){
 					$this->db->trans_rollback();
@@ -504,19 +504,19 @@ class C_API extends CI_Controller {
 
 				if ($transaksi->jenis_pembayaran == 0) {
 					//mamapay
-					if($this->Saldo->pay($transaksi->id_pemesan,$transaksi->total_harga)){
+					//if($this->Saldo->pay($transaksi->id_pemesan,$transaksi->total_harga)){
 						$this->Transaksi->processTransaction($idTransaksi);
 						echo json_encode([
 							"status" => "OK",
 							"message" => "makanan siap"    
 						]);
-					}else{
-						$this->db->trans_rollback();
-						echo json_encode([
-							"status" => "NOK",
-							"message" => "Saldo anda tidak mencukupi untuk melakukan transaksi ini"    
-						]);
-					}	
+					// }else{
+					// 	$this->db->trans_rollback();
+					// 	echo json_encode([
+					// 		"status" => "NOK",
+					// 		"message" => "Saldo anda tidak mencukupi untuk melakukan transaksi ini"    
+					// 	]);
+					// }	
 				}else{
 					//cash
 					if ($this->Saldo->saldoUser($transaksi->id_pedagang) < $transaksi->total_harga * $persentase / (100.0 + $persentase)) {
@@ -576,9 +576,10 @@ class C_API extends CI_Controller {
 
 					if($transaksi->jenis_pembayaran == 1){
 						//cek lagi kalo si saldo pedagangnya beneran bisa bayar kita
-						if($this->Saldo->saldoUser($transaksi->id_pedagang) < $transaksi->total_harga * $persentase / (100.0 + $persentase)){
+						if($this->Saldo->saldoUser($transaksi->id_pedagang) > $transaksi->total_harga * $persentase / (100.0 + $persentase)){
 							$this->Saldo->pay($transaksi->id_pedagang, $transaksi->total_harga * $persentase / (100.0 + $persentase));
 							$this->Keuangan->insert($transaksi->total_harga * $persentase / (100.0 + $persentase), 0);
+							$this->Transaksi->payTransaction($idTransaksi);
 							$this->Transaksi->transactionEnd($idTransaksi);
 							echo json_encode([
 								"status" => "OK",
