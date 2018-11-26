@@ -379,10 +379,10 @@ class C_API extends CI_Controller {
 			}else{
 				//cash
 				$this->Transaksi->updateTotalHarga($idTransaksi,$total);
-					$this->db->trans_commit();
-					echo json_encode([
-						"status" => "OK"        
-					]);
+				$this->db->trans_commit();
+				echo json_encode([
+					"status" => "OK"        
+				]);
 			}
 
 			
@@ -420,27 +420,38 @@ class C_API extends CI_Controller {
 				
 				if($transaksi->jenis_pembayaran == 0){
 					//mamapay
-					if ($this->Saldo->saldoUser($transaksi->id_pedagang) < $transaksi->total_harga * 10.0 / 110.0){
-					//if($this->Saldo->pay($transaksi->id_pemesan,$transaksi->total_harga)){
+					if ($this->Saldo->saldoUser($transaksi->id_pemesan) < $transaksi->total_harga) {
 						$this->db->trans_rollback();
 						echo json_encode([
 							"status" => "NOK",
-							"message" => "Saldo anda tidak mencukupi untuk melakukan transaksi ini"    
+							"message" => "Saldo pemesan anda tidak mencukupi untuk melakukan transaksi ini"    
 						]);
 					}else{
-						$this->Transaksi->payTransaction($idTransaksi);
-						$this->Saldo->pay($transaksi->id_pemesan, $transaksi->total_harga);
-						$this->Saldo->receive($transaksi->id_pedagang, $transaksi->total_harga - ($transaksi->total_harga * 10.0 / 110.0) );
-						$this->Transaksi->approveTransaction($idTransaksi);
-						//TODO: tambah ke penjualan/pembukuan
-						$this->db->trans_commit();
-						echo json_encode([
-							"status" => "OK"        
-						]);
+						if ($this->Saldo->saldoUser($transaksi->id_pedagang) < $transaksi->total_harga * $persentase / (100.0 + $persentase)){
+						//if($this->Saldo->pay($transaksi->id_pemesan,$transaksi->total_harga)){
+							$this->db->trans_rollback();
+							echo json_encode([
+								"status" => "NOK",
+								"message" => "Saldo pedagang anda tidak mencukupi untuk melakukan transaksi ini"    
+							]);
+						}else{
+							$this->Transaksi->payTransaction($idTransaksi);
+							$this->Saldo->pay($transaksi->id_pemesan, $transaksi->total_harga);
+							$this->Saldo->receive($transaksi->id_pedagang, $transaksi->total_harga - ($transaksi->total_harga * $persentase / (100.0 + $persentase)) );
+							$this->Transaksi->approveTransaction($idTransaksi);
+							//TODO: tambah ke penjualan/pembukuan
+							//kategori 0 dari jualbeli
+							$this->Keuangan->insert($transaksi->total_harga * $persentase / (100.0 + $persentase), 0);
+							$this->db->trans_commit();
+							echo json_encode([
+								"status" => "OK"        
+							]);
+						}
 					}
+
 				}else{
 					//cash
-					if ($this->Saldo->saldoUser($transaksi->id_pedagang) < $transaksi->total_harga * 10.0 / 110.0) {
+					if ($this->Saldo->saldoUser($transaksi->id_pedagang) < $transaksi->total_harga * $persentase / (100.0 + $persentase)) {
 						$this->db->trans_rollback();
 						echo json_encode([
 							"status" => "NOK",
@@ -478,6 +489,8 @@ class C_API extends CI_Controller {
 		$this->load->model('User');
 		$this->load->model('Menu');
 		$this->load->model('Saldo');
+		$this->load->model('Keuangan');
+		$persentase =$this->Keuangan->persentase() ;
 		
 
 		$token = $this->input->get_request_header('Authorization', true);
@@ -488,19 +501,40 @@ class C_API extends CI_Controller {
 
 
 			if($userdata->role == 1 && $userdata->idUser == $transaksi->id_pedagang){
-				if($this->Saldo->pay($transaksi->id_pemesan,$transaksi->total_harga)){
-					$this->Transaksi->processTransaction($idTransaksi);
-					echo json_encode([
-						"status" => "OK",
-						"message" => "makanan siap"    
-					]);
+
+				if ($transaksi->jenis_pembayaran == 0) {
+					//mamapay
+					if($this->Saldo->pay($transaksi->id_pemesan,$transaksi->total_harga)){
+						$this->Transaksi->processTransaction($idTransaksi);
+						echo json_encode([
+							"status" => "OK",
+							"message" => "makanan siap"    
+						]);
+					}else{
+						$this->db->trans_rollback();
+						echo json_encode([
+							"status" => "NOK",
+							"message" => "Saldo anda tidak mencukupi untuk melakukan transaksi ini"    
+						]);
+					}	
 				}else{
-					$this->db->trans_rollback();
-					echo json_encode([
-						"status" => "NOK",
-						"message" => "Saldo anda tidak mencukupi untuk melakukan transaksi ini"    
-					]);
+					//cash
+					if ($this->Saldo->saldoUser($transaksi->id_pedagang) < $transaksi->total_harga * $persentase / (100.0 + $persentase)) {
+						$this->db->trans_rollback();
+						echo json_encode([
+							"status" => "NOK",
+							"message" => "saldo tidak cukup untuk menerima orderan ini"       
+						]);
+					}else{
+						$this->Transaksi->processTransaction($idTransaksi);
+						$this->db->trans_commit();
+						echo json_encode([
+							"status" => "OK"       
+						]);
+					}
 				}
+
+				
 				
 			}else{
 				//not pedagang error
@@ -526,7 +560,7 @@ class C_API extends CI_Controller {
 		$this->load->model('Menu');
 		$this->load->model('Saldo');
 		$this->load->model('Keuangan');
-
+		$persentase =$this->Keuangan->persentase() ;
 		
 		
 
@@ -542,8 +576,9 @@ class C_API extends CI_Controller {
 
 					if($transaksi->jenis_pembayaran == 1){
 						//cek lagi kalo si saldo pedagangnya beneran bisa bayar kita
-						if($this->Saldo->pay($transaksi->id_pemesan,$transaksi->total_harga)){
-							$this->Saldo->pay($transaksi->id_pedagang, $transaksi->total_harga * 10.0 / 110.0);
+						if($this->Saldo->saldoUser($transaksi->id_pedagang) < $transaksi->total_harga * $persentase / (100.0 + $persentase)){
+							$this->Saldo->pay($transaksi->id_pedagang, $transaksi->total_harga * $persentase / (100.0 + $persentase));
+							$this->Keuangan->insert($transaksi->total_harga * $persentase / (100.0 + $persentase), 0);
 							$this->Transaksi->transactionEnd($idTransaksi);
 							echo json_encode([
 								"status" => "OK",
@@ -558,19 +593,14 @@ class C_API extends CI_Controller {
 						}
 						
 					}else if($transaksi->jenis_pembayaran == 0){
-						if($this->Saldo->pay($transaksi->id_pemesan,$transaksi->total_harga)){
-							$this->Transaksi->transactionEnd($idTransaksi);
-							echo json_encode([
-								"status" => "OK",
-								"message" => "transaksi selesai"    
-							]);
-						}else{
-							$this->db->trans_rollback();
-							echo json_encode([
-								"status" => "NOK",
-								"message" => "Saldo anda tidak mencukupi untuk melakukan transaksi ini"    
-							]);
-						}
+						//mamapay
+						
+						$this->Transaksi->transactionEnd($idTransaksi);
+						echo json_encode([
+							"status" => "OK",
+							"message" => "transaksi selesai"    
+						]);
+						
 
 					}else{
 						echo json_encode([

@@ -66,10 +66,13 @@ class C_keuangan extends CI_Controller {
 		]);
 	}
 
-	public function approveSaldo(){
+	public function approveSaldo($id){
 		$this->auth->doAuth();
 		$this->load->model('Keuangan');
-		$approve = $this->Keuangan->topup();
+		$jumlah = $this->Keuangan->getJumlah($id);
+		$approve = $this->Keuangan->topup($id);
+		//masukin ke tabel keuangan
+		$this->Keuangan->insert($jumlah ,1);
 		redirect('/pm/laporanbelisaldo', 'refresh');	
 	}
 

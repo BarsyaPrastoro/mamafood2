@@ -40,13 +40,26 @@ class Keuangan extends CI_Model {
 	}
 
 
-	public function topup($jumlah, $idUser){
+	public function topup($id){
 		$this->load->database();
+		$nambah = $this->db->query("SELECT * FROM topup_saldo where id_topup = '$id' ");
+		$jumlahTopup = $nambah->row()->jumlah_topup;
+		$idUser = $nambah->$row()->id_user;
 		$query = $this->db->query("select jumlah from saldo where idSaldo = $idUser");
+
 		$saldo = $query->row()->jumlah; 
-		$saldoAkhir = $saldo + $jumlah;
+		$saldoAkhir = $saldo + $jumlahTopup;
 		$this->db->query("UPDATE 'saldo' SET 'jumlah' = $saldoAkhir WHERE 'idSaldo' = $idUser");
 
+	}
+
+	//keuntungan dari jualan masakan
+	public function insert($jumlah, $kategori){
+		$this->load->database();
+		$this->db->query("INSERT INTO keuntungan 
+			(jumlah, kategori)
+			VALUES
+			('$jumlah', '$kategori') ");
 	}
 
 }
