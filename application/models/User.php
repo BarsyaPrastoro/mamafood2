@@ -89,8 +89,10 @@ class User extends CI_Model {
 
 	public function laporanPedagang($idPedagang, $statusPengambilan){
 		$this->load->database();
+
+		//join sama transaksi_pedagang_pembeli
 		$query = $this->db->query("
-			select * from transaksi_pedagang_pembeli where (id_pedagang = ? or id_pemesan = ?) and status_pengambilan = ?
+			select * from transaksi_pedagang_pembeli join pesan_permenu on transaksi_pedagang_pembeli.id_transaksi = pesan_permenu.idTransaksi where (id_pedagang = ? or id_pemesan = ?) and status_pengambilan = ?
 			", [$idPedagang, $idPedagang, $statusPengambilan]);
 		return $query->result();
 	}
