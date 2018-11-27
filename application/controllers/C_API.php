@@ -739,4 +739,48 @@ class C_API extends CI_Controller {
 		}
 	}
 
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//PESAN
+	function message(){
+		if ($this->input->method() != "post") return;
+		header('Content-Type: application/json');
+		$this->load->model('Pesan');
+		$this->load->model('user');
+		$token = $this->input->get_request_header('Authorization', true);
+		if($this->auth->isAuthUser($token)){
+
+			$username = $this->auth->getUserByToken($token);
+
+			$userdata = $this->user->getByUser($username);
+
+			$idUser = $userdata->idUser;
+
+			$req = json_decode( file_get_contents('php://input') );
+
+			//echo $idUser;
+
+			$this->Pesan->insert($idUser, $req->isi);
+
+			// $this->Saldo->top_up([
+			// 	'id_user' => $userdata->idUser,
+			// 	'jumlah_topup' => $req->jumlah,
+			// 	'bukti_transfer' => $req->bukti_transfer
+			// ]);
+
+
+
+			echo json_encode([
+				"status" => "OK",
+				"message" => "wait"        
+			]);
+			
+			//echo json_encode($saldo) ;
+		}else{
+			echo json_encode([
+				"status" => "NOK",
+				"message" => "Invalid Token"        
+			]);
+		}
+	}
+
 }

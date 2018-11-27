@@ -61,5 +61,7 @@ class Saldo extends CI_Model {
 			VALUES
 			('$jumlah', '$id', '$bukti_transfer')");
 	}
+
+	
 }
 ?>
