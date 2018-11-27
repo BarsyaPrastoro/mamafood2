@@ -134,7 +134,7 @@
                                         <td><?=$row->id_topup?></td>
                                         <td><?=$row->jumlah_topup ?></td>
                                         <td><?=$row->tanggal ?></td>
-                                        <td><?=$row->id_user ?></td>
+                                        <td><?=$row->namaUser ?></td>
                                         <td>
                                             Foto
                                         </td>

@@ -23,7 +23,7 @@ class Keuangan extends CI_Model {
 
 	public function alltopup(){
 		$this->load->database();
-		$query = $this->db->query("select * from topup_saldo where status_approval = 0");
+		$query = $this->db->query("select * from topup_saldo join user on topup_saldo.id_user = user.idUser where status_approval = 0");
 		return $query->result();
 	}
 
