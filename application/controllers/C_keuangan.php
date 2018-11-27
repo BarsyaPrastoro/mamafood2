@@ -15,8 +15,10 @@ class C_keuangan extends CI_Controller {
 		$this->auth->doAuth();
 		$this->load->model('Keuangan');
 		$keuntungan = $this->Keuangan->all();
+		$persentase = $this->Keuangan->persentase();
 		$this->load->view('divisi/profitablemeasure/pm-laporankeuangan.php',[
 			'keuntungan' => $keuntungan,
+			'persentase' =>$persentase,
 			'acc_indicator' => $this->acc_indicator,
 			'topbar' => $this->load->view('topbar',[],true),
 			'sidebarPM' => $this->load->view('sidebarPM',[

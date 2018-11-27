@@ -66,7 +66,7 @@
                                 <label>Persentase</label>
                                 <div class="input-group ">
                                     <input id="Persentase" name="persentase" type="text"
-                                    class="form-control" > <span
+                                    class="form-control" value="<?= $persentase ?>" ></input> <span
                                     class="input-group-addon"> <span
                                     class="fa fa-percent"></span>
                                 </span>
@@ -99,9 +99,9 @@
                       <table class="table table-bordered table-striped" id="myTable">
                         <thead>
                           <tr>
-                            <th>No Transaksi</th>
-                            <th>Nama Pedagang</th>
-                            <th>Nama Pemesan</th>
+                            <th>Jenis Transaksi</th>
+                            <th>Tanggal</th>
+                            <th>Jumlah</th>
 
                         </tr>
                     </thead>
@@ -109,27 +109,33 @@
                         <?php foreach($keuntungan as $row): ?>
 
                             <tr>
-                                <td><?=$row->id?></td>
-                                <td><?=$row->tanggal ?></td>
-                                <td><?=$row->jumlah?></td>
+                                <td><?php if ($row->kategori == 0) :  ?>
+                                    <?php echo "Transaksi Penjualan Makanan"?>
+                                <?php endif; ?>
+                                <?php if ($row->kategori == 1) :  ?>
+                                    <?php echo "Transaksi Beli Saldo"?>
+                                <?php endif; ?>
+                            </td>
+                            <td><?=$row->tanggal ?></td>
+                            <td><?=$row->jumlah?></td>
 
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-12">                                
+</div>
+<div class="row">
+    <div class="col-lg-12">                                
 
-        </div>
     </div>
-    <div class="row">
-        <div class="col-lg-12">
+</div>
+<div class="row">
+    <div class="col-lg-12">
 
-        </div>
     </div>
+</div>
 </div>
 </div>
 
