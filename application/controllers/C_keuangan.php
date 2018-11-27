@@ -18,10 +18,12 @@ class C_keuangan extends CI_Controller {
 		$persentase = $this->Keuangan->persentase();
 		//parameter total adalah kategorinya
 		$total = $this->Keuangan->total(0);
+		$totalsatu = $this->Keuangan->total(1);
 		$this->load->view('divisi/profitablemeasure/pm-laporankeuangan.php',[
 			'keuntungan' => $keuntungan,
 			'persentase' =>$persentase,
 			'total' => $total,
+			'totalsatu' => $totalsatu,
 			'acc_indicator' => $this->acc_indicator,
 			'topbar' => $this->load->view('topbar',[],true),
 			'sidebarPM' => $this->load->view('sidebarPM',[
