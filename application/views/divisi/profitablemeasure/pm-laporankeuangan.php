@@ -72,7 +72,7 @@
                                 </span>
                                 <button class="btn btn-secondary" >Ganti</button>
                             </div>
-
+                            <!-- <?= $total ?> -->
                             
                         </form>
                     </div>
