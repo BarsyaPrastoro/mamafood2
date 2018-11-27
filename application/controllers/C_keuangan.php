@@ -72,10 +72,11 @@ class C_keuangan extends CI_Controller {
 			], true)
 		]);
 	}
-
+///
 	public function approveSaldo($id){
 		$this->auth->doAuth();
 		$this->load->model('Keuangan');
+		$this->Keuangan->approveTopup($id);
 		$jumlah = $this->Keuangan->getJumlah($id);
 		$approve = $this->Keuangan->topup($id);
 		//masukin ke tabel keuangan

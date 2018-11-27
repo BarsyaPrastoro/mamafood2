@@ -156,7 +156,9 @@
                                         
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            
+                                            <form  method="post" action="/pm/laporanbelisaldo/approve/<?php echo($id)?>">
+                                                <input type="submit" name="submit" class="btn btn-secondary" value="SUBMIT">
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

@@ -44,12 +44,12 @@ class Keuangan extends CI_Model {
 		$this->load->database();
 		$nambah = $this->db->query("SELECT * FROM topup_saldo where id_topup = '$id' ");
 		$jumlahTopup = $nambah->row()->jumlah_topup;
-		$idUser = $nambah->$row()->id_user;
+		$idUser = $nambah->row()->id_user;
 		$query = $this->db->query("select jumlah from saldo where idSaldo = $idUser");
 
 		$saldo = $query->row()->jumlah; 
 		$saldoAkhir = $saldo + $jumlahTopup;
-		$this->db->query("UPDATE 'saldo' SET 'jumlah' = $saldoAkhir WHERE 'idSaldo' = $idUser");
+		$this->db->query("UPDATE `saldo` SET `jumlah` = $saldoAkhir WHERE `idSaldo` = $idUser");
 
 	}
 
