@@ -759,13 +759,12 @@ class C_API extends CI_Controller {
 
 			//echo $idUser;
 
-			$this->Pesan->insert($idUser, $req->isi);
+			//$this->Pesan->insert($idUser, $req->isi);
 
-			// $this->Saldo->top_up([
-			// 	'id_user' => $userdata->idUser,
-			// 	'jumlah_topup' => $req->jumlah,
-			// 	'bukti_transfer' => $req->bukti_transfer
-			// ]);
+			$this->Pesan->insert([
+				'idUser' => $userdata->idUser,
+				'isi' => $req->isi
+			]);
 
 
 

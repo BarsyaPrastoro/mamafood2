@@ -21,8 +21,10 @@ class Pesan extends CI_Model {
 		return $query->row_array();
 	}
 
-	public function insert($idUser, $isi){
+	public function insert($data){
 		$this->load->database();
+		$isi = $data['isi'];
+		$idUser = $data['idUser'];
 		$this->db->query("INSERT INTO pesan 
 			(idUser, isi)
 			VALUES
