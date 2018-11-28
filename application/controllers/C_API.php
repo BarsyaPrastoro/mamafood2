@@ -500,7 +500,7 @@ class C_API extends CI_Controller {
 			$userdata = $this->User->getByUser($username);
 			$transaksi = $this->Transaksi->one($idTransaksi);
 
-			if ($userdata == $transaksi->id_pedagang || $userdata == $transaksi->id_pemesan) {
+			if ($userdata->idUser == $transaksi->id_pedagang || $userdata->idUser == $transaksi->id_pemesan) {
 				if ($transaksi->status_approval == 1) {
 					$this->db->trans_rollback();
 					echo json_encode([
