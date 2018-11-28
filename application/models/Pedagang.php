@@ -44,7 +44,7 @@ class Pedagang extends CI_Model {
 		$query = $this->db->query("select * from menu where idPedagang=?", [
 			$idPedagang
 		]);
-		return $query->result_array();
+		return $query->result();
 	}
 
 	public function getPelanggan(){
