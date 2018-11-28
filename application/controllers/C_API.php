@@ -11,6 +11,7 @@ class C_API extends CI_Controller {
 
 
 		$this->load->model('user');
+		$this->load->model('Saldo');
 
 		$query = $this->user->signUpPemesan((array)$data);
 
@@ -20,6 +21,9 @@ class C_API extends CI_Controller {
 				'msg' => 'Register Success',
 				'redirect' => 'home'  
 			);
+			$idUser = $this->db->insert_id();
+
+			$this->Saldo->insert($idUser);
 		} 
 	}
 

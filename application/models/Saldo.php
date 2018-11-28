@@ -40,16 +40,9 @@ class Saldo extends CI_Model {
 		return true;
 	}
 
-	public function insert($data){
-		$id = $data['idPedagang'];
-		$namaMenu = $data['namaMenu'];
-		$hargaMenu = $data['hargaMenu'];
-		$deskripsiMenu = $data['deskripsiMenu'];
-		$fotoMenu = $data['fotoMenu'];
-		$this->db->query("INSERT INTO menu
-			(idPedagang, namaMenu, hargaMenu, deskripsiMenu, fotoMenu) 
-			VALUES
-			('$idPedagang','$namaMenu','$hargaMenu','$deskripsiMenu','$fotoMenu')"); 
+	public function insert($idSaldo){
+		$res = $this->db->query("INSERT INTO saldo (idSaldo) VALUES ($idSaldo)");
+		return $res;
 	}
 
 	public function top_up($data){
