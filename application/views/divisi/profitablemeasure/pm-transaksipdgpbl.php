@@ -129,15 +129,18 @@
                                         <td><?=$row->tanggal_transaksi ?></td>
                                         <td><?=$row->total_harga ?></td>
                                         <td>
-                                        <?php if ($row->status_pesanan == 0) :  ?>
-                                            <?php echo "belum selesai"?>
+                                        <?php if ($row->status_pengambilan == 0 && $row->status_approval == 0) :  ?>
+                                            <?php echo "Belum Selesai"?>
+                                        <?php endif; ?>
+                                        <?php if ($row->status_pengambilan == 0 && $row->status_approval == 1) :  ?>
+                                            <?php echo "Makanan Belum Diambil"?>
                                         <?php endif; ?>
 
-                                        <?php if ($row->status_pesanan == 1) :  ?>
-                                            <?php echo "selesai"?>
+                                        <?php if ($row->status_pengambilan == 1 && $row->status_approval == 1) :  ?>
+                                            <?php echo "Selesai"?>
                                         <?php endif; ?>
 
-                                        <?php if ($row->status_pesanan == 5) :  ?>
+                                        <?php if ($row->status_pengambilan == 0 && $row->status_approval == 5) :  ?>
                                             <?php echo "Transaksi Dibatalkan"?>
                                         <?php endif; ?>
 
