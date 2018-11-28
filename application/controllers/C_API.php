@@ -739,6 +739,39 @@ class C_API extends CI_Controller {
 		}
 	}
 
+	function detailLaporan($idTransaksi){
+		if ($this->input->method() != "get") return;
+		header('Content-Type: application/json');
+		$this->load->model('Pedagang');
+		$this->load->model('user');
+		$token = $this->input->get_request_header('Authorization', true);
+		if($this->auth->isAuthUser($token)){
+
+			$username = $this->auth->getUserByToken($token);
+
+			$userdata = $this->user->getByUser($username);
+
+			$idUser = $userdata->idUser;
+
+			// $data = [];
+
+			// $req = json_decode( file_get_contents('php://input') );
+
+			// $statusPengambilan = $req->status_pengambilan;
+
+			//echo $idUser;
+
+			$laporan = $this->user->detailLaporanPedagang($idTransaksi);
+			
+			echo json_encode($laporan) ;
+		}else{
+			echo json_encode([
+				"status" => "NOK",
+				"message" => "Invalid Token"        
+			]);
+		}
+	}
+
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//PESAN
 	function message(){
