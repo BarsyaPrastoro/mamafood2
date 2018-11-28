@@ -58,7 +58,7 @@
                         </li>
                     </ul>
                 </div> -->
-                <?php if(isset($dataPedagang)): ?>
+                <?php if(isset($dataPedagang) && isset($dataMenuPedagang)): ?>
                     <div id="page-content-wrapper">
                         <div class="container-fluid">
                             <div class="row">
@@ -117,19 +117,19 @@
                                     <div class="col-md-7">
                                         <div class="form-group">
                                             <label for="name">Nama Menu</label>
-                                            <input type="text" class="form-control" id="name" disabled value="<?= $dataPedagang['namaMenu'] ?>" />
+                                            <input type="text" class="form-control" id="name" disabled value="<?= $dataMenuPedagang['namaMenu'] ?>" />
                                         </div>
                                         <div class="form-group">
                                             <label for="name">Harga Menu</label>
-                                            <input type="text" class="form-control" id="name" disabled value="<?= $dataPedagang['hargaMenu'] ?>" />
+                                            <input type="text" class="form-control" id="name" disabled value="<?= $dataMenuPedagang['hargaMenu'] ?>" />
                                         </div>
                                         <div class="form-group">
                                             <label for="name">Deskripsi</label>
-                                            <textarea type="text" class="form-control" id="name" disabled ><?= $dataPedagang['deskripsiMenu'] ?></textarea>
+                                            <textarea type="text" class="form-control" id="name" disabled ><?= $dataMenuPedagang['deskripsiMenu'] ?></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-5">
-                                        <img class="fotomenudape"src="<?= base_url() ?>public/images/fotomenu/<?= $dataPedagang['idMenu'] ?>.jpg"
+                                        <img class="fotomenudape"src="<?= base_url() ?>public/images/fotomenu/<?= $dataMenuPedagang['idMenu'] ?>.jpg"
                                         >
                                     </div>
                                 </div>
