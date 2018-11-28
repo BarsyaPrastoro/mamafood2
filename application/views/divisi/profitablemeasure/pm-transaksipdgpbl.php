@@ -137,6 +137,10 @@
                                             <?php echo "selesai"?>
                                         <?php endif; ?>
 
+                                        <?php if ($row->status_pesanan == 5) :  ?>
+                                            <?php echo "Transaksi Dibatalkan"?>
+                                        <?php endif; ?>
+
                                     </td>
                             </tr>
                         <?php endforeach; ?>
