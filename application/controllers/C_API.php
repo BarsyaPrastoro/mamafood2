@@ -27,7 +27,7 @@ class C_API extends CI_Controller {
 		} 
 	}
 
-	function editUser($id){
+	function editUser(){
 		if($this->input->method() != "post") return;
 		header('Content-Type: application/json');
 		$this->load->model('user');
