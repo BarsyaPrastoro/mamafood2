@@ -2,9 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Keuangan extends CI_Model {
-	public function all(){
+	public function all($kategori){
 		$this->load->database();
-		$query = $this->db->query("select * from keuntungan");
+		$query = $this->db->query("select * from keuntungan where kategori = $kategori");
 		return $query->result();
 	}
 
@@ -65,6 +65,13 @@ class Keuangan extends CI_Model {
 	public function total($kategori){
 		$this->load->database();
 		$query = $this->db->query( "SELECT sum(jumlah) as total from keuntungan where kategori = '$kategori' " );
+		$total = $query->result_array();
+		return (int) $total[0]['total'];
+	}
+
+	public function totalall(){
+		$this->load->database();
+		$query = $this->db->query( "SELECT sum(jumlah) as total from keuntungan" );
 		$total = $query->result_array();
 		return (int) $total[0]['total'];
 	}

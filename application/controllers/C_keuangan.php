@@ -14,16 +14,20 @@ class C_keuangan extends CI_Controller {
 	public function laporanKeuangan(){
 		$this->auth->doAuth();
 		$this->load->model('Keuangan');
-		$keuntungan = $this->Keuangan->all();
+		$keuntunganjual = $this->Keuangan->all(0);
+		$keuntungansaldo = $this->Keuangan->all(1);
 		$persentase = $this->Keuangan->persentase();
 		//parameter total adalah kategorinya
 		$total = $this->Keuangan->total(0);
 		$totalsatu = $this->Keuangan->total(1);
+		$totalall = $this->Keuangan->totalall();
 		$this->load->view('divisi/profitablemeasure/pm-laporankeuangan.php',[
-			'keuntungan' => $keuntungan,
+			'keuntunganjual' => $keuntunganjual,
+			'keuntungansaldo' => $keuntungansaldo,
 			'persentase' =>$persentase,
 			'total' => $total,
 			'totalsatu' => $totalsatu,
+			'totalall' => $totalall,
 			'acc_indicator' => $this->acc_indicator,
 			'topbar' => $this->load->view('topbar',[],true),
 			'sidebarPM' => $this->load->view('sidebarPM',[
