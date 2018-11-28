@@ -55,12 +55,16 @@
             <div id="page-content-wrapper">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-3">
                             <div class="form-group">
                                 <h4><span class="glyphicon glyphicon-map-marker">&nbsp;</span>Profitable Measurer</h4>
                                 <?= $acc_indicator ?>
                             </div>
                         </div>
+                        <div class="col-lg-6">
+                                <h2><strong>TOTAL PENDAPATAN:   <?= $totalall ?></strong></h2>    
+                            </div>
+                        
                         <div class="col-lg-2">
                             <form method="post" action="/pm/laporankeuangan/gantipersentase">
                                 <label>Persentase</label>
@@ -72,73 +76,83 @@
                                 </span>
                                 <button class="btn btn-secondary" >Ganti</button>
                             </div>
-                            <!-- <?= $total ?> -->
-                            
                         </form>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label>Pilih Rentang Tanggal</label>
-                            <div class="input-group input-daterange">
-                                <input id="startDate1" name="startDate1" type="text"
-                                class="form-control" readonly="readonly"> <span
-                                class="input-group-addon"> <span
-                                class="glyphicon glyphicon-calendar"></span>
-                            </span> <span class="input-group-addon">to</span> <input id="endDate1"
-                            name="endDate1" type="text" class="form-control" readonly="readonly">
-                            <span class="input-group-addon"> <span
-                                class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="row">
-                    <div class="col-lg-12">                                
-                      <table class="table table-bordered table-striped" id="myTable">
-                        <thead>
-                          <tr>
-                            <th>Jenis Transaksi</th>
-                            <th>Tanggal</th>
-                            <th>Jumlah</th>
-
-                        </tr>
-                    </thead>
-                    <tbody id="myTable">
-                        <?php foreach($keuntungan as $row): ?>
-
-                            <tr>
-                                <td><?php if ($row->kategori == 0) :  ?>
-                                    <?php echo "Transaksi Penjualan Makanan"?>
-                                <?php endif; ?>
-                                <?php if ($row->kategori == 1) :  ?>
-                                    <?php echo "Transaksi Beli Saldo"?>
-                                <?php endif; ?>
-                            </td>
-                            <td><?=$row->tanggal ?></td>
-                            <td><?=$row->jumlah?></td>
-
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-lg-6"> 
+                <div  style="border: 1px solid black; border-radius: 5px; padding: 10px; margin-bottom: 5px;">
+                    <h5><strong>TOTAL PENDAPATAN TRANSAKSI JUAL BELI:   <?= $total ?></strong></h5>
+
+                </div>                               
+                <table class="table table-bordered table-striped" id="myTable">
+                    <thead>
+                      <tr>
+                        <th>Jenis Transaksi</th>
+                        <th>Tanggal</th>
+                        <th>Jumlah</th>
+
+                    </tr>
+                </thead>
+                <tbody id="myTable">
+                    <?php foreach($keuntunganjual as $row): ?>
+
+                        <tr>
+                            <td><?php if ($row->kategori == 0) :  ?>
+                            <?php echo "Transaksi Penjualan Makanan"?>
+                        <?php endif; ?>
+                        <?php if ($row->kategori == 1) :  ?>
+                            <?php echo "Transaksi Beli Saldo"?>
+                        <?php endif; ?>
+                    </td>
+                    <td><?=$row->tanggal ?></td>
+                    <td><?=$row->jumlah?></td>
+
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 </div>
 <div class="row">
-    <div class="col-lg-12">                                
+    <div class="col-lg-6">
+        <div  style="border: 1px solid black; border-radius: 5px; padding: 10px; margin-bottom: 5px;">
+            <h5><strong>TOTAL PENDAPATAN TOPUP SALDO: <?= $totalsatu ?></strong></h5>
 
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-12">
+        </div>                                
+        <table class="table table-bordered table-striped" id="myTable">
+            <thead>
+              <tr>
+                <th>Jenis Transaksi</th>
+                <th>Tanggal</th>
+                <th>Jumlah</th>
 
-    </div>
-</div>
-</div>
-</div>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+            <?php foreach($keuntungansaldo as $row): ?>
 
+                <tr>
+                    <td><?php if ($row->kategori == 0) :  ?>
+                    <?php echo "Transaksi Penjualan Makanan"?>
+                <?php endif; ?>
+                <?php if ($row->kategori == 1) :  ?>
+                    <?php echo "Transaksi Beli Saldo"?>
+                <?php endif; ?>
+            </td>
+            <td><?=$row->tanggal ?></td>
+            <td><?=$row->jumlah?></td>
+
+        </tr>
+    <?php endforeach; ?>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <script>
