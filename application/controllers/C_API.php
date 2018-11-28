@@ -83,7 +83,7 @@ class C_API extends CI_Controller {
 			$req = json_decode( file_get_contents('php://input') );
 			$id = $user['idUser'];
 			$data['idPedagang'] = $user['idUser'];
-			// $data['fotoKtp'] = $req->fotoKtp;
+			$data['fotoKtp'] = $req->fotoKtp;
 			
 			$this->db->trans_start();
 			$resdb = $this->Pedagang->insert($data);

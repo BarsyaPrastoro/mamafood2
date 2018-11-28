@@ -100,10 +100,10 @@
                     <div class="input-group">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span>
                     </span>
-                    <input type="email" class="form-control" id="email" disabled value="<?=$dataPedagang['Alamat']; ?>" />
+                    <input type="email" class="form-control" id="email" disabled value="<?=$dataPedagang['FotoKtp']; ?>" />
                 </div>
             </div>
-            <<!-- div class="form-group">
+            <!-- div class="form-group">
                 <label for="name">KTP</label>
                 <div style="text-align: center">
                     <img class="fotoktppepe" src="data:image/jpeg;base64,<?= base64_encode( $dataPedagang['FotoKtp'] )?>">
