@@ -135,6 +135,7 @@ $route['api/order/(:num)/end'] = 'C_API/orderEnd/$1';
 
 //laporan pedagang
 $route['api/laporan/(:num)'] = 'C_API/laporan/$1';
+$route['api/laporan/detail/(:num)'] = 'C_API/detailLaporan/$1';
 
 //message cs
 $route['api/message'] = 'C_API/message';
