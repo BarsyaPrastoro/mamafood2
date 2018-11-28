@@ -58,106 +58,87 @@
                         </li>
                     </ul>
                 </div> -->
-                <?php if(isset($dataPedagang)): ?>
-                    <div id="page-content-wrapper">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-4" style="position: fixed">
-                                    <div class="form-group">
-                                        <label for="name">Nama</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
-                                        </span>
-                                        <input type="text" class="form-control" id="name" disabled value="<?= $dataPedagang['namaUser']?>" />
-                                    </div>
-                                </div>
+                <?php if(isset($dataPedagang) && isset($dataMenuPedagang)): ?>
+                <div id="page-content-wrapper">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-4" style="position: fixed">
                                 <div class="form-group">
-                                    <label for="email">Email</label>
+                                    <label for="name">Nama</label>
                                     <div class="input-group">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                                     </span>
-                                    <input type="email" class="form-control" id="email" disabled value="<?=$dataPedagang['emailUser']; ?>" />
+                                    <input type="text" class="form-control" id="name" disabled value="<?= $dataPedagang['namaUser']?>" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="email">Telepon</label>
+                                <label for="email">Email</label>
                                 <div class="input-group">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                 </span>
-                                <input type="email" class="form-control" id="email" disabled value="<?=$dataPedagang['noTelpon']; ?>" />
+                                <input type="email" class="form-control" id="email" disabled value="<?=$dataPedagang['emailUser']; ?>" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="email">Alamat</label>
+                            <label for="email">Telepon</label>
                             <div class="input-group">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span>
                             </span>
-                            <input type="email" class="form-control" id="email" disabled value="<?=$dataPedagang['Alamat']; ?>" />
+                            <input type="email" class="form-control" id="email" disabled value="<?=$dataPedagang['noTelpon']; ?>" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name">KTP</label>
-                                    <!-- <div style="text-align: center">
-                                        <img class="fotoktppepe" src="data:image/jpeg;base64,<?= base64_encode( $dataPedagang['FotoKtp'] )?>">
-                                    </div> -->
-                                </div>
-                                <form method="post" action="/reviewer/pengajuan/detail/approve/<?= $dataPedagang['idPedagang'];?>">
-                                    <div class="form-inline acc">
-                                        <input name=accept type="submit" class="btn btn-secondary" value="Accept"/>
-                                        <button type="button" class="btn btn-secondary">Decline</button>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div class="col-md-6 menu">
-                                <h3>Menu yang Diajukan</h3>
-                                <hr>
-                                
-                                <div class="row">
-                                    <div class="col-md-7">
-                                        <div class="form-group">
-                                            <label for="name">Nama Menu</label>
-                                            <input type="text" class="form-control" id="name" disabled value="<?= $dataPedagang['namaMenu'] ?>" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">Harga Menu</label>
-                                            <input type="text" class="form-control" id="name" disabled value="<?= $dataPedagang['hargaMenu'] ?>" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">Deskripsi</label>
-                                            <textarea type="text" class="form-control" id="name" disabled ><?= $dataPedagang['deskripsiMenu'] ?></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <img class="fotomenudape"src="<?= base_url() ?>public/images/fotomenu/<?= $dataPedagang['idMenu'] ?>.jpg"
-                                        >
-                                    </div>
-                                </div>
-                            
-
-                        </div>
+                        <label for="email">Alamat</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span>
+                        </span>
+                        <input type="email" class="form-control" id="email" disabled value="<?=$dataPedagang['Alamat']; ?>" />
                     </div>
-                        <?php endif; ?>
+                </div>
+                <div class="form-group">
+                    <label for="email">Nomor KTP</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span>
+                    </span>
+                    <input type="email" class="form-control" id="email" disabled value="<?=$dataPedagang['Alamat']; ?>" />
                 </div>
             </div>
-
+            <<!-- div class="form-group">
+                <label for="name">KTP</label>
+                <div style="text-align: center">
+                    <img class="fotoktppepe" src="data:image/jpeg;base64,<?= base64_encode( $dataPedagang['FotoKtp'] )?>">
+                </div>
+            </div> -->
+            <form method="post" action="/reviewer/pengajuan/detail/approve/<?= $dataPedagang['idPedagang'];?>">
+                <div class="form-inline acc">
+                    <input name=accept type="submit" class="btn btn-secondary" value="Accept"/>
+                    <button type="button" class="btn btn-secondary">Decline</button>
+                </div>
+            </form>
         </div>
     </div>
-    <script>
-        $("#menu-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
+
+<?php endif; ?>
+</div>
+</div>
+
+</div>
+</div>
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
 
 
-        $(document).ready(function(){
-          $("#myInput").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function() {
-              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-          });
-        });
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
       });
-  </script>
+    });
+  });
+</script>
 </body>
 </html>
