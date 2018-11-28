@@ -21,7 +21,8 @@ class User extends CI_Model {
 		$password = $data['password'];
 		$telepon = $data['noTelpon'];
 		$alamat = $data['Alamat'];
-		$this->db->query("INSERT INTO user(role, namaUser,emailUser, password, noTelpon, Alamat) VALUES(0,'$nama','$email','$password','$telepon','$alamat')");
+		return $this->db->query("INSERT INTO user(role, namaUser,emailUser, password, noTelpon, Alamat) VALUES(0,'$nama','$email','$password','$telepon','$alamat')");
+
 
 	}
 	//
