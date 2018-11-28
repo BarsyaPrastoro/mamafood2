@@ -74,11 +74,11 @@ class Pedagang extends CI_Model {
 
 	public function insert($data){
 		$idPedagang = $data['idPedagang'];
-		// $fotoKtp = $data['fotoKtp'];
+		$fotoKtp = $data['fotoKtp'];
 		$this->db->query("INSERT INTO pedagang
-			(idPedagang) 
+			(idPedagang, fotoKtp) 
 			VALUES
-			('$idPedagang')"); 
+			('$idPedagang','$fotoKtp')"); 
 	}
 	
 	/*public function filter($args){
