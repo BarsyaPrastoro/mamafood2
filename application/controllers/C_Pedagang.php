@@ -44,6 +44,7 @@ class C_Pedagang extends CI_Controller {
 		$this->auth->doAuth();
 		$this->load->model('Pedagang');
 		$dataPedagang = $this->Pedagang->getPedagangById($idPedagang);
+		
 		//$dataPedagang['idPedagang'] = ("ID NUMBER");
 		$dataMenuPedagang = $this->Pedagang->getMenuByIdPedagang($idPedagang);
 		//$dataMenuPedagang['idPedagang'] = ("ID NUMBER");
@@ -97,13 +98,7 @@ class C_Pedagang extends CI_Controller {
 		$this->auth->doAuth();
 		$this->load->model('Pedagang');
 		$dataPedagang = $this->Pedagang->getPengajuanPedagangById($idPedagang);
-		//$dataPedagang['idPedagang'] = ("ID NUMBER");
 		$dataMenuPedagang = $this->Pedagang->getMenuByIdPedagang($idPedagang);
-		$dataMenuPedagang['idPedagang'] = ("ID NUMBER");
-		
-		// header('Content-Type: application/json');
-		// echo json_encode(var_dump($dataPedagang));
-		// die();
 		$this->load->view('divisi/applicantreviewer/detail/detail-pengajuanpdg.php',[
 			'dataPedagang' => $dataPedagang,
 			'dataMenuPedagang' => $dataMenuPedagang,

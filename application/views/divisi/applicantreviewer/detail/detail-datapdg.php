@@ -68,7 +68,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-4" id="biopdg">
-                                <h3>Biodata</h3>
+                                <h3 style="padding-top: 10px;">Biodata</h3>
                                 <hr>
                                 <!-- <div class="col-md-4">
                                     <div class="form-group">
@@ -77,7 +77,7 @@
                                         </div>
                                     </div>
                                 </div> -->                      
-                                <?php if(isset($dataPedagang)): ?>
+                                <?php if(isset($dataMenuPedagang)): ?>
 
                                     <div class="col-md-8">
 
@@ -127,7 +127,7 @@
                         </div>
                     <?php endif; ?>
                     <div class="col-md-5" id="menupdg">
-                        <h3>Menu</h3>
+                        <h3 style="padding-top: 10px;">Menu</h3>
 
                         <?php if(isset($dataMenuPedagang)): ?>
                             <hr>
@@ -137,19 +137,19 @@
                                         <div class="form-group">
                                             <label for="name">Nama Menu</label>
                                             <input type="text" class="form-control" id="name" disabled 
-                                            value="<?= $menu['namaMenu'] ?>" />
+                                            value="<?= $menu->namaMenu?>" />
                                         </div>
                                         <div class="form-group">
                                             <label for="name">Harga Menu</label>
                                             <input type="text" class="form-control" id="name" disabled
-                                            value="<?= $menu['hargaMenu'] ?>" />
+                                            value="<?= $menu->hargaMenu ?>" />
                                         </div>
                                         <div class="form-group">
                                             <label for="name">Deskripsi</label>
-                                            <textarea type="text" class="form-control" id="name" rows="3" disabled value=""><?= $menu['deskripsiMenu'] ?></textarea>
+                                            <textarea type="text" class="form-control" id="name" rows="3" disabled value=""><?= $menu->deskripsiMenu ?></textarea>
 
                                             <div class="">
-                                                <img class="fotomenudape"src= "data:image/jpeg;base64, <?= $menu['fotoMenu']?>" />
+                                                <img class="fotomenudape"src= "data:image/jpeg;base64, <?= $menu->fotoMenu?>" />
 
                                             </div>
 
@@ -168,7 +168,7 @@
 
                     <hr>
 
-                    
+
 
                 </div>
 
