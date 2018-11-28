@@ -132,6 +132,8 @@ $route['api/order/(:num)/approve'] = 'C_API/approveOrder/$1';
 $route['api/order/(:num)/ready'] = 'C_API/orderReady/$1';
 //transaksi beres
 $route['api/order/(:num)/end'] = 'C_API/orderEnd/$1';
+//batal transaksi
+$route['api/order/(:num)/cancel'] = 'C_API/cancel/$1';
 
 //laporan pedagang
 $route['api/laporan/(:num)'] = 'C_API/laporan/$1';

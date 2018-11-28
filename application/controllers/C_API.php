@@ -481,6 +481,57 @@ class C_API extends CI_Controller {
 		}
 	}
 
+	function cancel($idTransaksi){
+		if($this->input->method() != "get") return;
+		header('Content-Type: application/json');
+		$this->load->model('Transaksi');
+		$this->load->library('auth');
+		$this->load->model('User');
+		$this->load->model('Menu');
+		$this->load->model('Saldo');
+		$this->load->model('Keuangan');
+		$persentase =$this->Keuangan->persentase() ;
+		
+
+		$token = $this->input->get_request_header('Authorization', true);
+
+		if($this->auth->isAuthUser($token)) {
+			$username = $this->auth->getUserByToken($token);
+			$userdata = $this->User->getByUser($username);
+			$transaksi = $this->Transaksi->one($idTransaksi);
+
+			if ($userdata == $transaksi->id_pedagang || $userdata == $transaksi->id_pemesan) {
+				if ($transaksi->status_approval == 1) {
+					$this->db->trans_rollback();
+					echo json_encode([
+						"status" => "NOK",
+						"message" => "Pesanan sudah diterima, tidak bisa membatalkan"       
+					]);
+				}else{
+					$this->Transaksi->cancelTransaction($idTransaksi);
+					$this->db->trans_commit();
+					echo json_encode([
+						"status" => "OK",
+						"message" => "Pesanan dibatalkan"    
+					]);
+				}
+
+			}else{
+				echo json_encode([
+					"status" => "NOK",
+					"message" => "Not Authorized"    
+				]);
+			}
+
+			
+		}else{
+			echo json_encode([
+				"status" => "NOK",
+				"message" => "Invalid Token"        
+			]);
+		}
+	}
+
 	function orderReady($idTransaksi){
 		if($this->input->method() != "get") return;
 		header('Content-Type: application/json');
@@ -505,11 +556,12 @@ class C_API extends CI_Controller {
 				if ($transaksi->jenis_pembayaran == 0) {
 					//mamapay
 					//if($this->Saldo->pay($transaksi->id_pemesan,$transaksi->total_harga)){
-						$this->Transaksi->processTransaction($idTransaksi);
-						echo json_encode([
-							"status" => "OK",
-							"message" => "makanan siap"    
-						]);
+					$this->Transaksi->processTransaction($idTransaksi);
+					$this->db->trans_commit();
+					echo json_encode([
+						"status" => "OK",
+						"message" => "makanan siap"    
+					]);
 					// }else{
 					// 	$this->db->trans_rollback();
 					// 	echo json_encode([

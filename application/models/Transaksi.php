@@ -49,6 +49,10 @@ class Transaksi extends CI_Model {
 		$this->db->query("update transaksi set status_approval = 1 where id_transaksi = $idTransaksi");
 	}
 
+	function cancelTransaction($idTransaksi){
+		$this->db->query("update transaksi set status_approval = 5 where id_transaksi = $idTransaksi");
+	}
+
 	function payTransaction($idTransaksi){
 		$this->db->query("update transaksi set status_pembayaran = 1 where id_transaksi = $idTransaksi");
 	}
